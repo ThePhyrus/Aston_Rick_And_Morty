@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'roman.bannikov.aston_rick_and_morty'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "roman.bannikov.aston_rick_and_morty"
         minSdk 23
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -30,6 +30,8 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    buildFeatures { viewBinding true }
 }
 
 dependencies {
