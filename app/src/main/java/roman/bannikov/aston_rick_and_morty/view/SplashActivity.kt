@@ -1,16 +1,16 @@
-package roman.bannikov.aston_rick_and_morty
+package roman.bannikov.aston_rick_and_morty.view
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.appcompat.app.AppCompatActivity
+import roman.bannikov.aston_rick_and_morty.R
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var countDownTimer: CountDownTimer
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,9 +27,9 @@ class SplashActivity : AppCompatActivity() {
         }.start()
     }
 
-    companion object{
-        const val SPLASH_TIME:Long = 1000L
-        const val SPLASH_INTERVAL:Long = 1000L
+    companion object {
+        const val SPLASH_TIME: Long = 1000L
+        const val SPLASH_INTERVAL: Long = 1000L
     }
 
     override fun onDestroy() {
