@@ -23,7 +23,7 @@ Rick and Morty
     5 - Список сторонних библиотек
         5.1 - Используемые библиотеки
         5.2 - Библиотеки, запрещённые к использованию
-    6 - Содержние проекта
+    6 - Что использовал при создании приложения
 
 Часть 1: Техническое задание для курсового проекта от Aston
 
@@ -154,7 +154,46 @@ Rick and Morty
     https://rickandmortyapi.com/documentation/#get-all-characters и нижнюю навигационную панель
     (bottomNavigationView) с тремя вкладками: персонажи, эпизоды, локации.
 
-Часть 6: Содержание проекта
+Часть 5: Список сторонних библиотек
+
+    5.1 - Используемые библиотеки:
+        //Pull-to-Refresh
+        implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+        // RecyclerView
+        implementation "androidx.recyclerview:recyclerview:1.3.0-rc01"
+        //JavaFaker (временно, для тестов RecyclerView)
+        implementation 'com.github.javafaker:javafaker:1.0.2'
+        //Glide (может быть заменю на Coil)
+        implementation 'com.github.bumptech.glide:glide:4.12.0'
+
+    5.2 - Библиотеки, запрещённые к использованию:
+
+        Dart
+        Rick and Morty API Dart Client by Yash Garg
+        Elixir
+        ExShla - The Rick and Morty API Wrapper by l1h3r
+        Go
+        The Rick and Morty API Go client by Leopoldo Caballero
+        Java
+        Rick and Morty API Java Client by Adriano Rocha 
+        .NET
+        Rick.Net by BIGDummyHead
+        RickAndMorty.Net.Api by Carlj28
+        PHP
+        Rick and Morty API PHP Client by Nick Been 
+        Python
+        Python implementation for the Rick and Morty API by Rohan Hazra
+        R
+        mortyr by Mike Page 
+        Ruby
+        The Rick and Morty API Gem by Tommy Spielhoelle
+        Rust
+        rick-and-morty crate by dshomoye
+        Swift
+        The Rick and Morty API Swift Client by Benjamin Bruch
+
+Часть 6: Что использовал при создании приложения
 
     1 - Проект содержит SplashActivity
     2 - Реализована bottomNavigationView
+    3 - View Binding
