@@ -10,11 +10,10 @@
 
 
     <!--    Mr.Color-->
-    <color name="mr_text_color_primary">#FF03DAC5</color>
-    <color name="mr_text_color_secondary">#FF018786</color>
+    <color name="mr_bottom_nav_menu_background_color">#38BD00</color>
+    <color name="mr_main_background_color">#38BD00</color>
+    <color name="mr_frame_layout_background_color">#1F6A00</color>
 
-    <color name="mr_color_primary">#000000</color>
-    <color name="mr_color_secondary">#FF018786</color>
-    <color name="mr_bg_color">#959595</color>
+
 
 </resources>
