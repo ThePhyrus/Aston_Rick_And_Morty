@@ -154,6 +154,33 @@ Rick and Morty
     https://rickandmortyapi.com/documentation/#get-all-characters и нижнюю навигационную панель
     (bottomNavigationView) с тремя вкладками: персонажи, эпизоды, локации.
 
+Часть 5: Список сторонних библиотек
+
+        5.2 - Библиотеки, запрещённые к использованию
+        Dart
+        Rick and Morty API Dart Client by Yash Garg
+        Elixir
+        ExShla - The Rick and Morty API Wrapper by l1h3r
+        Go
+        The Rick and Morty API Go client by Leopoldo Caballero
+        Java
+        Rick and Morty API Java Client by Adriano Rocha 
+        .NET
+        Rick.Net by BIGDummyHead
+        RickAndMorty.Net.Api by Carlj28
+        PHP
+        Rick and Morty API PHP Client by Nick Been 
+        Python
+        Python implementation for the Rick and Morty API by Rohan Hazra
+        R
+        mortyr by Mike Page 
+        Ruby
+        The Rick and Morty API Gem by Tommy Spielhoelle
+        Rust
+        rick-and-morty crate by dshomoye
+        Swift
+        The Rick and Morty API Swift Client by Benjamin Bruch
+
 Часть 6: Содержание проекта
 
     1 - Проект содержит SplashActivity
