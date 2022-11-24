@@ -4,6 +4,7 @@
     android:id="@+id/cvCharacterCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:backgroundTint="@color/teal_200"
     android:layout_margin="@dimen/margin_half"
     app:cardCornerRadius="@dimen/radius_card_corner">
 
@@ -11,7 +12,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/mr_temporary_background_color"
+        android:background="?android:attr/selectableItemBackground"
         android:orientation="vertical"
         android:padding="8dp">
 
