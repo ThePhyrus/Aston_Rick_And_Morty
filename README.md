@@ -23,7 +23,7 @@ Rick and Morty
     5 - Список сторонних библиотек
         5.1 - Используемые библиотеки
         5.2 - Библиотеки, запрещённые к использованию
-    6 - Содержние проекта
+    6 - Что использовал при создании приложения
 
 Часть 1: Техническое задание для курсового проекта от Aston
 
@@ -156,7 +156,18 @@ Rick and Morty
 
 Часть 5: Список сторонних библиотек
 
-        5.2 - Библиотеки, запрещённые к использованию
+    5.1 - Используемые библиотеки:
+        //Pull-to-Refresh
+        implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+        // RecyclerView
+        implementation "androidx.recyclerview:recyclerview:1.3.0-rc01"
+        //JavaFaker (временно, для тестов RecyclerView)
+        implementation 'com.github.javafaker:javafaker:1.0.2'
+        //Glide (может быть заменю на Coil)
+        implementation 'com.github.bumptech.glide:glide:4.12.0'
+
+    5.2 - Библиотеки, запрещённые к использованию:
+
         Dart
         Rick and Morty API Dart Client by Yash Garg
         Elixir
@@ -181,7 +192,8 @@ Rick and Morty
         Swift
         The Rick and Morty API Swift Client by Benjamin Bruch
 
-Часть 6: Содержание проекта
+Часть 6: Что использовал при создании приложения
 
     1 - Проект содержит SplashActivity
     2 - Реализована bottomNavigationView
+    3 - View Binding
