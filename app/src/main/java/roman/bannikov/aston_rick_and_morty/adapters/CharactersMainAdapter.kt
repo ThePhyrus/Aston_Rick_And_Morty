@@ -1,21 +1,32 @@
 package roman.bannikov.aston_rick_and_morty.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import roman.bannikov.aston_rick_and_morty.R
 import roman.bannikov.aston_rick_and_morty.databinding.ItemCharactersBinding
+import roman.bannikov.aston_rick_and_morty.listeners.OnCharacterCardClickListener
 import roman.bannikov.aston_rick_and_morty.models.CharacterModel
-import roman.bannikov.aston_rick_and_morty.utils.Constants.Companion.RANDOM_IMAGE_URL
 
-class CharactersMainAdapter : RecyclerView.Adapter<CharactersMainAdapter.CharacterViewHolder>() {
+
+
+class CharactersMainAdapter(
+    private val actionListener: OnCharacterCardClickListener
+) :
+    RecyclerView.Adapter<CharactersMainAdapter.CharacterViewHolder>(), View.OnClickListener {
 
     var lCharacters: List<CharacterModel> = emptyList()
         set(newValue) {
             field = newValue
             notifyDataSetChanged()
         }
+
+    override fun onClick(view: View) { // переопределён из View.OnClickListener
+        val character = view.tag as CharacterModel
+        actionListener.launchCharacterDetailsFragment(character)
+    }
 
     class CharacterViewHolder(
         val binding: ItemCharactersBinding
@@ -28,23 +39,22 @@ class CharactersMainAdapter : RecyclerView.Adapter<CharactersMainAdapter.Charact
     }
 
 
-
-
     override fun getItemCount(): Int {
         return lCharacters.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = ItemCharactersBinding.inflate(inflater, parent,false)
+        val binding = ItemCharactersBinding.inflate(inflater, parent, false)
+        binding.root.setOnClickListener (this)
         return CharacterViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
         val character = lCharacters[position]
-        with(holder.binding){
-            //ivCharacterImage...
-            if (character.characterImage.isNotBlank()){
+        with(holder.binding) {
+            holder.itemView.tag = character
+            if (character.characterImage.isNotBlank()) {
                 Glide.with(ivCharacterImage.context)
                     .load(character.characterImage)
                     .circleCrop()
@@ -62,13 +72,6 @@ class CharactersMainAdapter : RecyclerView.Adapter<CharactersMainAdapter.Charact
     }
 
 
-    /*
-var characterId : Int,
-var characterImage : String,
-var characterName : String,
-var characterGender : String,
-var characterSpecies : String,
-var characterStatus : String
-*/
+
 
 }

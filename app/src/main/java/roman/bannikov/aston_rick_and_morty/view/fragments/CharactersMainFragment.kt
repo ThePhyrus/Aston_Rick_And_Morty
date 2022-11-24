@@ -5,12 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import roman.bannikov.aston_rick_and_morty.App
 import roman.bannikov.aston_rick_and_morty.R
 import roman.bannikov.aston_rick_and_morty.adapters.CharactersMainAdapter
+
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentCharactersMainBinding
+import roman.bannikov.aston_rick_and_morty.listeners.OnCharacterCardClickListener
+import roman.bannikov.aston_rick_and_morty.models.CharacterModel
 import roman.bannikov.aston_rick_and_morty.models.CharacterModelListener
 import roman.bannikov.aston_rick_and_morty.models.CharacterModelService
 import roman.bannikov.aston_rick_and_morty.view.MainActivity
@@ -23,8 +27,7 @@ class CharactersMainFragment : Fragment() {
 //    private val mContext = getApplicationContext()
 
     private val characterModelService: CharacterModelService
-        get() = ( context?.applicationContext as App).characterModelService
-
+        get() = (context?.applicationContext as App).characterModelService
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +41,13 @@ class CharactersMainFragment : Fragment() {
     ): View {
         _binding = FragmentCharactersMainBinding.inflate(inflater, container, false)
 
-        adapter = CharactersMainAdapter()
+        adapter = CharactersMainAdapter(object : OnCharacterCardClickListener {
+            override fun launchCharacterDetailsFragment(character: CharacterModel) {
+                //todo открыть фрагмент с деталями персонажа, тост убрать
+                Toast.makeText(context, "${character.characterName}", Toast.LENGTH_SHORT).show()
+            }
+
+        })
 
         initRV()
 
