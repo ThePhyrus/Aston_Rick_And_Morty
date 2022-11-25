@@ -4,6 +4,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import roman.bannikov.aston_rick_and_morty.App
+import roman.bannikov.aston_rick_and_morty.view.fragments.Navigator
+import roman.bannikov.aston_rick_and_morty.viewmodels.CharacterDetailsViewModel
 import roman.bannikov.aston_rick_and_morty.viewmodels.CharactersMainViewModel
 
 //фаил FragmentUtils.kt будет содержит в себе классы и методы для работы с фрагментами.
@@ -21,7 +23,6 @@ import roman.bannikov.aston_rick_and_morty.viewmodels.CharactersMainViewModel
 класс App()
 Наследоваться ViewModelFactory() должен от ViewModelProvider.Factory!!!
  */
-
 class ViewModelFactory(
     private val app: App
 ) : ViewModelProvider.Factory {
@@ -29,10 +30,15 @@ class ViewModelFactory(
     //В аргументе приходит класс вью-модели, а возвращает саму (созданную тут вью-модель)
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         //пока вью-модель только одна
-        val viewModel = when (modelClass){
+        val viewModel = when (modelClass) {
             CharactersMainViewModel::class.java -> {
-             CharactersMainViewModel(app.characterModelService)
-            }else -> {
+                CharactersMainViewModel(app.characterModelService)
+            }
+            //Появилась вторая вью-модель (делаем по аналогии)
+            CharacterDetailsViewModel::class.java -> {
+                CharacterDetailsViewModel(app.characterModelService)
+            }
+            else -> {
                 //Бросим исключение, если придёт какая-то непонятная дичь
                 throw java.lang.IllegalStateException("Unknown view model class")
             }
@@ -42,8 +48,14 @@ class ViewModelFactory(
 }
 
 /**
- Эта функция будет доступна во всех фрагментах и нужна для того, чтобы тыщщщу раз не писать
- один и тотже код*/
-
+Эта функция будет доступна во всех фрагментах и нужна для того, чтобы тыщщщу раз не писать
+один и тотже код
+ */
 fun Fragment.factory() = ViewModelFactory(requireContext().applicationContext as App)
 
+
+/**
+Функция для получения навигатора. Теперь везде, где идут переходы между экранами, можно
+обратиться к навигатору и добавить соответсвующую логику
+ */
+fun Fragment.navigator() = requireActivity() as Navigator

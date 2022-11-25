@@ -1,9 +1,14 @@
 package roman.bannikov.aston_rick_and_morty.view
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import roman.bannikov.aston_rick_and_morty.R
 import roman.bannikov.aston_rick_and_morty.databinding.ActivityMainBinding
+import roman.bannikov.aston_rick_and_morty.models.CharacterModel
+import roman.bannikov.aston_rick_and_morty.view.fragments.Navigator
+import roman.bannikov.aston_rick_and_morty.view.fragments.characters.CharacterDetailsFragment
 import roman.bannikov.aston_rick_and_morty.view.fragments.characters.CharactersMainFragment
 import roman.bannikov.aston_rick_and_morty.view.fragments.episodes.EpisodesMainFragment
 import roman.bannikov.aston_rick_and_morty.view.fragments.locations.LocationsMainFragment
@@ -11,7 +16,7 @@ import roman.bannikov.aston_rick_and_morty.view.fragments.locations.LocationsMai
 //todo change image_for_item_episodes (drawable)
 //fixme tvDataSapience?!? (CharacterDetailsFragment)
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Navigator {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -46,5 +51,26 @@ class MainActivity : AppCompatActivity() {
 
             true
         }
+    }
+
+    //From Navigator()
+    override fun showCharacterDetails(characterModel: CharacterModel) {
+        supportFragmentManager.beginTransaction()
+            .replace(
+                R.id.containerForFragments,
+                CharacterDetailsFragment.newInstance(characterId = characterModel.characterId)
+            )
+            .commit()
+    }
+
+    //From Navigator()
+    override fun goBack() {
+        onBackPressed()
+//        onBackPressedDispatcher
+    }
+
+    //From Navigator()
+    override fun showToast(messageRes: Int) {
+        Toast.makeText(this, messageRes, Toast.LENGTH_LONG).show()
     }
 }

@@ -1,60 +1,87 @@
 package roman.bannikov.aston_rick_and_morty.view.fragments.characters
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import roman.bannikov.aston_rick_and_morty.R
+import roman.bannikov.aston_rick_and_morty.databinding.FragmentCharacterDetailsBinding
+import roman.bannikov.aston_rick_and_morty.utils.Constants
+import roman.bannikov.aston_rick_and_morty.utils.factory
+import roman.bannikov.aston_rick_and_morty.utils.navigator
+import roman.bannikov.aston_rick_and_morty.viewmodels.CharacterDetailsViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [CharacterDetailsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CharacterDetailsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private var _binding: FragmentCharacterDetailsBinding? = null
+    private val binding: FragmentCharacterDetailsBinding get() = _binding!!
+    private val viewModel: CharacterDetailsViewModel by viewModels { factory() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        //Сообщим вью-модели, детали какого персонажа надо загрузить/отобразить:
+        viewModel.showCharacterDetails(requireArguments().getInt(ARG_CHARACTER_ID))
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_character_details, container, false)
+    ): View {
+        _binding = FragmentCharacterDetailsBinding.inflate(inflater, container, false)
+
+        viewModel.characterDetailsLiveData.observe(viewLifecycleOwner, Observer {
+            binding.tvCharacterNameDetails.text = it.character.characterName
+            if (it.character.characterImage.isNotBlank()) {
+                Glide.with(this)
+                    .load(it.character.characterImage)
+                    .apply(
+                        RequestOptions().override(
+                            Constants.IMAGE_FIXED_WIDTH,
+                            Constants.IMAGE_FIXED_HEIGHT
+                        )
+                    )
+                    .circleCrop()
+                    .placeholder(R.drawable.ic_placeholder)
+                    .error(R.drawable.ic_error)
+                    .into(binding.ivCharacterImageDetails)
+            } else { //обязательно (см CharactersMainFragment())
+                Glide.with(this)
+                    .load(R.drawable.ic_placeholder)
+                    .into(binding.ivCharacterImageDetails)
+            }
+        })
+
+        binding.btnBack.setOnClickListener {
+            navigator().showToast(R.string.moved_back)
+            navigator().goBack()
+        }
+        //todo повесить остальные слушатели нажатий (там tv кликабельные)
+
+        return binding.root
     }
 
+
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CharacterDetailsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
+        //Так как фрагмент будет принимать параметры, то опишем их в newInstance()
+        private const val ARG_CHARACTER_ID = "ARG_CHARACTER_ID"
+
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CharacterDetailsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        fun newInstance(characterId: Int): CharacterDetailsFragment {
+            val fragment = CharacterDetailsFragment()
+            fragment.arguments = bundleOf(ARG_CHARACTER_ID to characterId)
+            return fragment
+        }
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

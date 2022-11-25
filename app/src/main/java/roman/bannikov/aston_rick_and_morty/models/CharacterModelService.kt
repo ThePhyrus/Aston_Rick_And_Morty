@@ -1,6 +1,7 @@
 package roman.bannikov.aston_rick_and_morty.models
 
 import com.github.javafaker.Faker
+import roman.bannikov.aston_rick_and_morty.utils.CharacterNotFoundException
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -26,6 +27,20 @@ class CharacterModelService { //класс определяет операции
         }.toMutableList()
     }
 
+    fun getCharacters(): List<CharacterModel> {
+        return mlCharacters
+    }
+
+    fun getCharacterById(id: Int): CharacterDetailsModel {
+        val character =
+            mlCharacters.firstOrNull { it.characterId == id } ?: throw CharacterNotFoundException()
+        return CharacterDetailsModel(
+            character = character,
+            details = Faker.instance().lorem().paragraphs(5).joinToString("\n\n")
+        )
+
+    }
+
     fun addListener(listener: CharacterModelListener) {
         listeners.add(listener)
         listener.invoke(mlCharacters)
@@ -40,9 +55,9 @@ class CharacterModelService { //класс определяет операции
         listeners.forEach { it.invoke(mlCharacters) }
     }
 
-    fun deleteCharacter (character: CharacterModel){
+    fun deleteCharacter(character: CharacterModel) {
         val indexToDelete = mlCharacters.indexOfFirst { it.characterId == character.characterId }
-        if (indexToDelete != -1){
+        if (indexToDelete != -1) {
             mlCharacters = ArrayList(mlCharacters)
             mlCharacters.removeAt(indexToDelete)
             notifyChanges()

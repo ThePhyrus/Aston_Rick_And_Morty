@@ -18,6 +18,7 @@ import roman.bannikov.aston_rick_and_morty.models.CharacterModel
 import roman.bannikov.aston_rick_and_morty.models.CharacterModelListener
 import roman.bannikov.aston_rick_and_morty.models.CharacterModelService
 import roman.bannikov.aston_rick_and_morty.utils.factory
+import roman.bannikov.aston_rick_and_morty.utils.navigator
 import roman.bannikov.aston_rick_and_morty.viewmodels.CharactersMainViewModel
 
 class CharactersMainFragment : Fragment() {
@@ -55,6 +56,8 @@ class CharactersMainFragment : Fragment() {
         adapter = CharactersMainAdapter(object : OnCharacterCardClickListener {
             override fun launchCharacterDetailsFragment(character: CharacterModel) {
                 //todo открыть фрагмент с деталями персонажа, тост убрать
+                //переходим на экран деталей персонажа
+                navigator().showCharacterDetails(character)
                 Toast.makeText(context, "${character.characterName}", Toast.LENGTH_SHORT).show()
             }
         })
@@ -69,6 +72,7 @@ class CharactersMainFragment : Fragment() {
         binding.rvCharacters.layoutManager = layoutManager
         binding.rvCharacters.adapter = adapter
     }
+
 
     companion object {
         @JvmStatic

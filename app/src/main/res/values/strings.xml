@@ -8,5 +8,6 @@
     <string name="episodes">Episodes:</string>
     <string name="episode_name">Episode name</string>
     <string name="date">Date:</string>
+    <string name="moved_back">Перешли назад с экрана деталей персонажа</string>
 
 </resources>
