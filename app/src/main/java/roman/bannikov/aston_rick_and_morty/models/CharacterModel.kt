@@ -1,12 +1,12 @@
 package roman.bannikov.aston_rick_and_morty.models
 
 data class CharacterModel(
-    var characterId : Int,
-    var characterImage : String,
-    var characterName : String,
-    var characterSpecies : String,
-    var characterGender : String,
-    var characterStatus : String
+    val characterId : Int,
+    val characterImage : String,
+    val characterName : String,
+    val characterSpecies : String,
+    val characterGender : String,
+    val characterStatus : String
 )
 
 /*
