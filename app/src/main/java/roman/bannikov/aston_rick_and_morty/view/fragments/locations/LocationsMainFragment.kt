@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.view.fragments
+package roman.bannikov.aston_rick_and_morty.view.fragments.locations
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import roman.bannikov.aston_rick_and_morty.R
 
-class EpisodesMainFragment : Fragment() {
+class LocationsMainFragment : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,11 +20,11 @@ class EpisodesMainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_episodes_main, container, false)
+        return inflater.inflate(R.layout.fragment_locations_main, container, false)
     }
 
     companion object {
         @JvmStatic
-        fun newInstance() = EpisodesMainFragment()
+        fun newInstance() = LocationsMainFragment()
     }
 }

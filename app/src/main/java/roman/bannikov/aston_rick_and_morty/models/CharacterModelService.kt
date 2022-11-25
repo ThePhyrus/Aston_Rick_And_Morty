@@ -1,6 +1,7 @@
 package roman.bannikov.aston_rick_and_morty.models
 
 import com.github.javafaker.Faker
+import roman.bannikov.aston_rick_and_morty.utils.CharacterNotFoundException
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -8,7 +9,7 @@ import kotlin.collections.ArrayList
 typealias CharacterModelListener = (characters: List<CharacterModel>) -> Unit
 
 
-class CharacterModelService {
+class CharacterModelService { //класс определяет операции с персонажем
     private var mlCharacters = mutableListOf<CharacterModel>()
     private val listeners = mutableSetOf<CharacterModelListener>()
 
@@ -26,6 +27,20 @@ class CharacterModelService {
         }.toMutableList()
     }
 
+    fun getCharacters(): List<CharacterModel> {
+        return mlCharacters
+    }
+
+    fun getCharacterById(id: Int): CharacterDetailsModel {
+        val character =
+            mlCharacters.firstOrNull { it.characterId == id } ?: throw CharacterNotFoundException()
+        return CharacterDetailsModel(
+            character = character,
+            details = Faker.instance().lorem().paragraphs(5).joinToString("\n\n")
+        )
+
+    }
+
     fun addListener(listener: CharacterModelListener) {
         listeners.add(listener)
         listener.invoke(mlCharacters)
@@ -40,9 +55,9 @@ class CharacterModelService {
         listeners.forEach { it.invoke(mlCharacters) }
     }
 
-    fun deleteCharacter (character: CharacterModel){
+    fun deleteCharacter(character: CharacterModel) {
         val indexToDelete = mlCharacters.indexOfFirst { it.characterId == character.characterId }
-        if (indexToDelete != -1){
+        if (indexToDelete != -1) {
             mlCharacters = ArrayList(mlCharacters)
             mlCharacters.removeAt(indexToDelete)
             notifyChanges()

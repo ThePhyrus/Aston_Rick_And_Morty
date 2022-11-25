@@ -165,6 +165,8 @@ Rick and Morty
         implementation 'com.github.javafaker:javafaker:1.0.2'
         //Glide (может быть заменю на Coil)
         implementation 'com.github.bumptech.glide:glide:4.12.0'
+        //Fragment
+        implementation 'androidx.fragment:fragment-ktx:1.5.4'
 
     5.2 - Библиотеки, запрещённые к использованию:
 
