@@ -8,7 +8,7 @@ import kotlin.collections.ArrayList
 typealias CharacterModelListener = (characters: List<CharacterModel>) -> Unit
 
 
-class CharacterModelService {
+class CharacterModelService { //класс определяет операции с персонажем
     private var mlCharacters = mutableListOf<CharacterModel>()
     private val listeners = mutableSetOf<CharacterModelListener>()
 
