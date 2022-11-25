@@ -16,6 +16,7 @@ import roman.bannikov.aston_rick_and_morty.view.fragments.locations.LocationsMai
 
 //todo change image_for_item_episodes (drawable)
 //fixme tvDataSapience?!? (CharacterDetailsFragment)
+//fixme исправить кривую разметку в fragment_character_details.xml (да и вообще подправить UI)
 
 class MainActivity : AppCompatActivity(), Navigator {
 

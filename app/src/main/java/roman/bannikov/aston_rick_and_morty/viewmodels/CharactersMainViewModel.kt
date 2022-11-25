@@ -10,6 +10,9 @@ import roman.bannikov.aston_rick_and_morty.models.CharacterModelService
 class CharactersMainViewModel(
     private val characterModelService: CharacterModelService
 ) : ViewModel() {
+    //Цель и задачи вью-модели: выполнять запросы к модели, получать данные из этой модели и
+    //преобразовывать их в удобный вид для того, чтобы слой вью мог эти данные отрисовать на экране.
+
     //В этом классе можно и нужно:
     // описать операции, которые разрешено делать из фрагмента
     // определить данные, которые вью-модель будет отправлять во фрагмент
@@ -37,7 +40,8 @@ class CharactersMainViewModel(
     }
 
 
-    //определим действия:
+    //определим действия: (делигировали их куда-то там... куда? к следующему слою - к модели,
+    // точнее - к методам класса CharacterModelService() в слое model)
     fun loadCharacters() {
         //получить данные о персонажах по ссылке (см. README.md)...
         //но пока просто исползуем Faker

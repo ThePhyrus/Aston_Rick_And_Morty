@@ -31,7 +31,5 @@ class CharacterDetailsViewModel(
         }
     }
 
-    fun method() {
-        //запасной метод... вроде бы понадобится
-    }
+
 }
