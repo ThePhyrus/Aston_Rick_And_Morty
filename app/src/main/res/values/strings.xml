@@ -4,5 +4,9 @@
     <string name="species_unknown">Species unknown</string>
     <string name="gender_unknown">Gender unknown</string>
     <string name="status_unknown">Status unknown</string>
+    <string name="empty">Empty</string>
+    <string name="episodes">Episodes:</string>
+    <string name="episode_name">Episode name</string>
+    <string name="date">Date:</string>
 
 </resources>

@@ -10,6 +10,9 @@ import roman.bannikov.aston_rick_and_morty.view.fragments.CharactersMainFragment
 import roman.bannikov.aston_rick_and_morty.view.fragments.EpisodesMainFragment
 import roman.bannikov.aston_rick_and_morty.view.fragments.LocationsMainFragment
 
+//todo change image_for_item_episodes (drawable)
+//fixme tvDataSapience?!? (CharacterDetailsFragment)
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
