@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.view.fragments
+package roman.bannikov.aston_rick_and_morty.view.fragments.characters
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

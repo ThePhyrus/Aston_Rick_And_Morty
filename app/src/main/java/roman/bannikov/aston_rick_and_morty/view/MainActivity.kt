@@ -2,13 +2,11 @@ package roman.bannikov.aston_rick_and_morty.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import roman.bannikov.aston_rick_and_morty.App
 import roman.bannikov.aston_rick_and_morty.R
 import roman.bannikov.aston_rick_and_morty.databinding.ActivityMainBinding
-import roman.bannikov.aston_rick_and_morty.models.CharacterModelService
-import roman.bannikov.aston_rick_and_morty.view.fragments.CharactersMainFragment
-import roman.bannikov.aston_rick_and_morty.view.fragments.EpisodesMainFragment
-import roman.bannikov.aston_rick_and_morty.view.fragments.LocationsMainFragment
+import roman.bannikov.aston_rick_and_morty.view.fragments.characters.CharactersMainFragment
+import roman.bannikov.aston_rick_and_morty.view.fragments.episodes.EpisodesMainFragment
+import roman.bannikov.aston_rick_and_morty.view.fragments.locations.LocationsMainFragment
 
 //todo change image_for_item_episodes (drawable)
 //fixme tvDataSapience?!? (CharacterDetailsFragment)

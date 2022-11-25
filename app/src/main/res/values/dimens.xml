@@ -27,4 +27,5 @@
     <dimen name="text_size_18_sp">18sp</dimen>
     <dimen name="text_size_20_sp">20sp</dimen>
     <dimen name="width_340_dp">340dp</dimen>
+    <dimen name="padding">8dp</dimen>
 </resources>
