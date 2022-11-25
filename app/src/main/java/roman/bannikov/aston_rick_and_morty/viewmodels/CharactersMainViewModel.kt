@@ -22,25 +22,31 @@ class CharactersMainViewModel(
     val charactersLiveData: LiveData<List<CharacterModel>> = _charactersLiveData
 
 
+
+    //Слушатель, чтобы подписаться на получение персонажей из модели (на фейки)
+    //(typealias in CharacterModelService)
+    //Если есть слушатель, который вызывается в блоке init, то слушатель надо писать
+    //перед блоком init
+    private val listener:CharacterModelListener = {
+        _charactersLiveData.value = it
+    }
+
+
     init {
         loadCharacters()
     }
-
 
 
     //определим действия:
     fun loadCharacters() {
         //получить данные о персонажах по ссылке (см. README.md)...
         //но пока просто исползуем Faker
+        characterModelService.addListener(listener)
 
     }
 
 
-    //чтобы подписаться на получение персонажей из модели (на фейки)
-    //(typealias in CharacterModelService)
-    private val listener:CharacterModelListener = {
-        _charactersLiveData.value = it
-    }
+
 
     override fun onCleared() {
         super.onCleared()

@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import roman.bannikov.aston_rick_and_morty.App
 import roman.bannikov.aston_rick_and_morty.adapters.CharactersMainAdapter
@@ -15,6 +17,8 @@ import roman.bannikov.aston_rick_and_morty.listeners.OnCharacterCardClickListene
 import roman.bannikov.aston_rick_and_morty.models.CharacterModel
 import roman.bannikov.aston_rick_and_morty.models.CharacterModelListener
 import roman.bannikov.aston_rick_and_morty.models.CharacterModelService
+import roman.bannikov.aston_rick_and_morty.utils.factory
+import roman.bannikov.aston_rick_and_morty.viewmodels.CharactersMainViewModel
 
 class CharactersMainFragment : Fragment() {
 
@@ -22,15 +26,14 @@ class CharactersMainFragment : Fragment() {
     private val binding: FragmentCharactersMainBinding get() = _binding!!
     private lateinit var adapter: CharactersMainAdapter
 
+    //Поле для доступа к вью-модели:
+    //Такая запись (и сама фабрика) используется, если во вью-модели конструктор НЕ по умолчанию
+    private val viewModel: CharactersMainViewModel by viewModels {factory()}
+
 
     private val characterModelService: CharacterModelService
         get() = (context?.applicationContext as App).characterModelService
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +42,12 @@ class CharactersMainFragment : Fragment() {
         _binding = FragmentCharactersMainBinding.inflate(inflater, container, false)
         initAdapter()
         initRV()
-        characterModelService.addListener(charactersListener)//fixme why?
+
+        //Подпишемся на данные, к которым любезно предоставляет доступ CharactersMainViewModel.kt
+        //в активити вместо viewLifecycleOwner можно передавать просто this (что-то с ЖЦ там)
+        viewModel.charactersLiveData.observe(viewLifecycleOwner, Observer {
+            adapter.lCharacters = it
+        })
         return binding.root
     }
 
@@ -49,7 +57,6 @@ class CharactersMainFragment : Fragment() {
                 //todo открыть фрагмент с деталями персонажа, тост убрать
                 Toast.makeText(context, "${character.characterName}", Toast.LENGTH_SHORT).show()
             }
-
         })
     }
 
@@ -68,14 +75,6 @@ class CharactersMainFragment : Fragment() {
         fun newInstance() = CharactersMainFragment()
     }
 
-//    private fun initRecyclerView() {
-//        with(binding.rvCharacters) {
-//            layoutManager = LinearLayoutManager(requireContext())
-//            layoutManager = GridLayoutManager(requireContext(), 2)
-//            adapter = charactersAdapter
-//        }
-//        charactersAdapter.onCharacterItem = { navigator().openCharacterDetailFragment(it.id) }
-//    }
 
     override fun onDestroy() {
         super.onDestroy()

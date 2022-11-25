@@ -16,28 +16,31 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
 
         if (savedInstanceState == null) {
-            val fragment = CharactersMainFragment.newInstance()
-            supportFragmentManager.beginTransaction().add(R.id.containerForFragments, fragment).commit()
+            supportFragmentManager.beginTransaction()
+                .add(R.id.containerForFragments, CharactersMainFragment())
+                .commit()
         }
 
         binding.bottomNav.setOnItemSelectedListener { item ->
-            when(item.itemId){
+            when (item.itemId) {
                 R.id.bottomMenuCharacters -> {
                     //launch fragment
-                    supportFragmentManager.beginTransaction().replace(R.id.containerForFragments, CharactersMainFragment()).commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.containerForFragments, CharactersMainFragment()).commit()
                 }
                 R.id.bottomMenuEpisodes -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.containerForFragments, EpisodesMainFragment()).commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.containerForFragments, EpisodesMainFragment()).commit()
                 }
                 R.id.bottomMenuLocations -> {
                     //launch fragment
-                    supportFragmentManager.beginTransaction().replace(R.id.containerForFragments, LocationsMainFragment()).commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.containerForFragments, LocationsMainFragment()).commit()
                 }
             }
 
