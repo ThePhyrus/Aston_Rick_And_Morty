@@ -7,6 +7,7 @@ import android.widget.Toast
 import roman.bannikov.aston_rick_and_morty.R
 import roman.bannikov.aston_rick_and_morty.databinding.ActivityMainBinding
 import roman.bannikov.aston_rick_and_morty.models.CharacterModel
+import roman.bannikov.aston_rick_and_morty.utils.Constants.Companion.TAG_CHARACTER_DETAILS_FRAGMENT
 import roman.bannikov.aston_rick_and_morty.view.fragments.Navigator
 import roman.bannikov.aston_rick_and_morty.view.fragments.characters.CharacterDetailsFragment
 import roman.bannikov.aston_rick_and_morty.view.fragments.characters.CharactersMainFragment
@@ -56,6 +57,7 @@ class MainActivity : AppCompatActivity(), Navigator {
     //From Navigator()
     override fun showCharacterDetails(characterModel: CharacterModel) {
         supportFragmentManager.beginTransaction()
+            .addToBackStack(TAG_CHARACTER_DETAILS_FRAGMENT)
             .replace(
                 R.id.containerForFragments,
                 CharacterDetailsFragment.newInstance(characterId = characterModel.characterId)
