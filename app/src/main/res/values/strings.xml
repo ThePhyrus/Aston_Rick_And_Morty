@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Aston_Rick_And_Morty</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name_unknown">Name unknown</string>
+    <string name="species_unknown">Species unknown</string>
+    <string name="gender_unknown">Gender unknown</string>
+    <string name="status_unknown">Status unknown</string>
 
 </resources>

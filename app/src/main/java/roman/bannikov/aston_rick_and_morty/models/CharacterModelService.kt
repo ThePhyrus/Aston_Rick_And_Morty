@@ -2,8 +2,11 @@ package roman.bannikov.aston_rick_and_morty.models
 
 import com.github.javafaker.Faker
 import java.util.*
+import kotlin.collections.ArrayList
 
+//todo вспомнить, что за typealias. Заменить на interface как-нибудь?
 typealias CharacterModelListener = (characters: List<CharacterModel>) -> Unit
+
 
 class CharacterModelService {
     private var mlCharacters = mutableListOf<CharacterModel>()
@@ -16,10 +19,9 @@ class CharacterModelService {
                 characterId = it.toInt(),
                 characterImage = RANDOM_IMAGE_URL,
                 characterName = faker.name().name(),
-                characterGender = faker.funnyName().name(),
+                characterGender = "Gender",
                 characterSpecies = "Species",
-                characterStatus = "status"
-
+                characterStatus = "Status"
             )
         }.toMutableList()
     }
@@ -34,12 +36,17 @@ class CharacterModelService {
     }
 
 
-    fun getCharacters(): List<CharacterModel> {
-        return mlCharacters
-    }
-
     private fun notifyChanges() {
         listeners.forEach { it.invoke(mlCharacters) }
+    }
+
+    fun deleteCharacter (character: CharacterModel){
+        val indexToDelete = mlCharacters.indexOfFirst { it.characterId == character.characterId }
+        if (indexToDelete != -1){
+            mlCharacters = ArrayList(mlCharacters)
+            mlCharacters.removeAt(indexToDelete)
+            notifyChanges()
+        }
     }
 
     fun moveCharacter(character: CharacterModel, moveBy: Int) {
@@ -47,6 +54,7 @@ class CharacterModelService {
         if (oldIndex == -1) return
         val newIndex = oldIndex + moveBy
         if (newIndex < 0 || newIndex >= mlCharacters.size) return
+        mlCharacters = ArrayList(mlCharacters)
         Collections.swap(mlCharacters, oldIndex, newIndex)
         notifyChanges()
     }
