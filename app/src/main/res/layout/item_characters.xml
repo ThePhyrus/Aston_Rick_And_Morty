@@ -4,7 +4,8 @@
     android:id="@+id/cvCharacterCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:backgroundTint="@color/teal_200"
+    android:backgroundTint="@color/black"
+    android:alpha="1"
     android:layout_margin="@dimen/margin_half"
     app:cardCornerRadius="@dimen/radius_card_corner">
 
@@ -12,6 +13,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:alpha="1"
         android:background="?android:attr/selectableItemBackground"
         android:orientation="vertical"
         android:padding="8dp">
@@ -19,6 +21,7 @@
         <ImageView
             android:id="@+id/ivCharacterImage"
             android:layout_width="150dp"
+            android:alpha="1"
             android:layout_height="150dp"
             android:scaleType="center"
             android:layout_gravity="center"
