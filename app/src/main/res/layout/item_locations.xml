@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="center"
-            android:src="@drawable/ic_character" />
+            android:src="@drawable/location" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -29,55 +29,43 @@
             app:layout_constraintEnd_toEndOf="parent">
 
             <TextView
-                android:id="@+id/character_name"
+                android:id="@+id/name_location_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/item_horizontal_distance"
                 android:layout_marginTop="@dimen/item_vertical_distance"
                 android:layout_marginEnd="@dimen/item_horizontal_distance"
                 android:layout_marginBottom="@dimen/item_vertical_distance"
-                android:text="@string/rick_sanchez"
+                android:text="@string/earth"
                 android:textColor="@color/white"
                 android:textSize="@dimen/item_name"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/character_sapience"
+                android:id="@+id/type_location_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/item_horizontal_distance"
                 android:layout_marginTop="@dimen/item_vertical_distance"
                 android:layout_marginEnd="@dimen/item_horizontal_distance"
                 android:layout_marginBottom="@dimen/item_vertical_distance"
-                android:text="@string/human"
+                android:text="@string/planet"
                 android:textColor="@color/white"
                 android:textSize="@dimen/add_info_item" />
 
             <TextView
-                android:id="@+id/character_status"
+                android:id="@+id/dimension_location_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/item_horizontal_distance"
                 android:layout_marginTop="@dimen/item_vertical_distance"
                 android:layout_marginEnd="@dimen/item_horizontal_distance"
                 android:layout_marginBottom="@dimen/item_vertical_distance"
-                android:text="@string/alive"
+                android:text="@string/dimension_c_137"
                 android:textColor="@color/white"
                 android:textSize="@dimen/add_info_item" />
 
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/item_gender"
-            android:layout_width="@dimen/gender_item"
-            android:layout_height="@dimen/gender_item"
-            android:layout_gravity="bottom"
-            android:layout_marginEnd="@dimen/item_horizontal_distance"
-            android:layout_marginBottom="@dimen/item_vertical_distance"
-            android:contentDescription="@string/gender"
-            android:src="@drawable/ic_male"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/linearLayout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

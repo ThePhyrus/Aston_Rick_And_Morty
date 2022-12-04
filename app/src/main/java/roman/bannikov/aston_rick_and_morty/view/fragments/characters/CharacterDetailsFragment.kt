@@ -1,87 +1,67 @@
 package roman.bannikov.aston_rick_and_morty.view.fragments.characters
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import roman.bannikov.aston_rick_and_morty.R
+import androidx.navigation.fragment.findNavController
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentCharacterDetailsBinding
-import roman.bannikov.aston_rick_and_morty.utils.Constants
-import roman.bannikov.aston_rick_and_morty.utils.factory
-import roman.bannikov.aston_rick_and_morty.utils.navigator
-import roman.bannikov.aston_rick_and_morty.viewmodels.CharacterDetailsViewModel
+import roman.bannikov.aston_rick_and_morty.view.navigator
+
+import kotlin.properties.Delegates
+
+
+
 
 class CharacterDetailsFragment : Fragment() {
 
-    private var _binding: FragmentCharacterDetailsBinding? = null
-    private val binding: FragmentCharacterDetailsBinding get() = _binding!!
-    private val viewModel: CharacterDetailsViewModel by viewModels { factory() }
+    private lateinit var binding: FragmentCharacterDetailsBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        //Сообщим вью-модели, детали какого персонажа надо загрузить/отобразить:
-        viewModel.showCharacterDetails(requireArguments().getInt(ARG_CHARACTER_ID))
+    private var characterId by Delegates.notNull<Int>()
+
+    companion object {
+        private const val KEY_CHARACTER_ID: String = "KEY_CHARACTER_ID"
+
+        @JvmStatic
+        fun newInstance(
+            characterId: Int
+        ) =
+            CharacterDetailsFragment().apply {
+                arguments = Bundle().apply {
+                    putInt(KEY_CHARACTER_ID, characterId)
+                }
+            }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCharacterDetailsBinding.inflate(inflater, container, false)
-
-        viewModel.characterDetailsLiveData.observe(viewLifecycleOwner, Observer {
-            binding.tvCharacterNameDetails.text = it.character.characterName
-            if (it.character.characterImage.isNotBlank()) {
-                Glide.with(this)
-                    .load(it.character.characterImage)
-                    .apply(
-                        RequestOptions().override(
-                            Constants.IMAGE_FIXED_WIDTH,
-                            Constants.IMAGE_FIXED_HEIGHT
-                        )
-                    )
-                    .circleCrop()
-                    .placeholder(R.drawable.ic_placeholder)
-                    .error(R.drawable.ic_error)
-                    .into(binding.ivCharacterImageDetails)
-            } else { //обязательно (см CharactersMainFragment())
-                Glide.with(this)
-                    .load(R.drawable.ic_placeholder)
-                    .into(binding.ivCharacterImageDetails)
-            }
-        })
-
-        binding.btnBack.setOnClickListener {
-            navigator().showToast(R.string.moved_back)
-            navigator().goBack()
-        }
-        //todo повесить остальные слушатели нажатий (там tv кликабельные)
-
+        binding = FragmentCharacterDetailsBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    companion object {
-        //Так как фрагмент будет принимать параметры, то опишем их в newInstance()
-        private const val ARG_CHARACTER_ID = "ARG_CHARACTER_ID"
+        characterId = requireArguments().getInt(KEY_CHARACTER_ID)
 
-        @JvmStatic
-        fun newInstance(characterId: Int): CharacterDetailsFragment {
-            val fragment = CharacterDetailsFragment()
-            fragment.arguments = bundleOf(ARG_CHARACTER_ID to characterId)
-            return fragment
+        binding.characterOrigin.setOnClickListener {
+            val id = 1
+            navigator().openLocationsDetailFragment(locationId = id)
         }
 
+        binding.characterLocation.setOnClickListener {
+            val id = 1
+            navigator().openLocationsDetailFragment(locationId = id)
+        }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
+    private fun init() {
+        arguments?.let {
+            characterId = it.getInt(KEY_CHARACTER_ID)
+        }
     }
 }
