@@ -23,7 +23,7 @@ import roman.bannikov.aston_rick_and_morty.presentation.screens.episodes.episode
 import roman.bannikov.aston_rick_and_morty.presentation.screens.episodes.episodes_fragment.EpisodesViewModelProvider
 import roman.bannikov.aston_rick_and_morty.presentation.screens.locations.location_details_fragment.LocationDetailsViewModelProvider
 import roman.bannikov.aston_rick_and_morty.presentation.screens.locations.locations_filter_fragment.LocationFiltersViewModelProvider
-import com.example.rickandmorty.presentation.screens.locations.locations_fragment.LocationsViewModelProvider
+import roman.bannikov.aston_rick_and_morty.presentation.screens.locations.locations_fragment.LocationsViewModelProvider
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

@@ -1,4 +1,4 @@
-package com.example.rickandmorty.presentation
+package roman.bannikov.aston_rick_and_morty.presentation
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -15,7 +15,7 @@ import roman.bannikov.aston_rick_and_morty.presentation.screens.episodes.episode
 import roman.bannikov.aston_rick_and_morty.presentation.screens.episodes.episodes_fragment.EpisodesFragment
 import roman.bannikov.aston_rick_and_morty.presentation.screens.locations.location_details_fragment.LocationDetailsFragment
 import roman.bannikov.aston_rick_and_morty.presentation.screens.locations.locations_filter_fragment.LocationFiltersFragment
-import com.example.rickandmorty.presentation.screens.locations.locations_fragment.LocationsFragment
+import roman.bannikov.aston_rick_and_morty.presentation.screens.locations.locations_fragment.LocationsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 

@@ -17,7 +17,7 @@ import com.example.rickandmorty.databinding.FragmentLocationDetailsBinding
 import roman.bannikov.aston_rick_and_morty.di.App
 import roman.bannikov.aston_rick_and_morty.presentation.adapters.characters_adapter_for_details.CharactersListForDetailsAdapter
 import roman.bannikov.aston_rick_and_morty.presentation.models.location.LocationPresentation
-import com.example.rickandmorty.presentation.navigator
+import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.properties.Delegates

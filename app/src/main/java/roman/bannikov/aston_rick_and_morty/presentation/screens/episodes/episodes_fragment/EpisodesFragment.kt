@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rickandmorty.databinding.FragmentEpisodesBinding
 import roman.bannikov.aston_rick_and_morty.di.App
 import roman.bannikov.aston_rick_and_morty.presentation.adapters.episodes_adapter.EpisodesAdapter
-import com.example.rickandmorty.presentation.navigator
+import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest

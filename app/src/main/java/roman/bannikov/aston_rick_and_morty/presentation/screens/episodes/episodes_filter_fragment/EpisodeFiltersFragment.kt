@@ -13,7 +13,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.ExperimentalPagingApi
 import com.example.rickandmorty.databinding.FragmentEpisodesFilterBinding
 import roman.bannikov.aston_rick_and_morty.di.App
-import com.example.rickandmorty.presentation.navigator
+import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.launch
 import javax.inject.Inject

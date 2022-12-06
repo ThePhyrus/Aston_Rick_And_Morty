@@ -17,7 +17,7 @@ import com.example.rickandmorty.databinding.FragmentCharacterDetailsBinding
 import roman.bannikov.aston_rick_and_morty.di.App
 import roman.bannikov.aston_rick_and_morty.presentation.adapters.character_details_adapter.EpisodeListForDetailsAdapter
 import roman.bannikov.aston_rick_and_morty.presentation.models.character.CharacterPresentation
-import com.example.rickandmorty.presentation.navigator
+import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.properties.Delegates
