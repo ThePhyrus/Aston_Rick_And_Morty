@@ -1,4 +1,4 @@
-package com.example.rickandmorty.presentation.screens.locations.locations_fragment
+package roman.bannikov.aston_rick_and_morty.presentation.screens.locations.locations_fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rickandmorty.databinding.FragmentLocationsBinding
 import roman.bannikov.aston_rick_and_morty.di.App
 import roman.bannikov.aston_rick_and_morty.presentation.adapters.locations_adapter.LocationsAdapter
-import com.example.rickandmorty.presentation.navigator
+import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest

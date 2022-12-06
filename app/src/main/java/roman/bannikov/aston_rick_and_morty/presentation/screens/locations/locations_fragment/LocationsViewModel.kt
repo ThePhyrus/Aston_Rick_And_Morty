@@ -1,4 +1,4 @@
-package com.example.rickandmorty.presentation.screens.locations.locations_fragment
+package roman.bannikov.aston_rick_and_morty.presentation.screens.locations.locations_fragment
 
 import androidx.lifecycle.*
 import androidx.paging.ExperimentalPagingApi

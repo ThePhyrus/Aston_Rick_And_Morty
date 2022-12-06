@@ -1,4 +1,4 @@
-package com.example.rickandmorty.presentation
+package roman.bannikov.aston_rick_and_morty.presentation
 
 import androidx.fragment.app.Fragment
 

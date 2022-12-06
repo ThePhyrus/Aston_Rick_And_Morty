@@ -1,4 +1,4 @@
-package com.example.rickandmorty.presentation
+package roman.bannikov.aston_rick_and_morty.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
