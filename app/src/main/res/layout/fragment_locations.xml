@@ -5,22 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/splash_screen"
-    tools:context=".presentation.locations.LocationsFragment">
+    tools:context=".presentation.screens.locations.locations_fragment.LocationsFragment">
 
 
-    <androidx.appcompat.widget.SearchView
+    <EditText
         android:id="@+id/search_locations"
+        android:paddingLeft="10dp"
         android:layout_width="@dimen/zero"
         android:layout_height="@dimen/filter_btn_size"
         android:layout_marginStart="@dimen/distance_vertical"
         android:layout_marginTop="@dimen/distance_vertical"
         android:layout_marginEnd="@dimen/distance_vertical"
         android:background="@drawable/background_search"
-        app:iconifiedByDefault="false"
+        android:lines="1"
+        android:hint="Location search"
+        android:maxLines="1"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toStartOf="@+id/btn_filter_locations"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:queryHint="@string/search_character" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/btn_filter_locations"
@@ -58,22 +61,47 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_filter_locations" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_locations"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_locations"
         android:layout_width="@dimen/zero"
         android:layout_height="@dimen/zero"
-        android:layout_marginStart="@dimen/distance_horizontal"
-        android:layout_marginTop="@dimen/distance_vertical"
-        android:layout_marginEnd="@dimen/distance_horizontal"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locations_label"
-        app:layout_constraintVertical_bias="0.0"
-        app:spanCount="2"
-        tools:listitem="@layout/item_locations"
-        tools:orientation="vertical" />
+        app:layout_constraintTop_toBottomOf="@+id/locations_label">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_locations"
+            android:layout_width="@dimen/zero"
+            android:layout_height="@dimen/zero"
+            android:layout_marginStart="@dimen/distance_horizontal"
+            android:layout_marginTop="@dimen/distance_vertical"
+            android:layout_marginEnd="@dimen/distance_horizontal"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/locations_label"
+            app:layout_constraintVertical_bias="0.0"
+            app:spanCount="2"
+            tools:listitem="@layout/item_locations"
+            tools:orientation="vertical" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar_location"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center"
+        android:indeterminateTint="@color/yellow"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/swipe_refresh_locations"
+        app:layout_constraintEnd_toEndOf="@+id/swipe_refresh_locations"
+        app:layout_constraintStart_toStartOf="@+id/swipe_refresh_locations"
+        app:layout_constraintTop_toTopOf="@+id/swipe_refresh_locations" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

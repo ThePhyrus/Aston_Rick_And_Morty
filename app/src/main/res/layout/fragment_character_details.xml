@@ -5,7 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/splash_screen"
-    tools:context=".presentation.characters.CharacterDetailsFragment">
+    tools:context=".presentation.screens.characters.character_details_fragment.CharacterDetailsFragment">
+
+
+    <ImageButton
+        android:id="@+id/back_btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/round_button"
+        android:gravity="center_vertical|center_horizontal"
+        android:src="@drawable/btn_back"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toTopOf="@+id/guideline1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
@@ -19,21 +35,51 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="@dimen/distance_horizontal"
-        android:src="@drawable/ic_character"
+        android:src="@drawable/ic_loading_white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline1" />
 
     <TextView
+        android:id="@+id/character_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/distance_horizontal"
         android:layout_marginTop="@dimen/chain_vertical"
+        android:ems="12"
+        android:text="@string/empty"
+        android:textColor="@color/light_pink"
+        android:textSize="@dimen/detail_name"
+        app:layout_constraintBottom_toTopOf="@+id/character_status"
+        app:layout_constraintStart_toEndOf="@+id/character_image"
+        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <TextView
         android:id="@+id/character_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/distance_horizontal"
-        android:text="@string/status"
+        android:layout_marginTop="@dimen/distance_between_text"
+        android:ems="14"
+        android:text="@string/empty"
+        android:textColor="@color/light_pink"
+        android:textSize="@dimen/item_name"
+        app:layout_constraintBottom_toTopOf="@+id/character_type"
+        app:layout_constraintStart_toEndOf="@+id/character_image"
+        app:layout_constraintTop_toBottomOf="@+id/character_name" />
+
+    <TextView
+        android:id="@+id/character_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/distance_horizontal"
+        android:layout_marginTop="@dimen/distance_between_text"
+        android:ems="14"
+        android:text="@string/empty"
+        android:textColor="@color/light_pink"
         android:textSize="@dimen/item_name"
         app:layout_constraintBottom_toTopOf="@+id/character_specie"
         app:layout_constraintStart_toEndOf="@+id/character_image"
-        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+        app:layout_constraintTop_toBottomOf="@+id/character_status" />
 
     <TextView
         android:id="@+id/character_specie"
@@ -41,11 +87,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/distance_horizontal"
         android:layout_marginTop="@dimen/distance_between_text"
-        android:text="@string/specie"
+        android:ems="14"
+        android:text="@string/empty"
+        android:textColor="@color/light_pink"
         android:textSize="@dimen/item_name"
         app:layout_constraintBottom_toTopOf="@+id/character_gender"
         app:layout_constraintStart_toEndOf="@+id/character_image"
-        app:layout_constraintTop_toBottomOf="@+id/character_status" />
+        app:layout_constraintTop_toBottomOf="@+id/character_type" />
 
     <TextView
         android:id="@+id/character_gender"
@@ -53,25 +101,30 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/distance_horizontal"
         android:layout_marginTop="@dimen/distance_between_text"
-        android:text="@string/gender_c"
+        android:ems="14"
+        android:text="@string/empty"
+        android:textColor="@color/light_pink"
         android:textSize="@dimen/item_name"
         app:layout_constraintBottom_toTopOf="@+id/character_origin"
         app:layout_constraintStart_toEndOf="@+id/character_image"
         app:layout_constraintTop_toBottomOf="@+id/character_specie" />
 
     <TextView
-        android:clickable="true"
         android:id="@+id/character_origin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/distance_horizontal"
         android:layout_marginTop="@dimen/distance_between_text"
-        android:text="@string/origin"
+        android:clickable="true"
+        android:ems="14"
+        android:focusable="true"
+        android:text="@string/empty"
+        android:textColor="@color/light_pink"
         android:textSize="@dimen/item_name"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/character_location"
         app:layout_constraintStart_toEndOf="@+id/character_image"
-        app:layout_constraintTop_toBottomOf="@+id/character_gender"
-        android:focusable="true" />
+        app:layout_constraintTop_toBottomOf="@+id/character_gender" />
 
     <TextView
         android:id="@+id/character_location"
@@ -81,9 +134,12 @@
         android:layout_marginTop="@dimen/distance_between_text"
         android:layout_marginBottom="@dimen/chain_vertical"
         android:clickable="true"
+        android:ems="15"
         android:focusable="true"
-        android:text="last_location"
+        android:text="@string/empty"
+        android:textColor="@color/light_pink"
         android:textSize="@dimen/item_name"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/character_image"
         app:layout_constraintStart_toEndOf="@+id/character_image"
         app:layout_constraintTop_toBottomOf="@+id/character_origin" />
@@ -93,6 +149,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/distance_horizontal"
         android:text="@string/episodes"
+        android:textColor="@color/light_pink"
         android:textSize="@dimen/label_size"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,14 +160,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="267dp" />
+        app:layout_constraintGuide_begin="255dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_character_detail"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/distance_horizontal"
-        android:layout_marginTop="@dimen/distance_vertical"
         android:layout_marginEnd="@dimen/distance_horizontal"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -120,5 +176,18 @@
         app:spanCount="1"
         tools:listitem="@layout/item_episodes_in_characters"
         tools:orientation="vertical" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar_character_details"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center"
+        android:indeterminateTint="@color/yellow"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_character_detail"
+        app:layout_constraintEnd_toEndOf="@+id/rv_character_detail"
+        app:layout_constraintStart_toStartOf="@+id/rv_character_detail"
+        app:layout_constraintTop_toTopOf="@+id/rv_character_detail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

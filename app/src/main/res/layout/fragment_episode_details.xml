@@ -5,7 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/splash_screen"
-    tools:context=".presentation.episodes.EpisodeDetailsFragment">
+    tools:context=".presentation.screens.episodes.episode_details_fragment.EpisodeDetailsFragment">
+
+    <ImageButton
+        android:id="@+id/back_btn"
+
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/round_button"
+        android:gravity="center_vertical|center_horizontal"
+        android:src="@drawable/btn_back"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toTopOf="@+id/guideline1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
@@ -18,8 +33,11 @@
         android:id="@+id/episode_name_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/the_ricklantis_mixup"
-        android:textSize="@dimen/label_size"
+        android:text="@string/empty"
+        android:ems="15"
+        android:gravity="center"
+        android:textColor="@color/light_pink"
+        android:textSize="@dimen/planet_name_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,8 +48,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/distance_between_text"
-        android:text="@string/air_date_september_10_2017"
-        android:textSize="@dimen/add_info_item"
+        android:text="@string/empty"
+        android:textColor="@color/light_pink"
+        android:textSize="@dimen/item_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/episode_name_detail" />
@@ -41,8 +60,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/distance_between_text"
-        android:text="@string/episode_s03e07"
-        android:textSize="@dimen/add_info_item"
+        android:text="@string/empty"
+        android:textColor="@color/light_pink"
+        android:textSize="@dimen/item_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/episode_air_date_detail" />
@@ -52,6 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/distance_horizontal"
         android:text="@string/characters"
+        android:textColor="@color/light_pink"
         android:textSize="@dimen/label_size"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent" />
@@ -77,5 +98,18 @@
         app:spanCount="2"
         tools:listitem="@layout/item_characters"
         tools:orientation="vertical" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar_episodes_details"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center"
+        android:indeterminateTint="@color/yellow"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_episode_detail"
+        app:layout_constraintEnd_toEndOf="@+id/rv_episode_detail"
+        app:layout_constraintStart_toStartOf="@+id/rv_episode_detail"
+        app:layout_constraintTop_toTopOf="@+id/rv_episode_detail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
