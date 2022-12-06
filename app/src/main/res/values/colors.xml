@@ -23,21 +23,21 @@
     <color name="mr_indeterminate_tint_color">#4BFF00</color>
 
 <!--    -->
-
     <color name="splash_screen">#1B0016</color>
     <color name="light_pink">#FF74E5</color>
     <color name="light_beige">#FFEF7C</color>
     <color name="blue">#1100FF</color>
     <color name="orange">#FF5900</color>
     <color name="yellow">#E6D0FF00</color>
+    <color name="light_yellow">#E6FFC869</color>
     <color name="pink">#E6C800FF</color>
     <color name="white_yellow">#F4F3D7</color>
     <color name="white_blue">#A3B2FB</color>
     <color name="card_color">#C17D0291</color>
+    <color name="back_btn">#C12B4729</color>
     <color name="gray_pink">#9C8F759E</color>
-    <color name="green">#9C2EFF00</color>
-    <color name="light_green">#9C8CDF7A</color>
-    <color name="light_yellow">#E6FFC869</color>
+    <color name="light_green">#9C88FF6F</color>
+    <color name="green">#9C2DFF00</color>
 
 
 </resources>
