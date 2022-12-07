@@ -82,7 +82,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
 
     // Fragments
-    implementation 'androidx.fragment:fragment-ktx:1.4.1'
+    implementation 'androidx.fragment:fragment-ktx:1.5.4'
 
     // SplashScreen
     implementation 'androidx.core:core-splashscreen:1.0.0-beta02'
