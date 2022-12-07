@@ -10,21 +10,17 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.paging.ExperimentalPagingApi
-import com.example.rickandmorty.databinding.FragmentEpisodesFilterBinding
-import roman.bannikov.aston_rick_and_morty.di.App
+
 import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.launch
-import javax.inject.Inject
+import roman.bannikov.aston_rick_and_morty.databinding.FragmentEpisodesFilterBinding
 
 class EpisodeFiltersFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentEpisodesFilterBinding
     private var episode: String? = null
     private var episodesList: MutableList<String> = mutableListOf<String>()
-    @Inject
-    lateinit var episodeFilterViewModelProvider: EpisodeFilterViewModelProvider
     private lateinit var vm: EpisodeFiltersViewModel
 
     override fun onCreateView(
@@ -35,14 +31,12 @@ class EpisodeFiltersFragment : BottomSheetDialogFragment() {
         return binding.root
     }
 
-    @OptIn(ExperimentalPagingApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (requireContext().applicationContext as App).appComponent.inject(this)
 
         vm = ViewModelProvider(
             this,
-            episodeFilterViewModelProvider
+            EpisodeFilterViewModelProvider(requireContext())
         )[EpisodeFiltersViewModel::class.java]
         observeVm()
 

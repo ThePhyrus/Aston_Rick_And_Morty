@@ -1,5 +1,6 @@
 package roman.bannikov.aston_rick_and_morty.data.paging.characters_paging
 
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -33,6 +34,7 @@ class CharactersRemoteMediator(
         state: PagingState<Int, Characters>
     ): MediatorResult {
 
+        Log.e("characters", "$gender $name   $status $type   $species")
 
         val page = when (val pageKeyData = getKeyPageData(loadType, state)) {
             is MediatorResult.Success -> return pageKeyData
@@ -50,7 +52,10 @@ class CharactersRemoteMediator(
                     type = type,
                     species = species
                 )
-
+            Log.e("aa11111aaaa", "${response.results}")
+            Log.e("aaaaaa", "${response.results.forEach { 
+                it.status
+            }}")
 
             val isEndOfList =
                 response.info.next == null

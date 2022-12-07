@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import com.example.rickandmorty.R
+import roman.bannikov.aston_rick_and_morty.R
 import roman.bannikov.aston_rick_and_morty.presentation.models.location.LocationPresentation
 
 class LocationsAdapter : PagingDataAdapter<LocationPresentation, LocationsViewHolder>(

@@ -4,7 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.example.rickandmorty.R
+import roman.bannikov.aston_rick_and_morty.R
+
 import roman.bannikov.aston_rick_and_morty.presentation.models.episode.EpisodePresentation
 
 class EpisodeListForDetailsAdapter(

@@ -5,17 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.ExperimentalPagingApi
-import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.rickandmorty.databinding.FragmentCharactersBinding
-import roman.bannikov.aston_rick_and_morty.di.App
+
 import roman.bannikov.aston_rick_and_morty.presentation.adapters.characters_adapter.CharactersAdapter
 import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import kotlinx.android.synthetic.main.fragment_characters.*
@@ -23,7 +20,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import javax.inject.Inject
+import roman.bannikov.aston_rick_and_morty.databinding.FragmentCharactersBinding
 
 
 @ExperimentalPagingApi
@@ -41,8 +38,7 @@ class CharactersFragment : Fragment() {
         "species" to null,
         "type" to null
     )
-@Inject
-lateinit var charactersViewModelProvider: CharactersViewModelProvider
+
     private lateinit var vm: CharactersViewModel
 
     companion object {
@@ -83,11 +79,10 @@ lateinit var charactersViewModelProvider: CharactersViewModelProvider
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (requireContext().applicationContext as App).appComponent.inject(this)
 
         vm = ViewModelProvider(
             this,
-            charactersViewModelProvider
+            CharactersViewModelProvider(requireContext())
         )[CharactersViewModel::class.java]
 
         initRecyclerView()
@@ -161,19 +156,9 @@ lateinit var charactersViewModelProvider: CharactersViewModelProvider
 
     private fun collectUiState() {
         viewLifecycleOwner.lifecycleScope.launch {
-            vm.charactersFlow.collectLatest {
-                charactersAdapter.submitData(it)
-            }
-        }
-
-        lifecycleScope.launch {
-            charactersAdapter.loadStateFlow.collectLatest { loadStates ->
-                binding.progressBarCharacters.isVisible = loadStates.refresh is LoadState.Loading
-
-            }
+            vm.charactersFlow.collectLatest { charactersAdapter.submitData(it) }
         }
     }
-
 
     private fun init() {
         arguments?.let {

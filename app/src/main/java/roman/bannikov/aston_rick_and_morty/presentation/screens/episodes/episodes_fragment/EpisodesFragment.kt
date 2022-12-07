@@ -4,21 +4,17 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.appcompat.widget.SearchView
-import androidx.core.view.isVisible
 import androidx.lifecycle.*
 import androidx.paging.ExperimentalPagingApi
-import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.rickandmorty.databinding.FragmentEpisodesBinding
-import roman.bannikov.aston_rick_and_morty.di.App
 import roman.bannikov.aston_rick_and_morty.presentation.adapters.episodes_adapter.EpisodesAdapter
 import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import javax.inject.Inject
+import roman.bannikov.aston_rick_and_morty.databinding.FragmentEpisodesBinding
 
 
 @ExperimentalPagingApi
@@ -31,8 +27,6 @@ class EpisodesFragment : Fragment() {
 
     private var episode: String? = null
 
-    @Inject
-    lateinit var episodesViewModelProvider: EpisodesViewModelProvider
     private lateinit var vm: EpisodesViewModel
 
     companion object {
@@ -64,11 +58,10 @@ class EpisodesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (requireContext().applicationContext as App).appComponent.inject(this)
 
         vm = ViewModelProvider(
             this,
-            episodesViewModelProvider
+            EpisodesViewModelProvider(requireContext())
         )[EpisodesViewModel::class.java]
 
         initRecyclerView()
@@ -104,13 +97,6 @@ class EpisodesFragment : Fragment() {
                     name = vm.filteredTrigger.value.getValue("name"),
                     episode = vm.filteredTrigger.value.getValue("episode"),
                 )
-            }
-        }
-
-        lifecycleScope.launch {
-            episodesAdapter.loadStateFlow.collectLatest { loadStates ->
-                binding.progressBarEpisodes.isVisible = loadStates.refresh is LoadState.Loading
-
             }
         }
 

@@ -1,6 +1,8 @@
 package roman.bannikov.aston_rick_and_morty.data.storage.room.db
 
+import android.content.Context
 import androidx.room.Database
+import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import roman.bannikov.aston_rick_and_morty.data.models.characters.Characters
@@ -39,4 +41,20 @@ abstract class RickAndMortyDatabase : RoomDatabase() {
     abstract fun getEpisodesKeyDao(): EpisodesKeysDao
 
 
+    companion object {
+        @Volatile
+        private var instance: RickAndMortyDatabase? = null
+        private val LOCK = Any()
+
+        operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
+            instance ?: createDatabase(context = context).also { instance = it }
+        }
+
+        private fun createDatabase(context: Context) =
+            Room.databaseBuilder(
+                context.applicationContext,
+                RickAndMortyDatabase::class.java,
+                "RickAndMortyDB.bd"
+            ).build()
+    }
 }

@@ -1,5 +1,6 @@
 package roman.bannikov.aston_rick_and_morty.data.repositories.characters_repositories
 
+import android.util.Log
 import roman.bannikov.aston_rick_and_morty.data.mapper.entity_to_domain_model.CharacterEntityToDomainModel
 import roman.bannikov.aston_rick_and_morty.data.models.characters.Characters
 import roman.bannikov.aston_rick_and_morty.data.remote.api.chatacters.CharacterDetailsApi
@@ -28,7 +29,9 @@ class CharacterDetailsRepositoryImpl(
             }
 
         } catch (e: HttpException) {
+            Log.e("Log", "${e.code()}")
         } catch (e: IOException) {
+            Log.e("Log", "${e.message}")
         }
 
         return@withContext CharacterEntityToDomainModel().transform(

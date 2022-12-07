@@ -2,6 +2,7 @@ package roman.bannikov.aston_rick_and_morty.presentation.screens.characters.char
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,14 +11,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.paging.ExperimentalPagingApi
-import com.example.rickandmorty.databinding.FragmentCharactersFilterBinding
-import roman.bannikov.aston_rick_and_morty.di.App
+
 import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.launch
-import javax.inject.Inject
+import roman.bannikov.aston_rick_and_morty.databinding.FragmentCharactersFilterBinding
 
 
 class CharacterFiltersFragment : BottomSheetDialogFragment() {
@@ -27,8 +26,6 @@ class CharacterFiltersFragment : BottomSheetDialogFragment() {
     private var type: String = ""
     private var speciesList: MutableList<String> = mutableListOf<String>()
     private var typesList: MutableList<String> = mutableListOf<String>()
-    @Inject
-    lateinit var characterFiltersViewModelProvider: CharacterFiltersViewModelProvider
     private lateinit var vm: CharacterFiltersViewModel
 
     override fun onCreateView(
@@ -39,17 +36,13 @@ class CharacterFiltersFragment : BottomSheetDialogFragment() {
         return binding.root
     }
 
-    @OptIn(ExperimentalPagingApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (requireContext().applicationContext as App).appComponent.inject(this)
 
         vm = ViewModelProvider(
             this,
-            characterFiltersViewModelProvider
+            CharacterFiltersViewModelProvider(requireContext())
         )[CharacterFiltersViewModel::class.java]
-
-
         observeVm()
 
         binding.btnApplyFilterCharacters.setOnClickListener {
@@ -118,6 +111,7 @@ class CharacterFiltersFragment : BottomSheetDialogFragment() {
             .setPositiveButton("Confirm") { dialog, _ ->
                 dialog.dismiss()
                 val selectedPosition = (dialog as AlertDialog).listView.checkedItemPosition
+                Log.e("checkedItem", "$selectedPosition");
                 if(typesArr.isNotEmpty()){ species = typesArr[selectedPosition] }
 
             }
@@ -134,6 +128,7 @@ class CharacterFiltersFragment : BottomSheetDialogFragment() {
             .setPositiveButton("Confirm") { dialog, _ ->
                 dialog.dismiss()
                 val selectedPosition = (dialog as AlertDialog).listView.checkedItemPosition
+                Log.e("checkedItem", "$selectedPosition");
                 if(typesArr.isNotEmpty()){ type = typesArr[selectedPosition] }
 
             }
