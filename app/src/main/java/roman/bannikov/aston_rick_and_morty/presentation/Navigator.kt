@@ -2,7 +2,6 @@ package roman.bannikov.aston_rick_and_morty.presentation
 
 import androidx.fragment.app.Fragment
 
-
 fun Fragment.navigator(): Navigator {
     return requireActivity() as Navigator
 }
