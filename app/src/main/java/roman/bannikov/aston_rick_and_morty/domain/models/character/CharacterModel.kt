@@ -1,6 +1,7 @@
 package roman.bannikov.aston_rick_and_morty.domain.models.character
 
 data class CharacterModel(
+
     val id: Int,
     val name: String,
     val status: String,
