@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Aston_Rick_And_Morty">
         <activity
-            android:name=".presentation.RootActivity"
+            android:name=".presentation.MainActivity"
             android:theme="@style/Theme.Aston_Rick_And_Morty"
             android:exported="true">
             <intent-filter>

@@ -22,7 +22,7 @@ import roman.bannikov.aston_rick_and_morty.R
 
 
 @ExperimentalPagingApi
-class RootActivity : AppCompatActivity(), Navigator {
+class MainActivity : AppCompatActivity(), Navigator {
 
     private val vm: SplashScreenViewModel by viewModels()
 
