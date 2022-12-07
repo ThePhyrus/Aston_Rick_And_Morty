@@ -3,7 +3,8 @@ package roman.bannikov.aston_rick_and_morty.presentation.adapters.character_deta
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
 import android.view.View
-import com.example.rickandmorty.databinding.ItemEpisodesInCharactersBinding
+import roman.bannikov.aston_rick_and_morty.databinding.ItemEpisodesInCharactersBinding
+
 import roman.bannikov.aston_rick_and_morty.presentation.models.episode.EpisodePresentation
 
 class EpisodeListForDetailsViewHolder(

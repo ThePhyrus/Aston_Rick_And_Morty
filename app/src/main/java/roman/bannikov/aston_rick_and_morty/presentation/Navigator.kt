@@ -31,6 +31,4 @@ interface Navigator {
     fun openEpisodesDetailFragment(episodeId: Int)
     fun openLocationsDetailFragment(locationId: Int)
 
-    fun backButton()
-
 }

@@ -1,6 +1,5 @@
 package roman.bannikov.aston_rick_and_morty.presentation.screens.characters.character_details_fragment
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -23,9 +22,6 @@ class CharacterDetailsViewModel(
     private val _episodesList = MutableLiveData<List<EpisodePresentation>>()
     val episodesList: MutableLiveData<List<EpisodePresentation>> = _episodesList
 
-    private val _isLoading: MutableLiveData<Boolean> = MutableLiveData(true)
-    val isLoading: LiveData<Boolean> = _isLoading
-
     fun getCharacter(id: Int) {
         viewModelScope.launch {
             _characterDetails.value =
@@ -34,19 +30,13 @@ class CharacterDetailsViewModel(
     }
 
     fun getEpisodesList(ids: List<Int>) {
-        viewModelScope.launch() {
-            kotlin.runCatching {
-
-
-            }.onSuccess { it ->
-                _isLoading.postValue(false)
-                _episodesList.value = getAllEpisodesByIdsUseCase.execute(ids = ids).map {
+        viewModelScope.launch {
+            _episodesList.value =
+                getAllEpisodesByIdsUseCase.execute(ids = ids).map {
                     GetEpisodePresentationModel().transform(it)
                 }
-            }.onFailure {
-                _isLoading.postValue(false)
-            }
         }
     }
+
 
 }

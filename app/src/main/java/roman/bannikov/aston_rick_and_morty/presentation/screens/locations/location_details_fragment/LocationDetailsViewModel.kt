@@ -1,6 +1,5 @@
 package roman.bannikov.aston_rick_and_morty.presentation.screens.locations.location_details_fragment
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -23,9 +22,6 @@ class LocationDetailsViewModel(
     private val _charactersList = MutableLiveData<List<CharacterPresentation>>()
     val charactersList: MutableLiveData<List<CharacterPresentation>> = _charactersList
 
-    private val _isLoading: MutableLiveData<Boolean> = MutableLiveData(true)
-    val isLoading: LiveData<Boolean> = _isLoading
-
     fun getLocation(id: Int) {
         viewModelScope.launch {
             _locationDetails.value =
@@ -34,17 +30,11 @@ class LocationDetailsViewModel(
     }
 
     fun getEpisodesList(ids: List<Int>) {
-        viewModelScope.launch() {
-            kotlin.runCatching {
-            }.onSuccess { it ->
-                _isLoading.postValue(false)
-                _charactersList.value =
-                    getAllCharactersByIdsUseCase.execute(ids = ids).map {
-                        GetCharacterPresentationModel().transform(it)
-                    }
-            }.onFailure {
-                _isLoading.postValue(false)
-            }
+        viewModelScope.launch {
+            _charactersList.value =
+                getAllCharactersByIdsUseCase.execute(ids = ids).map {
+                    GetCharacterPresentationModel().transform(it)
+                }
         }
     }
 }

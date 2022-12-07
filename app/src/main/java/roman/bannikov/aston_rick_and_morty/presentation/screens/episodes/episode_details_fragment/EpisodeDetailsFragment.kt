@@ -5,21 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.coroutineScope
-import androidx.lifecycle.observe
 import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.rickandmorty.databinding.FragmentEpisodeDetailsBinding
-import roman.bannikov.aston_rick_and_morty.di.App
+
 import roman.bannikov.aston_rick_and_morty.presentation.adapters.characters_adapter_for_details.CharactersListForDetailsAdapter
 import roman.bannikov.aston_rick_and_morty.presentation.models.episode.EpisodePresentation
 import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import kotlinx.coroutines.launch
-import javax.inject.Inject
+import roman.bannikov.aston_rick_and_morty.databinding.FragmentEpisodeDetailsBinding
 import kotlin.properties.Delegates
 
 
@@ -27,8 +24,6 @@ import kotlin.properties.Delegates
 class EpisodeDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentEpisodeDetailsBinding
-    @Inject
-    lateinit var episodeDetailsViewModelProvider: EpisodeDetailsViewModelProvider
     private lateinit var vm: EpisodeDetailsViewModel
     private var charactersListForDetailsAdapter: CharactersListForDetailsAdapter? = null
 
@@ -63,23 +58,14 @@ class EpisodeDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (requireContext().applicationContext as App).appComponent.inject(this)
-
         vm = ViewModelProvider(
             this,
-            episodeDetailsViewModelProvider
+            EpisodeDetailsViewModelProvider(requireContext())
         )[EpisodeDetailsViewModel::class.java]
-
         vm.getEpisode(episodeId)
         initView()
         observeVm()
-        showProgressBar()
-
-        binding.backBtn.setOnClickListener{
-            navigator().backButton()
-        }
     }
-
 
     private fun initView() {
         charactersListForDetailsAdapter = CharactersListForDetailsAdapter()
@@ -112,12 +98,6 @@ class EpisodeDetailsFragment : Fragment() {
         binding.episodeAirDateDetail.text = presentationDetails.air_date
         binding.episodeNameDetail.text = presentationDetails.name
         binding.episodeNumberDetail.text = "Series ${presentationDetails.episode}"
-    }
-
-    private fun showProgressBar() {
-        vm.isLoading.observe(viewLifecycleOwner) { it ->
-            binding.progressBarEpisodesDetails.isVisible = it
-        }
     }
 
     private fun init() {

@@ -4,8 +4,9 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.example.rickandmorty.R
-import com.example.rickandmorty.databinding.ItemCharactersBinding
+import roman.bannikov.aston_rick_and_morty.R
+import roman.bannikov.aston_rick_and_morty.databinding.ItemCharactersBinding
+
 import roman.bannikov.aston_rick_and_morty.presentation.models.character.CharacterPresentation
 
 

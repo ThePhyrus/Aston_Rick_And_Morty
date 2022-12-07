@@ -1,5 +1,6 @@
 package roman.bannikov.aston_rick_and_morty.data.paging.epispdes_paging
 
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -33,6 +34,8 @@ class EpisodesRemoteMediator(
         loadType: LoadType,
         state: PagingState<Int, Episode>
     ): MediatorResult {
+
+        Log.e("episode", "$name $episode")
 
 
         val page = when (val pageKeyData = getKeyPageData(loadType, state)) {

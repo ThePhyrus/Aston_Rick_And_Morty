@@ -5,7 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.coroutineScope
@@ -14,15 +15,16 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.rickandmorty.databinding.FragmentLocationsBinding
-import roman.bannikov.aston_rick_and_morty.di.App
-import roman.bannikov.aston_rick_and_morty.presentation.adapters.locations_adapter.LocationsAdapter
-import roman.bannikov.aston_rick_and_morty.presentation.navigator
+
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChangedBy
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
-import javax.inject.Inject
+import roman.bannikov.aston_rick_and_morty.databinding.FragmentLocationsBinding
+import roman.bannikov.aston_rick_and_morty.presentation.adapters.locations_adapter.LocationsAdapter
+import roman.bannikov.aston_rick_and_morty.presentation.navigator
 
 @ExperimentalPagingApi
 @ExperimentalCoroutinesApi
@@ -38,8 +40,6 @@ class LocationsFragment : Fragment() {
         "type" to null
     )
 
-    @Inject
-    lateinit var locationsViewModelProvider: LocationsViewModelProvider
     private lateinit var vm: LocationsViewModel
 
     companion object {
@@ -75,11 +75,9 @@ class LocationsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (requireContext().applicationContext as App).appComponent.inject(this)
-        
         vm = ViewModelProvider(
             this,
-            locationsViewModelProvider
+            LocationsViewModelProvider(requireContext())
         )[LocationsViewModel::class.java]
 
         initRecyclerView()
@@ -97,10 +95,19 @@ class LocationsFragment : Fragment() {
             navigator().openLocationsFilterFragment()
         }
 
-//        binding.searchLocations.
+        binding.searchLocations.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                performSearchEvent(query = newText)
+                return false
+            }
+
+        })
         observeVM()
     }
-
 
     private fun observeVM() {
 
@@ -142,14 +149,7 @@ class LocationsFragment : Fragment() {
     private fun collectUiState() {
 
         viewLifecycleOwner.lifecycleScope.launch {
-            vm.locationsFlow.collectLatest { locationsAdapter.submitData(it) }
-        }
-
-        lifecycleScope.launch {
-            locationsAdapter.loadStateFlow.collectLatest { loadStates ->
-                binding.progressBarLocation.isVisible = loadStates.refresh is LoadState.Loading
-
-            }
+            vm.locationsFlow.collectLatest { locationsAdapter?.submitData(it) }
         }
     }
 

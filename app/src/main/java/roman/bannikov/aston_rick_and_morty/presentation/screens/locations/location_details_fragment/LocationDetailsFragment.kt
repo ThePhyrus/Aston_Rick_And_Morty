@@ -5,29 +5,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.coroutineScope
-import androidx.lifecycle.observe
 import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.rickandmorty.databinding.FragmentLocationDetailsBinding
-import roman.bannikov.aston_rick_and_morty.di.App
+
 import roman.bannikov.aston_rick_and_morty.presentation.adapters.characters_adapter_for_details.CharactersListForDetailsAdapter
 import roman.bannikov.aston_rick_and_morty.presentation.models.location.LocationPresentation
 import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import kotlinx.coroutines.launch
-import javax.inject.Inject
+import roman.bannikov.aston_rick_and_morty.databinding.FragmentLocationDetailsBinding
 import kotlin.properties.Delegates
 
 @ExperimentalPagingApi
 class LocationDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentLocationDetailsBinding
-    @Inject
-    lateinit var locationDetailsViewModelProvider: LocationDetailsViewModelProvider
     private lateinit var vm: LocationDetailsViewModel
     private var charactersListForDetailsAdapter: CharactersListForDetailsAdapter? = null
 
@@ -62,21 +57,13 @@ class LocationDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (requireContext().applicationContext as App).appComponent.inject(this)
-
         vm = ViewModelProvider(
             this,
-            locationDetailsViewModelProvider
+            LocationDetailsViewModelProvider(requireContext())
         )[LocationDetailsViewModel::class.java]
-
         vm.getLocation(locationId)
         initView()
         observeVm()
-        showProgressBar()
-
-        binding.backBtn.setOnClickListener{
-            navigator().backButton()
-        }
     }
 
     private fun initView() {
@@ -112,12 +99,6 @@ class LocationDetailsFragment : Fragment() {
         binding.locationDimensionsLocation.text = "Dimension: ${locationDetails.dimension}"
     }
 
-    private fun showProgressBar() {
-        vm.isLoading.observe(viewLifecycleOwner) { it ->
-            binding.progressBarLocationDetails.isVisible = it
-        }
-
-    }
     private fun init() {
         arguments?.let {
             locationId = it.getInt(KEY_LOCATION_ID)

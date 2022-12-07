@@ -2,7 +2,8 @@ package roman.bannikov.aston_rick_and_morty.presentation.adapters.episodes_adapt
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.View
-import com.example.rickandmorty.databinding.ItemEpisodesBinding
+import roman.bannikov.aston_rick_and_morty.databinding.ItemEpisodesBinding
+
 import roman.bannikov.aston_rick_and_morty.presentation.models.episode.EpisodePresentation
 
 
