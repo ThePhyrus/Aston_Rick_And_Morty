@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
-    <dimen name="btn_back_height">48dp</dimen>
-    <dimen name="btn_back_width">48dp</dimen>
+
 
     <dimen name="guideline_first_begin">70dp</dimen>
     <dimen name="guideline_second_begin">255dp</dimen>
@@ -9,10 +8,7 @@
     <dimen name="iv_character_details_height">150dp</dimen>
     <dimen name="iv_character_details_width">150dp</dimen>
 
-    <dimen name="margin">8dp</dimen>
-    <dimen name="margin_double">16dp</dimen>
-    <dimen name="margin_half">4dp</dimen>
-    <dimen name="margin_mini">2dp</dimen>
+
 
     <dimen name="radius_card_corner">16dp</dimen>
 
@@ -48,12 +44,22 @@
     <dimen name="guid_line_detail">100dp</dimen>
     <dimen name="chain_vertical">30dp</dimen>
     <dimen name="episode_item_vertical">17dp</dimen>
-    <dimen name="first_guide_line">70dp</dimen>
     <dimen name="planet_name_size">20sp</dimen>
     <dimen name="detail_name">15sp</dimen>
     <dimen name="episode_in_character_details">10sp</dimen>
     <dimen name="episode_data_character_details">8sp</dimen>
     <dimen name="linear_episode_detail_charac">340dp</dimen>
     <dimen name="big_name">25sp</dimen>
-<!--    -->
+    <!--    -->
+    <dimen name="margin">8dp</dimen>
+    <dimen name="margin_double">16dp</dimen>
+    <dimen name="margin_half">4dp</dimen>
+    <dimen name="margin_mini">2dp</dimen>
+
+    <dimen name="btn_back_height">48dp</dimen>
+    <dimen name="btn_back_width">48dp</dimen>
+    <dimen name="square_image_150dp">150dp</dimen>
+
+
+    <dimen name="gl_first_begin">70dp</dimen>
 </resources>

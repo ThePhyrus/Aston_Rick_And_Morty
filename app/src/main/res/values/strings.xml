@@ -51,8 +51,17 @@
     <string name="select_dimension">Select dimension</string>
     <string name="search_episode">Search Episode</string>
     <string name="search_location">Search Location</string>
-    <string name="character_name">Character name</string>
     <string name="empty"> </string>
-<!--    -->
+    <!--    -->
+    <string name="btn_back_text">Back</string>
+    <string name="character_name">Character name</string>
+    <string name="character_status">Character status</string>
+    <string name="character_type">Character type</string>
+    <string name="character_specie">Character specie</string>
+    <string name="character_gender">Character gender</string>
+    <string name="character_origin">Character origin</string>
+    <string name="character_location">Character location</string>
+    <string name="episodes_with_this_character">Episodes with this character:</string>
+    <string name="character_information">Character information:</string>
 
 </resources>

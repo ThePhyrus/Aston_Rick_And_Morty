@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation.screens.characters.character_details_fragment
+package roman.bannikov.aston_rick_and_morty.view.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -18,6 +18,8 @@ import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.R
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentCharacterDetailsBinding
+import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.character_details_fragment.CharacterDetailsViewModel
+import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.character_details_fragment.CharacterDetailsViewModelProvider
 import kotlin.properties.Delegates
 
 
@@ -71,7 +73,7 @@ class CharacterDetailsFragment : Fragment() {
         initView()
         observeVm()
 
-        binding.characterOrigin.setOnClickListener {
+        binding.tvCharacterOrigin.setOnClickListener {
             if (originLocationId != null) {
                 navigator().openLocationsDetailFragment(locationId = originLocationId!!)
             } else {
@@ -83,7 +85,7 @@ class CharacterDetailsFragment : Fragment() {
             }
         }
 
-        binding.characterLocation.setOnClickListener {
+        binding.tvCharacterLocation.setOnClickListener {
             if (lastLocationId != null) {
                 navigator().openLocationsDetailFragment(locationId = lastLocationId!!)
             } else {
@@ -99,7 +101,7 @@ class CharacterDetailsFragment : Fragment() {
     private fun initView() {
         episodeListForDetailsAdapter = EpisodeListForDetailsAdapter()
 
-        with(binding.rvCharacterDetail) {
+        with(binding.rvOnCharacterDetailsFragment) {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = episodeListForDetailsAdapter
         }
@@ -134,16 +136,17 @@ class CharacterDetailsFragment : Fragment() {
             .error(R.drawable.ic_dissconect)
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
             .centerCrop()
-            .into(binding.characterImage)
+            .into(binding.ivCharacterImage)
 
-        binding.characterName.text = "Name: ${characterDetails.name}"
-        binding.characterStatus.text = "Status: ${characterDetails.status}"
-        binding.characterType.text = "Type: ${characterDetails.type}"
-        binding.characterSpecie.text = "Species: ${characterDetails.species}"
-        binding.characterGender.text = "Gender: ${characterDetails.gender}"
-        binding.characterLocation.text =
+        //fixme переделать xml (убрать харкодные строки)
+        binding.tvCharacterName.text = "Name: ${characterDetails.name}"
+        binding.tvCharacterStatus.text = "Status: ${characterDetails.status}"
+        binding.tvCharacterType.text = "Type: ${characterDetails.type}"
+        binding.tvCharacterSpecie.text = "Species: ${characterDetails.species}"
+        binding.tvCharacterGender.text = "Gender: ${characterDetails.gender}"
+        binding.tvCharacterLocation.text =
             "Location: ${characterDetails.lastLocation.getValue("location_name")}"
-        binding.characterOrigin.text =
+        binding.tvCharacterOrigin.text =
             "Origin: ${characterDetails.originLocation.getValue("location_name")}"
     }
 

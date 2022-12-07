@@ -7,26 +7,23 @@
     android:background="@color/splash_screen"
     tools:context=".presentation.screens.locations.location_details_fragment.LocationDetailsFragment">
 
-    <ImageButton
-        android:id="@+id/back_btn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="20dp"
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin"
         android:background="@drawable/round_button"
-        android:gravity="center_vertical|center_horizontal"
-        android:src="@drawable/btn_back"
-        android:textColor="#fff"
-        app:layout_constraintBottom_toTopOf="@+id/guideline1"
+        android:textAllCaps="false"
+        android:text="@string/btn_back_text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline1"
+        android:id="@+id/glFirst"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="@dimen/first_guide_line" />
+        app:layout_constraintGuide_begin="@dimen/gl_first_begin" />
 
     <TextView
         android:id="@+id/location_name_detail"
@@ -38,7 +35,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+        app:layout_constraintTop_toTopOf="@+id/glFirst" />
 
     <TextView
         android:id="@+id/location_type_detail"
@@ -71,11 +68,11 @@
         android:text="@string/residents"
         android:textColor="@color/light_pink"
         android:textSize="@dimen/label_size"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintBottom_toTopOf="@+id/glSecond"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
+        android:id="@+id/glSecond"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -90,7 +87,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/glSecond"
         app:layout_constraintVertical_bias="0.0"
         app:spanCount="2"
         tools:listitem="@layout/item_characters"

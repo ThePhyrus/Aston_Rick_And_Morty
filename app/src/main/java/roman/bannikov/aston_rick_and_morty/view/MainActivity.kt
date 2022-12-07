@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation
+package roman.bannikov.aston_rick_and_morty.view
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -7,7 +7,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentManager
 import androidx.paging.ExperimentalPagingApi
 
-import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.character_details_fragment.CharacterDetailsFragment
+import roman.bannikov.aston_rick_and_morty.view.fragments.CharacterDetailsFragment
 import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.characters_filter_fragment.CharacterFiltersFragment
 import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.characters_fragment.CharactersFragment
 import roman.bannikov.aston_rick_and_morty.presentation.screens.episodes.episode_details_fragment.EpisodeDetailsFragment
@@ -19,6 +19,11 @@ import roman.bannikov.aston_rick_and_morty.presentation.screens.locations.locati
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import roman.bannikov.aston_rick_and_morty.R
+import roman.bannikov.aston_rick_and_morty.presentation.Navigator
+import roman.bannikov.aston_rick_and_morty.viewmodel.SplashScreenViewModel
+
+//todo узнать, почему неизветно происхождение Морти (origin unknown)
+
 
 
 @ExperimentalPagingApi
@@ -34,12 +39,12 @@ class MainActivity : AppCompatActivity(), Navigator {
                 vm.isLoading.value
             }
         }
-        setContentView(R.layout.activity_root)
+        setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .add(
-                    R.id.container_navigator,
+                    R.id.containerForFragment,
                     CharactersFragment(),
                     "ADD FIRST FRAGMENT"
                 ).commit()
@@ -93,7 +98,7 @@ class MainActivity : AppCompatActivity(), Navigator {
     override fun openCharactersFragment() {
         supportFragmentManager.beginTransaction()
             .replace(
-                R.id.container_navigator,
+                R.id.containerForFragment,
                 CharactersFragment(),
                 "CHARACTERS_FRAGMENT"
             ).addToBackStack("OPEN_CHARACTERS_FRAGMENT")
@@ -111,7 +116,7 @@ class MainActivity : AppCompatActivity(), Navigator {
 
         supportFragmentManager.beginTransaction()
             .replace(
-                R.id.container_navigator,
+                R.id.containerForFragment,
                 EpisodesFragment(),
                 "EPISODES_FRAGMENT"
             ).addToBackStack("OPEN_EPISODE_FRAGMENT")
@@ -128,7 +133,7 @@ class MainActivity : AppCompatActivity(), Navigator {
 
         supportFragmentManager.beginTransaction()
             .replace(
-                R.id.container_navigator,
+                R.id.containerForFragment,
                 LocationsFragment(),
                 "LOCATIONS_FRAGMENT"
             ).addToBackStack("OPEN_LOCATION_FRAGMENT")
@@ -157,7 +162,7 @@ class MainActivity : AppCompatActivity(), Navigator {
     ) {
         supportFragmentManager.beginTransaction()
             .replace(
-                R.id.container_navigator,
+                R.id.containerForFragment,
                 CharactersFragment.newInstance(
                     gender = gender,
                     status = status,
@@ -173,7 +178,7 @@ class MainActivity : AppCompatActivity(), Navigator {
     override fun openEpisodesFragmentWithArg(episode: String?) {
         supportFragmentManager.beginTransaction()
             .replace(
-                R.id.container_navigator,
+                R.id.containerForFragment,
                 EpisodesFragment.newInstance(
                     episode = episode
                 ),
@@ -186,7 +191,7 @@ class MainActivity : AppCompatActivity(), Navigator {
     override fun openLocationsFragmentWithArg(type: String?, dimension: String?) {
         supportFragmentManager.beginTransaction()
             .replace(
-                R.id.container_navigator,
+                R.id.containerForFragment,
                 LocationsFragment.newInstance(
                     types = type,
                     dimensions = dimension,
@@ -199,7 +204,7 @@ class MainActivity : AppCompatActivity(), Navigator {
     override fun openCharacterDetailFragment(characterId: Int) {
         supportFragmentManager.beginTransaction()
             .replace(
-                R.id.container_navigator,
+                R.id.containerForFragment,
                 CharacterDetailsFragment.newInstance(
                     characterId = characterId
                 ),
@@ -211,7 +216,7 @@ class MainActivity : AppCompatActivity(), Navigator {
     override fun openEpisodesDetailFragment(episodeId: Int) {
         supportFragmentManager.beginTransaction()
             .replace(
-                R.id.container_navigator,
+                R.id.containerForFragment,
                 EpisodeDetailsFragment.newInstance(
                     episodeId = episodeId
                 ),
@@ -223,7 +228,7 @@ class MainActivity : AppCompatActivity(), Navigator {
     override fun openLocationsDetailFragment(locationId: Int) {
         supportFragmentManager.beginTransaction()
             .replace(
-                R.id.container_navigator,
+                R.id.containerForFragment,
                 LocationDetailsFragment.newInstance(
                     locationId = locationId
                 ),

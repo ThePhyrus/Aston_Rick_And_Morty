@@ -14,14 +14,14 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/character_image"
+            android:id="@+id/ivCharacterImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="center"
             android:src="@drawable/location" />
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/linearEpisodeInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/card_color"

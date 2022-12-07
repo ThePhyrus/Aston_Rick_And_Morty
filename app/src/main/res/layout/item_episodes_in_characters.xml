@@ -3,29 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/distance_horizontal"
-    android:layout_marginTop="@dimen/item_horizontal_distance"
-    android:layout_marginEnd="@dimen/distance_horizontal"
-    android:backgroundTint="@color/splash_screen"
-    app:cardCornerRadius="@dimen/radius_shape">
+    android:layout_margin="@dimen/margin_half"
+    app:cardCornerRadius="@dimen/radius_card_corner">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:adjustViewBounds="true"
-        android:alpha="0.25"
-        android:scaleType="fitCenter"
-        android:src="@drawable/bg_for_toolbar" />
+        android:alpha="0.7"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image_for_episode_card_2" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="@dimen/linear_episode_detail_charac"
-            android:layout_height="match_parent"
+            android:id="@+id/linearEpisodeInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:ellipsize="end"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -33,7 +30,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/episode_name_in_item"
+                android:id="@+id/tvEpisodeNameInCard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/item_horizontal_distance"
@@ -58,15 +55,6 @@
                 android:textSize="@dimen/episode_data_character_details" />
 
         </LinearLayout>
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="@dimen/item_vertical_distance"
-            android:src="@drawable/item_arrow"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

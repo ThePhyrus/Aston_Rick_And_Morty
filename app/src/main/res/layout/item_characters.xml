@@ -14,14 +14,14 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/character_image"
+            android:id="@+id/ivCharacterImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="center"
             android:src="@drawable/ic_loading" />
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/linearEpisodeInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/card_color"
@@ -55,7 +55,7 @@
                 android:textSize="@dimen/add_info_item" />
 
             <TextView
-                android:id="@+id/character_status"
+                android:id="@+id/tvCharacterStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/item_horizontal_distance"
@@ -78,7 +78,7 @@
             android:contentDescription="@string/gender"
             android:src="@drawable/ic_male"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/linearLayout" />
+            app:layout_constraintEnd_toEndOf="@+id/linearEpisodeInfo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

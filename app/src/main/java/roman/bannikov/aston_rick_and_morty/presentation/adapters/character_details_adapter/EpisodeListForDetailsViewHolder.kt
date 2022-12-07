@@ -15,7 +15,7 @@ class EpisodeListForDetailsViewHolder(
 
     @SuppressLint("SetTextI18n")
     fun bind(item: EpisodePresentation) = with(binding) {
-        episodeNameInItem.text = item.episode + " | " + item.name
+        tvEpisodeNameInCard.text = item.episode + " | " + item.name
         dataSapience.text = item.air_date
     }
 }
