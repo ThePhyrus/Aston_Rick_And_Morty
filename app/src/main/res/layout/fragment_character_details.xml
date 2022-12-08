@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/splash_screen"
-    tools:context=".view.fragments.CharacterDetailsFragment">
+    tools:context=".view.fragments.character.CharacterDetailsFragment">
 
 
     <Button
@@ -13,7 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin"
-        android:background="@drawable/round_button"
         android:text="@string/btn_back_text"
         android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/character_information"
-        android:textSize="26sp"
+        android:textSize="@dimen/text_size_label"
         app:layout_constraintBottom_toBottomOf="@+id/btnBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnBack"
@@ -50,8 +48,8 @@
     <LinearLayout
         android:id="@+id/linearCharacterInformation"
         android:layout_width="0dp"
-        android:gravity="center"
         android:layout_height="0dp"
+        android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@id/ivCharacterImage"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,7 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="12"
-            android:text="@string/character_specie" />
+            android:text="@string/character_species" />
 
         <TextView
             android:id="@+id/tvCharacterGender"
@@ -119,7 +117,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin"
         android:text="@string/episodes_with_this_character"
-        android:textSize="18sp"
+        android:textSize="@dimen/text_size_grande"
         app:layout_constraintBottom_toTopOf="@+id/glSecond"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -140,7 +138,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/glSecond"
-        tools:listitem="@layout/item_episodes_in_characters"
+        tools:listitem="@layout/item_episodes_in_character_details"
         tools:orientation="vertical" />
 
     <ProgressBar

@@ -11,8 +11,8 @@
 
     <string name="locations">Locations</string>
     <string name="episodes_item">ep.1:</string>
-    <string name="search_character">Search Character</string>
-    <string name="reset">reset</string>
+    <string name="search_character">Search character</string>
+    <string name="reset">Reset</string>
     <string name="human">Human</string>
     <string name="rick_sanchez">Rick Sanchez</string>
     <string name="title_filter">Filter</string>
@@ -57,7 +57,7 @@
     <string name="character_name">Character name</string>
     <string name="character_status">Character status</string>
     <string name="character_type">Character type</string>
-    <string name="character_specie">Character specie</string>
+    <string name="character_species">Character specie</string>
     <string name="character_gender">Character gender</string>
     <string name="character_origin">Character origin</string>
     <string name="character_location">Character location</string>
@@ -65,5 +65,7 @@
     <string name="character_information">Character information:</string>
     <string name="episode_code">Episode code</string>
     <string name="air_date">Air date</string>
+    <string name="filter">Filter</string>
+    <string name="all_character_list">All character list:</string>
 
 </resources>

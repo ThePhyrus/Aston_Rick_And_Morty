@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.view.fragments
+package roman.bannikov.aston_rick_and_morty.view.fragments.character
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -18,6 +18,7 @@ import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.R
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentCharacterDetailsBinding
+
 import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.character_details_fragment.CharacterDetailsViewModel
 import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.character_details_fragment.CharacterDetailsViewModelProvider
 import kotlin.properties.Delegates

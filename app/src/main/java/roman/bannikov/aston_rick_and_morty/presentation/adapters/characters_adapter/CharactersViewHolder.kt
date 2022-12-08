@@ -17,16 +17,17 @@ class CharactersViewHolder(
     private val binding = ItemCharactersBinding.bind(itemView)
 
     fun bind(item: CharacterPresentation) = with(binding) {
-        characterName.text = item.name
-        characterSapience.text = item.species
-        tvCharacterStatus.text = item.status
+        tvCharacterNameInItemCharacter.text = item.name
+        tvCharacterSpeciesInItemCharacter.text = item.species
+        tvCharacterStatusInItemCharacter.text = item.status
+        tvCharacterGenderInItemCharacter.text = item.gender
 
-        when (item.gender) {
+/*        when (item.gender) {
             "Male" -> itemGender.setImageResource(R.drawable.ic_male)
             "Female" -> itemGender.setImageResource(R.drawable.ic_female)
             "Unknown" -> itemGender.setImageResource(R.drawable.ic_unknown)
             else -> itemGender.setImageResource(R.drawable.ic_genderless)
-        }
+        }*/
 
         Glide.with(itemView)
             .load(item.imageUrl)
@@ -34,6 +35,6 @@ class CharactersViewHolder(
             .error(R.drawable.ic_dissconect)
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
             .centerCrop()
-            .into(ivCharacterImage)
+            .into(ivCharacterImageInItemCharacter)
     }
 }

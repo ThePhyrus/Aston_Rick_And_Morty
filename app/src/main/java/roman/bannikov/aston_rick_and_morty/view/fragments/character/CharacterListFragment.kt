@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation.screens.characters.characters_fragment
+package roman.bannikov.aston_rick_and_morty.view.fragments.character
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,23 +12,23 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import roman.bannikov.aston_rick_and_morty.presentation.adapters.characters_adapter.CharactersAdapter
 import roman.bannikov.aston_rick_and_morty.presentation.navigator
-import kotlinx.android.synthetic.main.fragment_characters.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import roman.bannikov.aston_rick_and_morty.databinding.FragmentCharactersBinding
+import roman.bannikov.aston_rick_and_morty.databinding.FragmentCharacterListBinding
+import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.characters_fragment.CharactersViewModel
+import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.characters_fragment.CharactersViewModelProvider
 
 
 @ExperimentalPagingApi
 @ExperimentalCoroutinesApi
 @FlowPreview
-class CharactersFragment : Fragment() {
+class CharacterListFragment : Fragment() {
 
-    private lateinit var binding: FragmentCharactersBinding
+    private lateinit var binding: FragmentCharacterListBinding
     private var charactersAdapter: CharactersAdapter = CharactersAdapter()
 
     private var params: MutableMap<String, String?> = mutableMapOf(
@@ -54,7 +54,7 @@ class CharactersFragment : Fragment() {
             species: String?,
             type: String?
         ) =
-            CharactersFragment().apply {
+            CharacterListFragment().apply {
                 arguments = Bundle().apply {
                     putString(KEY_GENDER, gender)
                     putString(KEY_STATUS, status)
@@ -73,7 +73,7 @@ class CharactersFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCharactersBinding.inflate(inflater, container, false)
+        binding = FragmentCharacterListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -97,11 +97,11 @@ class CharactersFragment : Fragment() {
 
         setUpSwipeToRefresh()
 
-        binding.btnFilterCharter.setOnClickListener {
+        binding.btnFilterCharacter.setOnClickListener {
             navigator().openCharactersFilterFragment()
         }
 
-        binding.searchCharacter.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.svCharacter.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
@@ -145,10 +145,10 @@ class CharactersFragment : Fragment() {
     }
 
     private fun setUpSwipeToRefresh() {
-        binding.swipeRefreshCharacters.apply {
+        binding.srCharacterList.apply {
             setOnRefreshListener {
                 vm.getCharactersByParams(null, null, null, null, null)
-                binding.swipeRefreshCharacters.isRefreshing = false
+                binding.srCharacterList.isRefreshing = false
                 binding.rvCharacters.scrollToPosition(0)
             }
         }

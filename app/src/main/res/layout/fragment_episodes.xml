@@ -46,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/search_episodes" />
 
     <TextView
-        android:id="@+id/reset_characters"
+        android:id="@+id/tvResetFilters"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/distance_vertical"

@@ -7,9 +7,9 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentManager
 import androidx.paging.ExperimentalPagingApi
 
-import roman.bannikov.aston_rick_and_morty.view.fragments.CharacterDetailsFragment
+import roman.bannikov.aston_rick_and_morty.view.fragments.character.CharacterDetailsFragment
 import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.characters_filter_fragment.CharacterFiltersFragment
-import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.characters_fragment.CharactersFragment
+import roman.bannikov.aston_rick_and_morty.view.fragments.character.CharacterListFragment
 import roman.bannikov.aston_rick_and_morty.presentation.screens.episodes.episode_details_fragment.EpisodeDetailsFragment
 import roman.bannikov.aston_rick_and_morty.presentation.screens.episodes.episodes_filter_fragment.EpisodeFiltersFragment
 import roman.bannikov.aston_rick_and_morty.presentation.screens.episodes.episodes_fragment.EpisodesFragment
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity(), Navigator {
             supportFragmentManager.beginTransaction()
                 .add(
                     R.id.containerForFragment,
-                    CharactersFragment(),
+                    CharacterListFragment(),
                     "ADD FIRST FRAGMENT"
                 ).commit()
         } else {
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity(), Navigator {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.charactersFragment -> {
+                R.id.characterListFragment -> {
                     openCharactersFragment()
                     true
                 }
@@ -82,12 +82,12 @@ class MainActivity : AppCompatActivity(), Navigator {
     @OptIn(ExperimentalCoroutinesApi::class, kotlinx.coroutines.FlowPreview::class)
     override fun onBackPressed() {
         super.onBackPressed()
-        val fragment1: CharactersFragment? =
-            supportFragmentManager.findFragmentByTag("CHARACTERS_FRAGMENT") as CharactersFragment?
-        val fragment2: CharactersFragment? =
-            supportFragmentManager.findFragmentByTag("OPEN_CharactersFragmentWithArg") as CharactersFragment?
-        val fragment3: CharactersFragment? =
-            supportFragmentManager.findFragmentByTag("ADD FIRST FRAGMENT") as CharactersFragment?
+        val fragment1: CharacterListFragment? =
+            supportFragmentManager.findFragmentByTag("CHARACTERS_FRAGMENT") as CharacterListFragment?
+        val fragment2: CharacterListFragment? =
+            supportFragmentManager.findFragmentByTag("OPEN_CharactersFragmentWithArg") as CharacterListFragment?
+        val fragment3: CharacterListFragment? =
+            supportFragmentManager.findFragmentByTag("ADD FIRST FRAGMENT") as CharacterListFragment?
         if (fragment1 != null && fragment1.isVisible ||
             fragment2 != null && fragment2.isVisible ||
             fragment3 != null && fragment3.isVisible ) {
@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity(), Navigator {
         supportFragmentManager.beginTransaction()
             .replace(
                 R.id.containerForFragment,
-                CharactersFragment(),
+                CharacterListFragment(),
                 "CHARACTERS_FRAGMENT"
             ).addToBackStack("OPEN_CHARACTERS_FRAGMENT")
             .commit()
@@ -163,7 +163,7 @@ class MainActivity : AppCompatActivity(), Navigator {
         supportFragmentManager.beginTransaction()
             .replace(
                 R.id.containerForFragment,
-                CharactersFragment.newInstance(
+                CharacterListFragment.newInstance(
                     gender = gender,
                     status = status,
                     species = species,

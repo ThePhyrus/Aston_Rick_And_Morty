@@ -16,7 +16,7 @@ class EpisodeListForDetailsAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         EpisodeListForDetailsViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_episodes_in_characters, parent, false)
+                .inflate(R.layout.item_episodes_in_character_details, parent, false)
         )
 
     override fun onBindViewHolder(holderContacts: EpisodeListForDetailsViewHolder, position: Int) {
