@@ -6,6 +6,7 @@
     android:layout_margin="@dimen/margin_half"
     app:cardCornerRadius="@dimen/radius_card_corner">
 
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,46 +16,44 @@
         android:scaleType="centerCrop"
         android:src="@drawable/image_for_episode_card_2" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/linearEpisodeInfo"
+    <LinearLayout
+        android:id="@+id/linearEpisodeInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvEpisodeCodeInCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:textSize="@dimen/text_size_mini"
+            android:textColor="@color/mr_black_text_color"
+            android:text="@string/episode_code" />
 
-            <TextView
-                android:id="@+id/tvEpisodeNameInCard"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/item_horizontal_distance"
-                android:layout_marginTop="@dimen/item_horizontal_distance"
-                android:layout_marginEnd="@dimen/item_horizontal_distance"
-                android:layout_marginBottom="@dimen/item_vertical_distance"
-                android:text="@string/episodes_item"
-                android:textColor="@color/white"
-                android:textSize="@dimen/episode_in_character_details"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tvEpisodeNameInCard"
+            android:layout_width="wrap_content"
+            android:maxLines="3"
+            android:gravity="center"
+            android:maxWidth="100dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/mr_black_text_color"
+            android:textSize="@dimen/text_size_normal"
+            android:text="@string/episode_name" />
 
-            <TextView
-                android:id="@+id/data_sapience"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/item_horizontal_distance"
-                android:layout_marginTop="@dimen/item_vertical_distance"
-                android:layout_marginEnd="@dimen/item_horizontal_distance"
-                android:layout_marginBottom="@dimen/item_vertical_distance"
-                android:text="@string/date"
-                android:textColor="@color/white"
-                android:textSize="@dimen/episode_data_character_details" />
+        <TextView
+            android:id="@+id/tvEpisodeAirDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/mr_black_text_color"
+            android:textSize="@dimen/text_size_small"
+            android:text="@string/air_date" />
 
-        </LinearLayout>
+    </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.cardview.widget.CardView>

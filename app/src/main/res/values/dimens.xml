@@ -62,4 +62,7 @@
 
 
     <dimen name="gl_first_begin">70dp</dimen>
+    <dimen name="text_size_small">10sp</dimen>
+    <dimen name="text_size_normal">12sp</dimen>
+    <dimen name="text_size_mini">8sp</dimen>
 </resources>

@@ -63,5 +63,7 @@
     <string name="character_location">Character location</string>
     <string name="episodes_with_this_character">Episodes with this character:</string>
     <string name="character_information">Character information:</string>
+    <string name="episode_code">Episode code</string>
+    <string name="air_date">Air date</string>
 
 </resources>
