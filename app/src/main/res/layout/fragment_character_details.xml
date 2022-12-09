@@ -118,17 +118,11 @@
         android:layout_margin="@dimen/margin"
         android:text="@string/episodes_with_this_character"
         android:textSize="@dimen/text_size_grande"
-        app:layout_constraintBottom_toTopOf="@+id/glSecond"
+        app:layout_constraintBottom_toTopOf="@id/rvOnCharacterDetailsFragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivCharacterImage" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glSecond"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="255dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvOnCharacterDetailsFragment"
@@ -137,12 +131,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/glSecond"
+        app:layout_constraintTop_toBottomOf="@id/tvEpisodesWithCharacter"
         tools:listitem="@layout/item_episodes_in_character_details"
         tools:orientation="vertical" />
 
     <ProgressBar
-        android:id="@+id/progress_bar_character_details"
+        android:id="@+id/pbCharacterDetails"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

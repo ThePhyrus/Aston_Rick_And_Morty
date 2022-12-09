@@ -9,20 +9,20 @@ import roman.bannikov.aston_rick_and_morty.R
 import roman.bannikov.aston_rick_and_morty.presentation.models.character.CharacterPresentation
 
 
-class CharactersListForDetailsAdapter(
-) : ListAdapter<CharacterPresentation, CharactersListForDetailsViewHolder>(
+class CharacterListForDetailsAdapter(
+) : ListAdapter<CharacterPresentation, CharacterListForDetailsViewHolder>(
     CharacterDetailsDiffCallback()
 ) {
 
     var onCharacterItem: ((CharacterPresentation) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        CharactersListForDetailsViewHolder(
+        CharacterListForDetailsViewHolder(
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_characters, parent, false)
         )
 
-    override fun onBindViewHolder(holderContacts: CharactersListForDetailsViewHolder, position: Int) {
+    override fun onBindViewHolder(holderContacts: CharacterListForDetailsViewHolder, position: Int) {
         getItem(position)?.let { holderContacts.bind(it) }
         holderContacts.itemView.setOnClickListener {
             onCharacterItem?.invoke(getItem(position)!!)

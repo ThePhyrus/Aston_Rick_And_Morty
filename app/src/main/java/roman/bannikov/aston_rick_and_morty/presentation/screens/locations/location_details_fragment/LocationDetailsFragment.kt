@@ -12,7 +12,7 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 
-import roman.bannikov.aston_rick_and_morty.view.adapters.character.CharactersListForDetailsAdapter
+import roman.bannikov.aston_rick_and_morty.view.adapters.character.CharacterListForDetailsAdapter
 import roman.bannikov.aston_rick_and_morty.presentation.models.location.LocationPresentation
 import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import kotlinx.coroutines.launch
@@ -24,7 +24,7 @@ class LocationDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentLocationDetailsBinding
     private lateinit var vm: LocationDetailsViewModel
-    private var charactersListForDetailsAdapter: CharactersListForDetailsAdapter? = null
+    private var characterListForDetailsAdapter: CharacterListForDetailsAdapter? = null
 
     private var locationId by Delegates.notNull<Int>()
 
@@ -67,21 +67,21 @@ class LocationDetailsFragment : Fragment() {
     }
 
     private fun initView() {
-        charactersListForDetailsAdapter = CharactersListForDetailsAdapter()
+        characterListForDetailsAdapter = CharacterListForDetailsAdapter()
 
         with(binding.rvLocationDetail) {
             layoutManager = LinearLayoutManager(requireContext())
             layoutManager = GridLayoutManager(requireContext(), 2)
-            adapter = charactersListForDetailsAdapter
+            adapter = characterListForDetailsAdapter
         }
-        charactersListForDetailsAdapter!!.onCharacterItem =
+        characterListForDetailsAdapter!!.onCharacterItem =
             { navigator().openCharacterDetailFragment(it.id) }
     }
 
     private fun observeVm() {
         lifecycle.coroutineScope.launch {
             vm.charactersList.observe(viewLifecycleOwner, Observer {
-                charactersListForDetailsAdapter!!.submitList(it)
+                characterListForDetailsAdapter!!.submitList(it)
             })
         }
 
