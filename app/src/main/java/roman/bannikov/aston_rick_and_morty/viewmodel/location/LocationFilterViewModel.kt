@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation.screens.locations.locations_filter_fragment
+package roman.bannikov.aston_rick_and_morty.viewmodel.location
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,7 +10,7 @@ import roman.bannikov.aston_rick_and_morty.domain.use_cases.settings.LocationsSe
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-class LocationFiltersViewModel(
+class LocationFilterViewModel(
     private val getListLocationsDimensionsUseCase: GetListLocationsDimensionsUseCase,
     private val getListLocationsTypesUseCase: GetListLocationsTypesUseCase,
     private val locationSettingsUseCases: LocationsSettingsUseCases

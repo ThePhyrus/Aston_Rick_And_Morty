@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/splash_screen"
-    tools:context=".presentation.screens.locations.location_details_fragment.LocationDetailsFragment">
+    tools:context=".view.fragments.location.LocationDetailsFragment">
 
     <Button
         android:id="@+id/btnBack"

@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation.screens.locations.locations_fragment
+package roman.bannikov.aston_rick_and_morty.viewmodel.location
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
@@ -10,7 +10,7 @@ import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyData
 import roman.bannikov.aston_rick_and_morty.domain.use_cases.locations.locations_usecases.GetAllLocationsUseCase
 
 @ExperimentalPagingApi
-class LocationsViewModelProvider(
+class LocationListViewModelProvider(
     context: Context
 ) : ViewModelProvider.Factory {
 
@@ -32,7 +32,7 @@ class LocationsViewModelProvider(
 
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return LocationsViewModel(
+        return LocationListViewModel(
             getAllLocationsUseCase = getAllLocationsUseCase
         ) as T
     }

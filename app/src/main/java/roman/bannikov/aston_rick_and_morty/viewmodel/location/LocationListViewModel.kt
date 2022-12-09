@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation.screens.locations.locations_fragment
+package roman.bannikov.aston_rick_and_morty.viewmodel.location
 
 import androidx.lifecycle.*
 import androidx.paging.ExperimentalPagingApi
@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.*
 
 
 @ExperimentalPagingApi
-class LocationsViewModel(
+class LocationListViewModel(
     private val getAllLocationsUseCase: GetAllLocationsUseCase
 ) : ViewModel() {
 

@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation.screens.locations.locations_filter_fragment
+package roman.bannikov.aston_rick_and_morty.viewmodel.location
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
@@ -11,7 +11,7 @@ import roman.bannikov.aston_rick_and_morty.domain.use_cases.locations.location_f
 import roman.bannikov.aston_rick_and_morty.domain.use_cases.locations.location_filters_use_cases.GetListLocationsTypesUseCase
 import roman.bannikov.aston_rick_and_morty.domain.use_cases.settings.LocationsSettingsUseCases
 
-class LocationFiltersViewModelProvider(
+class LocationFilterViewModelProvider(
     context: Context
 ) : ViewModelProvider.Factory {
 
@@ -45,7 +45,7 @@ class LocationFiltersViewModelProvider(
     }
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return LocationFiltersViewModel(
+        return LocationFilterViewModel(
             getListLocationsDimensionsUseCase = getListLocationsDimensionsUseCase,
             getListLocationsTypesUseCase = getListLocationsTypesUseCase,
             locationSettingsUseCases = locationSettingsUseCases

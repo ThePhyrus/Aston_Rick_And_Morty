@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation.screens.locations.locations_fragment
+package roman.bannikov.aston_rick_and_morty.view.fragments.location
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -21,11 +21,13 @@ import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentLocationsBinding
 import roman.bannikov.aston_rick_and_morty.view.adapters.location.LocationAdapter
 import roman.bannikov.aston_rick_and_morty.presentation.navigator
+import roman.bannikov.aston_rick_and_morty.viewmodel.location.LocationListViewModel
+import roman.bannikov.aston_rick_and_morty.viewmodel.location.LocationListViewModelProvider
 
 @ExperimentalPagingApi
 @ExperimentalCoroutinesApi
 @FlowPreview
-class LocationsFragment : Fragment() {
+class LocationListFragment : Fragment() {
 
     private lateinit var binding: FragmentLocationsBinding
     private var locationAdapter: LocationAdapter = LocationAdapter()
@@ -36,7 +38,7 @@ class LocationsFragment : Fragment() {
         "type" to null
     )
 
-    private lateinit var vm: LocationsViewModel
+    private lateinit var vm: LocationListViewModel
 
     companion object {
         private const val KEY_TYPE: String = "KEY_TYPE"
@@ -47,7 +49,7 @@ class LocationsFragment : Fragment() {
             types: String?,
             dimensions: String?
         ) =
-            LocationsFragment().apply {
+            LocationListFragment().apply {
                 arguments = Bundle().apply {
                     putString(KEY_TYPE, types)
                     putString(KEY_DIMENSION, dimensions)
@@ -73,8 +75,8 @@ class LocationsFragment : Fragment() {
 
         vm = ViewModelProvider(
             this,
-            LocationsViewModelProvider(requireContext())
-        )[LocationsViewModel::class.java]
+            LocationListViewModelProvider(requireContext())
+        )[LocationListViewModel::class.java]
 
         initRecyclerView()
         collectUiState()

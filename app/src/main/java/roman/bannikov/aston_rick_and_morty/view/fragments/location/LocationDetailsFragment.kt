@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation.screens.locations.location_details_fragment
+package roman.bannikov.aston_rick_and_morty.view.fragments.location
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -17,6 +17,8 @@ import roman.bannikov.aston_rick_and_morty.presentation.models.location.Location
 import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentLocationDetailsBinding
+import roman.bannikov.aston_rick_and_morty.viewmodel.location.LocationDetailsViewModel
+import roman.bannikov.aston_rick_and_morty.viewmodel.location.LocationDetailsViewModelProvider
 import kotlin.properties.Delegates
 
 @ExperimentalPagingApi

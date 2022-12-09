@@ -11,11 +11,11 @@ import roman.bannikov.aston_rick_and_morty.view.fragments.character.CharacterDet
 import roman.bannikov.aston_rick_and_morty.view.fragments.character.CharacterFilterFragment
 import roman.bannikov.aston_rick_and_morty.view.fragments.character.CharacterListFragment
 import roman.bannikov.aston_rick_and_morty.view.fragments.episode.EpisodeDetailsFragment
-import roman.bannikov.aston_rick_and_morty.view.fragments.episode.EpisodeFiltersFragment
+import roman.bannikov.aston_rick_and_morty.view.fragments.episode.EpisodeFilterFragment
 import roman.bannikov.aston_rick_and_morty.view.fragments.episode.EpisodeListFragment
-import roman.bannikov.aston_rick_and_morty.presentation.screens.locations.location_details_fragment.LocationDetailsFragment
-import roman.bannikov.aston_rick_and_morty.presentation.screens.locations.locations_filter_fragment.LocationFiltersFragment
-import roman.bannikov.aston_rick_and_morty.presentation.screens.locations.locations_fragment.LocationsFragment
+import roman.bannikov.aston_rick_and_morty.view.fragments.location.LocationDetailsFragment
+import roman.bannikov.aston_rick_and_morty.view.fragments.location.LocationFilterFragment
+import roman.bannikov.aston_rick_and_morty.view.fragments.location.LocationListFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import roman.bannikov.aston_rick_and_morty.R
@@ -134,7 +134,7 @@ class MainActivity : AppCompatActivity(), Navigator {
         supportFragmentManager.beginTransaction()
             .replace(
                 R.id.containerForFragment,
-                LocationsFragment(),
+                LocationListFragment(),
                 "LOCATIONS_FRAGMENT"
             ).addToBackStack("OPEN_LOCATION_FRAGMENT")
             .commit()
@@ -145,12 +145,12 @@ class MainActivity : AppCompatActivity(), Navigator {
     }
 
     override fun openEpisodesFilterFragment() {
-        EpisodeFiltersFragment().show(supportFragmentManager, "EPISODES_FILTER_FRAGMENT")
+        EpisodeFilterFragment().show(supportFragmentManager, "EPISODES_FILTER_FRAGMENT")
     }
 
     override fun openLocationsFilterFragment() {
 
-        LocationFiltersFragment().show(supportFragmentManager, "LOCATIONS_FILTER_FRAGMENT")
+        LocationFilterFragment().show(supportFragmentManager, "LOCATIONS_FILTER_FRAGMENT")
     }
 
     @OptIn(ExperimentalCoroutinesApi::class, kotlinx.coroutines.FlowPreview::class)
@@ -192,7 +192,7 @@ class MainActivity : AppCompatActivity(), Navigator {
         supportFragmentManager.beginTransaction()
             .replace(
                 R.id.containerForFragment,
-                LocationsFragment.newInstance(
+                LocationListFragment.newInstance(
                     types = type,
                     dimensions = dimension,
                 ),

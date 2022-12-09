@@ -18,7 +18,7 @@ import roman.bannikov.aston_rick_and_morty.databinding.FragmentEpisodeFilterBind
 import roman.bannikov.aston_rick_and_morty.viewmodel.episode.EpisodeFilterViewModel
 import roman.bannikov.aston_rick_and_morty.viewmodel.episode.EpisodeFilterViewModelProvider
 
-class EpisodeFiltersFragment : BottomSheetDialogFragment() {
+class EpisodeFilterFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentEpisodeFilterBinding
     private var episode: String? = null

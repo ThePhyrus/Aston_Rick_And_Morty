@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/splash_screen"
     android:orientation="vertical"
-    tools:context=".presentation.screens.locations.locations_filter_fragment.LocationFiltersFragment">
+    tools:context=".view.fragments.location.LocationFilterFragment">
 
     <Button
         android:id="@+id/btn_filter_locations_type"

@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation.screens.locations.location_details_fragment
+package roman.bannikov.aston_rick_and_morty.viewmodel.location
 
 import android.content.Context
 import androidx.lifecycle.ViewModel

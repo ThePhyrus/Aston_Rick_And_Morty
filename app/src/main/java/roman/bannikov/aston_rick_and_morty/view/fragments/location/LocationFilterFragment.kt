@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation.screens.locations.locations_filter_fragment
+package roman.bannikov.aston_rick_and_morty.view.fragments.location
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -15,9 +15,11 @@ import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentLocationsFilterBinding
+import roman.bannikov.aston_rick_and_morty.viewmodel.location.LocationFilterViewModel
+import roman.bannikov.aston_rick_and_morty.viewmodel.location.LocationFilterViewModelProvider
 
 
-class LocationFiltersFragment : BottomSheetDialogFragment() {
+class LocationFilterFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentLocationsFilterBinding
 
@@ -25,7 +27,7 @@ class LocationFiltersFragment : BottomSheetDialogFragment() {
     private var dimension: String? = null
     private var dimensionsList: MutableList<String> = mutableListOf<String>()
     private var typesList: MutableList<String> = mutableListOf<String>()
-    private lateinit var vm: LocationFiltersViewModel
+    private lateinit var vm: LocationFilterViewModel
 
 
     override fun onCreateView(
@@ -41,8 +43,8 @@ class LocationFiltersFragment : BottomSheetDialogFragment() {
 
         vm = ViewModelProvider(
             this,
-            LocationFiltersViewModelProvider(requireContext())
-        )[LocationFiltersViewModel::class.java]
+            LocationFilterViewModelProvider(requireContext())
+        )[LocationFilterViewModel::class.java]
         observeVm()
 
         binding.btnApplyFilterLocations.setOnClickListener {
