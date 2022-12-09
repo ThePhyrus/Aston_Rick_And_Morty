@@ -22,6 +22,7 @@
 
     <color name="mr_indeterminate_tint_color">#4BFF00</color>
     <color name="mr_black_text_color">#000000</color>
+    <color name="mr_foreground_card_color">#C1000000</color>
 
 
     <!--    -->
@@ -35,7 +36,6 @@
     <color name="pink">#E6C800FF</color>
     <color name="white_yellow">#F4F3D7</color>
     <color name="white_blue">#A3B2FB</color>
-    <color name="card_color">#C17D0291</color>
     <color name="gray_pink">#9C8F759E</color>
     <color name="light_green">#9C88FF6F</color>
     <color name="green">#9C2DFF00</color>

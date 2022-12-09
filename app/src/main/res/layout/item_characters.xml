@@ -1,83 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="150dp"
     android:id="@+id/character_card"
-    android:layout_marginStart="@dimen/distance_horizontal"
-    android:layout_marginTop="@dimen/distance_vertical"
-    android:layout_marginEnd="@dimen/distance_horizontal"
-    app:cardCornerRadius="@dimen/radius_shape">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/square_card_200_dp"
+    android:layout_margin="@dimen/margin"
+    app:cardCornerRadius="@dimen/radius_card_corner">
 
         <ImageView
             android:id="@+id/ivCharacterImageInItemCharacter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="center"
-            android:src="@drawable/ic_character" />
+            android:src="@drawable/ic_character_placeholder" />
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/linearCharacterNameInCharacterCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/card_color"
+            android:background="@color/mr_foreground_card_color"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/tvCharacterNameInItemCharacter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/item_horizontal_distance"
-                android:layout_marginTop="@dimen/item_vertical_distance"
-                android:layout_marginEnd="@dimen/item_horizontal_distance"
-                android:layout_marginBottom="@dimen/item_vertical_distance"
-                android:text="@string/rick_sanchez"
-                android:textColor="@color/white"
-                android:textSize="@dimen/item_name"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/margin_half"
+                android:text="@string/character_name"
+                android:textSize="@dimen/text_size_big"
                 android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearInCharacterCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/mr_foreground_card_color"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
 
             <TextView
                 android:id="@+id/tvCharacterSpeciesInItemCharacter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/item_horizontal_distance"
-                android:layout_marginTop="@dimen/item_vertical_distance"
-                android:layout_marginEnd="@dimen/item_horizontal_distance"
-                android:layout_marginBottom="@dimen/item_vertical_distance"
-                android:text="@string/human"
-                android:textColor="@color/white"
-                android:textSize="@dimen/add_info_item" />
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="@dimen/margin_half"
+                android:text="@string/human" />
 
             <TextView
-                android:id="@+id/tvCharacterStatusInItemCharacter"
+                android:id="@+id/tvCharacterGenderInItemCharacter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/item_horizontal_distance"
-                android:layout_marginTop="@dimen/item_vertical_distance"
-                android:layout_marginEnd="@dimen/item_horizontal_distance"
-                android:layout_marginBottom="@dimen/item_vertical_distance"
-                android:text="@string/alive"
-                android:textColor="@color/white"
-                android:textSize="@dimen/add_info_item" />
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="@dimen/margin_mini"
+                android:text="@string/character_gender" />
+
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/tvCharacterGenderInItemCharacter"
+            android:id="@+id/tvStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_margin="@dimen/margin"
-            android:text="@string/character_gender"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:text="@string/status"
+            app:layout_constraintBottom_toTopOf="@id/tvCharacterStatusInItemCharacter"
+            app:layout_constraintEnd_toEndOf="@id/tvCharacterStatusInItemCharacter"
+            app:layout_constraintStart_toStartOf="@id/tvCharacterStatusInItemCharacter"
+            app:layout_constraintTop_toTopOf="@id/linearInCharacterCard" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvCharacterStatusInItemCharacter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin"
+            android:text="@string/alive"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_large"
+            app:layout_constraintBottom_toBottomOf="@id/linearInCharacterCard"
+            app:layout_constraintEnd_toEndOf="@id/linearInCharacterCard"
+            app:layout_constraintTop_toBottomOf="@id/tvStatus" />
 
-</androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
