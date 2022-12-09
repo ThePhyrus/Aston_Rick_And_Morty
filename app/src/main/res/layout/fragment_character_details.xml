@@ -141,7 +141,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:foregroundGravity="center"
-        android:indeterminateTint="@color/yellow"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/rvCharacterDetails"
         app:layout_constraintEnd_toEndOf="@+id/rvCharacterDetails"
