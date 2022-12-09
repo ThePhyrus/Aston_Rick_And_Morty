@@ -16,8 +16,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentCharacterFilterBinding
-import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.characters_filter_fragment.CharacterFilterViewModel
-import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.characters_filter_fragment.CharacterFilterViewModelProvider
+import roman.bannikov.aston_rick_and_morty.viewmodel.character.CharacterFilterViewModel
+import roman.bannikov.aston_rick_and_morty.viewmodel.character.CharacterFilterViewModelProvider
 
 
 class CharacterFilterFragment : BottomSheetDialogFragment() {

@@ -4,61 +4,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/padding_half"
-    tools:context=".view.fragments.character.CharacterListFragment">
+    android:background="@color/splash_screen"
+    tools:context=".view.fragments.episode.EpisodeListFragment">
 
     <androidx.appcompat.widget.SearchView
-        android:id="@+id/svCharacter"
+        android:id="@+id/svEpisode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_half"
+        android:layout_margin="@dimen/margin_mini"
         app:iconifiedByDefault="false"
-        app:layout_constraintEnd_toStartOf="@+id/btnFilterCharacter"
+        app:layout_constraintEnd_toStartOf="@+id/btnFilterEpisode"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:queryHint="@string/search_character" />
+        app:queryHint="@string/search_episode" />
 
     <Button
-        android:id="@+id/btnFilterCharacter"
+        android:id="@+id/btnFilterEpisode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/filter"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="@+id/svCharacter"
+        app:layout_constraintBottom_toBottomOf="@id/svEpisode"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/svCharacter" />
+        app:layout_constraintTop_toTopOf="@id/svEpisode" />
 
     <TextView
-        android:id="@+id/tvResetCharacterFilter"
+        android:id="@+id/tvResetEpisodeFilter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin"
         android:text="@string/reset"
-        app:layout_constraintEnd_toEndOf="@id/btnFilterCharacter"
-        app:layout_constraintStart_toStartOf="@+id/btnFilterCharacter"
-        app:layout_constraintTop_toBottomOf="@+id/btnFilterCharacter" />
+        app:layout_constraintEnd_toEndOf="@id/btnFilterEpisode"
+        app:layout_constraintStart_toStartOf="@id/btnFilterEpisode"
+        app:layout_constraintTop_toBottomOf="@+id/btnFilterEpisode" />
 
     <TextView
-        android:id="@+id/tvAllCharacterList"
+        android:id="@+id/tvAllEpisodeList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/all_character_list"
+        android:text="@string/all_episode_list"
         android:textSize="@dimen/text_size_grande"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvResetCharacterFilter" />
+        app:layout_constraintTop_toBottomOf="@+id/tvResetEpisodeFilter" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/srCharacterList"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:id="@+id/srEpisodeList"
+        android:layout_width="@dimen/zero"
+        android:layout_height="@dimen/zero"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAllCharacterList">
+        app:layout_constraintTop_toBottomOf="@+id/tvAllEpisodeList">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvCharacters"
+            android:id="@+id/rvEpisodes"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="@dimen/margin_mini"
@@ -66,24 +66,23 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAllCharacterList"
+            app:layout_constraintTop_toBottomOf="@+id/tvAllEpisodeList"
             app:spanCount="2"
-            tools:listitem="@layout/item_characters"
+            tools:listitem="@layout/item_episodes"
             tools:orientation="vertical" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <ProgressBar
-        android:id="@+id/pbCharacters"
+        android:id="@+id/pbEpisodes"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:foregroundGravity="center"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/srCharacterList"
-        app:layout_constraintEnd_toEndOf="@+id/srCharacterList"
-        app:layout_constraintStart_toStartOf="@+id/srCharacterList"
-        app:layout_constraintTop_toTopOf="@+id/srCharacterList" />
-
+        app:layout_constraintBottom_toBottomOf="@+id/srEpisodeList"
+        app:layout_constraintEnd_toEndOf="@+id/srEpisodeList"
+        app:layout_constraintStart_toStartOf="@+id/srEpisodeList"
+        app:layout_constraintTop_toTopOf="@+id/srEpisodeList" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation.screens.episodes.episodes_fragment
+package roman.bannikov.aston_rick_and_morty.viewmodel.episode
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
@@ -10,7 +10,7 @@ import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyData
 import roman.bannikov.aston_rick_and_morty.domain.use_cases.episodes.episodes_usecases.GetAllEpisodesUseCase
 
 @ExperimentalPagingApi
-class EpisodesViewModelProvider(
+class EpisodeListViewModelProvider(
     context: Context
 ) : ViewModelProvider.Factory {
 
@@ -44,7 +44,7 @@ class EpisodesViewModelProvider(
 
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return EpisodesViewModel(
+        return EpisodeListViewModel(
             getAllEpisodesUseCase = getAllEpisodesUseCase
         ) as T
     }

@@ -19,8 +19,8 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentCharacterListBinding
-import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.characters_fragment.CharacterListViewModel
-import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.characters_fragment.CharacterListViewModelProvider
+import roman.bannikov.aston_rick_and_morty.viewmodel.character.CharacterListViewModel
+import roman.bannikov.aston_rick_and_morty.viewmodel.character.CharacterListViewModelProvider
 
 
 @ExperimentalPagingApi

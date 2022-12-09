@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation.screens.episodes.episodes_filter_fragment
+package roman.bannikov.aston_rick_and_morty.view.fragments.episode
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -15,13 +15,15 @@ import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentEpisodesFilterBinding
+import roman.bannikov.aston_rick_and_morty.viewmodel.episode.EpisodeFilterViewModel
+import roman.bannikov.aston_rick_and_morty.viewmodel.episode.EpisodeFilterViewModelProvider
 
 class EpisodeFiltersFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentEpisodesFilterBinding
     private var episode: String? = null
     private var episodesList: MutableList<String> = mutableListOf<String>()
-    private lateinit var vm: EpisodeFiltersViewModel
+    private lateinit var vm: EpisodeFilterViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +39,7 @@ class EpisodeFiltersFragment : BottomSheetDialogFragment() {
         vm = ViewModelProvider(
             this,
             EpisodeFilterViewModelProvider(requireContext())
-        )[EpisodeFiltersViewModel::class.java]
+        )[EpisodeFilterViewModel::class.java]
         observeVm()
 
         binding.btnApplyFilterEpisodes.setOnClickListener {

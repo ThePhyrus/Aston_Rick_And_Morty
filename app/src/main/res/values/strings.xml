@@ -49,7 +49,7 @@
     <string name="select_series">Select series</string>
     <string name="select_type">Select type</string>
     <string name="select_dimension">Select dimension</string>
-    <string name="search_episode">Search Episode</string>
+    <string name="search_episode">Search episode</string>
     <string name="search_location">Search Location</string>
     <string name="empty"> </string>
     <!--    -->
@@ -69,5 +69,6 @@
     <string name="all_character_list">All character list:</string>
     <string name="choose_species">Choose species</string>
     <string name="choose_type">Choose type</string>
+    <string name="all_episode_list">All episode list:</string>
 
 </resources>

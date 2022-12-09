@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation.screens.episodes.episodes_filter_fragment
+package roman.bannikov.aston_rick_and_morty.viewmodel.episode
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class EpisodeFiltersViewModel(
+class EpisodeFilterViewModel(
     private val getListEpisodesUseCase: GetListEpisodesUseCase,
     private val episodesSettingsUseCase: EpisodesSettingsUseCases
 ) : ViewModel() {

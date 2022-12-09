@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation.screens.episodes.episodes_fragment
+package roman.bannikov.aston_rick_and_morty.view.fragments.episode
 
 import android.os.Bundle
 import android.view.*
@@ -14,20 +14,23 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import roman.bannikov.aston_rick_and_morty.databinding.FragmentEpisodesBinding
+import roman.bannikov.aston_rick_and_morty.databinding.FragmentEpisodeListBinding
+
+import roman.bannikov.aston_rick_and_morty.viewmodel.episode.EpisodeListViewModel
+import roman.bannikov.aston_rick_and_morty.viewmodel.episode.EpisodeListViewModelProvider
 
 
 @ExperimentalPagingApi
 @ExperimentalCoroutinesApi
 @FlowPreview
-class EpisodesFragment : Fragment() {
+class EpisodeListFragment : Fragment() {
 
-    private lateinit var binding: FragmentEpisodesBinding
+    private lateinit var binding: FragmentEpisodeListBinding
     private var episodeAdapter: EpisodeAdapter = EpisodeAdapter()
 
     private var episode: String? = null
 
-    private lateinit var vm: EpisodesViewModel
+    private lateinit var vm: EpisodeListViewModel
 
     companion object {
         private const val KEY_EPISODE: String = "KEY_EPISODE"
@@ -36,7 +39,7 @@ class EpisodesFragment : Fragment() {
         fun newInstance(
             episode: String?,
         ) =
-            EpisodesFragment().apply {
+            EpisodeListFragment().apply {
                 arguments = Bundle().apply {
                     putString(KEY_EPISODE, episode)
                 }
@@ -52,7 +55,7 @@ class EpisodesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentEpisodesBinding.inflate(layoutInflater, container, false)
+        binding = FragmentEpisodeListBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -61,8 +64,8 @@ class EpisodesFragment : Fragment() {
 
         vm = ViewModelProvider(
             this,
-            EpisodesViewModelProvider(requireContext())
-        )[EpisodesViewModel::class.java]
+            EpisodeListViewModelProvider(requireContext())
+        )[EpisodeListViewModel::class.java]
 
         initRecyclerView()
         collectUiState()
@@ -71,11 +74,11 @@ class EpisodesFragment : Fragment() {
 
         setUpSwipeToRefresh()
 
-        binding.btnFilterEpisodes.setOnClickListener {
+        binding.btnFilterEpisode.setOnClickListener {
             navigator().openEpisodesFilterFragment()
         }
 
-        binding.searchEpisodes.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.svEpisode.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
@@ -103,7 +106,7 @@ class EpisodesFragment : Fragment() {
     }
 
     private fun performSearchEvent(query: String) {
-//        vm.getEpisodes(name = query, episode = episode)
+//        vm.getEpisodes(name = query, episode = episode) //fixme
     }
 
     private fun initRecyclerView() {
@@ -116,10 +119,10 @@ class EpisodesFragment : Fragment() {
     }
 
     private fun setUpSwipeToRefresh() {
-        binding.swipeRefreshEpisodes.apply {
+        binding.srEpisodeList.apply {
             setOnRefreshListener {
                 vm.getEpisodeByParams(null, null)
-                binding.swipeRefreshEpisodes.isRefreshing = false
+                binding.srEpisodeList.isRefreshing = false
                 binding.rvEpisodes.scrollToPosition(0)
             }
         }

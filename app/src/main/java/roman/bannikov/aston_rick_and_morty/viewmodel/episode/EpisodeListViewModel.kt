@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation.screens.episodes.episodes_fragment
+package roman.bannikov.aston_rick_and_morty.viewmodel.episode
 
 import androidx.lifecycle.*
 import androidx.paging.ExperimentalPagingApi
@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.*
 
 
 @ExperimentalPagingApi
-class EpisodesViewModel(
+class EpisodeListViewModel(
     private val getAllEpisodesUseCase: GetAllEpisodesUseCase
 ) : ViewModel() {
 

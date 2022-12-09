@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/splash_screen"
-    tools:context=".presentation.screens.episodes.episode_details_fragment.EpisodeDetailsFragment">
+    tools:context=".view.fragments.episode.EpisodeDetailsFragment">
 
     <Button
         android:id="@+id/btnBack"

@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation.screens.characters.characters_filter_fragment
+package roman.bannikov.aston_rick_and_morty.viewmodel.character
 
 import android.content.Context
 import androidx.lifecycle.ViewModel

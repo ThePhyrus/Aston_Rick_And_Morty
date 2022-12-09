@@ -19,8 +19,8 @@ import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.R
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentCharacterDetailsBinding
 
-import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.character_details_fragment.CharacterDetailsViewModel
-import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.character_details_fragment.CharacterDetailsViewModelProvider
+import roman.bannikov.aston_rick_and_morty.viewmodel.character.CharacterDetailsViewModel
+import roman.bannikov.aston_rick_and_morty.viewmodel.character.CharacterDetailsViewModelProvider
 import kotlin.properties.Delegates
 
 

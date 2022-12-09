@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation.screens.episodes.episode_details_fragment
+package roman.bannikov.aston_rick_and_morty.viewmodel.episode
 
 import android.content.Context
 import androidx.lifecycle.ViewModel

@@ -10,9 +10,9 @@ import androidx.paging.ExperimentalPagingApi
 import roman.bannikov.aston_rick_and_morty.view.fragments.character.CharacterDetailsFragment
 import roman.bannikov.aston_rick_and_morty.view.fragments.character.CharacterFilterFragment
 import roman.bannikov.aston_rick_and_morty.view.fragments.character.CharacterListFragment
-import roman.bannikov.aston_rick_and_morty.presentation.screens.episodes.episode_details_fragment.EpisodeDetailsFragment
-import roman.bannikov.aston_rick_and_morty.presentation.screens.episodes.episodes_filter_fragment.EpisodeFiltersFragment
-import roman.bannikov.aston_rick_and_morty.presentation.screens.episodes.episodes_fragment.EpisodesFragment
+import roman.bannikov.aston_rick_and_morty.view.fragments.episode.EpisodeDetailsFragment
+import roman.bannikov.aston_rick_and_morty.view.fragments.episode.EpisodeFiltersFragment
+import roman.bannikov.aston_rick_and_morty.view.fragments.episode.EpisodeListFragment
 import roman.bannikov.aston_rick_and_morty.presentation.screens.locations.location_details_fragment.LocationDetailsFragment
 import roman.bannikov.aston_rick_and_morty.presentation.screens.locations.locations_filter_fragment.LocationFiltersFragment
 import roman.bannikov.aston_rick_and_morty.presentation.screens.locations.locations_fragment.LocationsFragment
@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity(), Navigator {
         supportFragmentManager.beginTransaction()
             .replace(
                 R.id.containerForFragment,
-                EpisodesFragment(),
+                EpisodeListFragment(),
                 "EPISODES_FRAGMENT"
             ).addToBackStack("OPEN_EPISODE_FRAGMENT")
             .commit()
@@ -179,7 +179,7 @@ class MainActivity : AppCompatActivity(), Navigator {
         supportFragmentManager.beginTransaction()
             .replace(
                 R.id.containerForFragment,
-                EpisodesFragment.newInstance(
+                EpisodeListFragment.newInstance(
                     episode = episode
                 ),
                 "EPISODES_FRAGMENT_ARG"
