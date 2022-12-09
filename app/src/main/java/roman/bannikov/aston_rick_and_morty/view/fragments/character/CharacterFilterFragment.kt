@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation.screens.characters.characters_filter_fragment
+package roman.bannikov.aston_rick_and_morty.view.fragments.character
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -11,28 +11,29 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-
 import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.launch
-import roman.bannikov.aston_rick_and_morty.databinding.FragmentCharactersFilterBinding
+import roman.bannikov.aston_rick_and_morty.databinding.FragmentCharacterFilterBinding
+import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.characters_filter_fragment.CharacterFilterViewModel
+import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.characters_filter_fragment.CharacterFilterViewModelProvider
 
 
-class CharacterFiltersFragment : BottomSheetDialogFragment() {
+class CharacterFilterFragment : BottomSheetDialogFragment() {
 
-    private lateinit var binding: FragmentCharactersFilterBinding
+    private lateinit var binding: FragmentCharacterFilterBinding
     private var species: String = ""
     private var type: String = ""
     private var speciesList: MutableList<String> = mutableListOf<String>()
     private var typesList: MutableList<String> = mutableListOf<String>()
-    private lateinit var vm: CharacterFiltersViewModel
+    private lateinit var vm: CharacterFilterViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCharactersFilterBinding.inflate(layoutInflater, container, false)
+        binding = FragmentCharacterFilterBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -41,11 +42,11 @@ class CharacterFiltersFragment : BottomSheetDialogFragment() {
 
         vm = ViewModelProvider(
             this,
-            CharacterFiltersViewModelProvider(requireContext())
-        )[CharacterFiltersViewModel::class.java]
+            CharacterFilterViewModelProvider(requireContext())
+        )[CharacterFilterViewModel::class.java]
         observeVm()
 
-        binding.btnApplyFilterCharacters.setOnClickListener {
+        binding.btnApplyFilterCharacter.setOnClickListener {
             val gender = getGender()
             val status = getStatus()
 
@@ -58,11 +59,11 @@ class CharacterFiltersFragment : BottomSheetDialogFragment() {
             dismiss()
         }
 
-        binding.btnFilterCharactersType.setOnClickListener {
+        binding.btnFilterCharacterType.setOnClickListener {
             getType(typesList)
         }
 
-        binding.btnFilterCharactersSpecies.setOnClickListener {
+        binding.btnFilterCharacterSpecies.setOnClickListener {
             getSpecies(speciesList)
         }
 
@@ -87,7 +88,7 @@ class CharacterFiltersFragment : BottomSheetDialogFragment() {
     }
 
     private fun getStatus(): String {
-        binding.statusFilterCharacters.children
+        binding.cgCharacterStatusFilter.children
             .toList()
             .filter { (it as Chip).isChecked }
             .forEach { return (it as Chip).text.toString() }
@@ -95,7 +96,7 @@ class CharacterFiltersFragment : BottomSheetDialogFragment() {
     }
 
     private fun getGender(): String {
-        binding.genderFilterCharacters.children
+        binding.cgCharacterGenderFilter.children
             .toList()
             .filter { (it as Chip).isChecked }
             .forEach { return (it as Chip).text.toString() }

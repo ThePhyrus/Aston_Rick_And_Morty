@@ -8,7 +8,7 @@ import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyData
 import roman.bannikov.aston_rick_and_morty.domain.use_cases.characters.character_filters_use_case.GetListCharactersSpeciesUseCase
 import roman.bannikov.aston_rick_and_morty.domain.use_cases.characters.character_filters_use_case.GetListCharactersTypesUseCase
 
-class CharacterFiltersViewModelProvider(
+class CharacterFilterViewModelProvider(
     context: Context
 ) : ViewModelProvider.Factory {
 
@@ -29,7 +29,7 @@ class CharacterFiltersViewModelProvider(
     }
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return CharacterFiltersViewModel(
+        return CharacterFilterViewModel(
             getListCharactersSpeciesUseCase = getListCharactersSpeciesUseCase,
             getListTypesSpeciesUseCase = getListTypesSpeciesUseCase
         ) as T

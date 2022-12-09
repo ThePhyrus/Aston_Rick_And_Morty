@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.*
 
 
 @ExperimentalPagingApi
-class CharactersViewModel(
+class CharacterListViewModel(
     private val getAllCharactersUseCase: GetAllCharactersUseCase,
 ) : ViewModel() {
 

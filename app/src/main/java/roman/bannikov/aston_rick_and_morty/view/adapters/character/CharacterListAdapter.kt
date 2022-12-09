@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation.adapters.characters_adapter
+package roman.bannikov.aston_rick_and_morty.view.adapters.character
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,17 +8,17 @@ import roman.bannikov.aston_rick_and_morty.R
 
 import roman.bannikov.aston_rick_and_morty.presentation.models.character.CharacterPresentation
 
-class CharactersAdapter : PagingDataAdapter<CharacterPresentation, CharactersViewHolder>(
+class CharacterListAdapter : PagingDataAdapter<CharacterPresentation, CharacterListViewHolder>(
     CharactersDiffCallback()
 ) {
 
     var onCharacterItem: ((CharacterPresentation) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        CharactersViewHolder(
+        CharacterListViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.item_characters, parent, false))
 
-    override fun onBindViewHolder(holderContacts: CharactersViewHolder, position: Int) {
+    override fun onBindViewHolder(holderContacts: CharacterListViewHolder, position: Int) {
         getItem(position)?.let { holderContacts.bind(it) }
         holderContacts.itemView.setOnClickListener {
             onCharacterItem?.invoke(getItem(position)!!)

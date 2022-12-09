@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation.adapters.episodes_adapter
+package roman.bannikov.aston_rick_and_morty.view.adapters.episodes_adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.View

@@ -23,7 +23,7 @@ import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentLocationsBinding
-import roman.bannikov.aston_rick_and_morty.presentation.adapters.locations_adapter.LocationsAdapter
+import roman.bannikov.aston_rick_and_morty.view.adapters.locations_adapter.LocationsAdapter
 import roman.bannikov.aston_rick_and_morty.presentation.navigator
 
 @ExperimentalPagingApi

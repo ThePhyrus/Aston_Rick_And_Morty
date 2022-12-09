@@ -15,7 +15,7 @@
     <string name="reset">Reset</string>
     <string name="human">Human</string>
     <string name="rick_sanchez">Rick Sanchez</string>
-    <string name="title_filter">Filter</string>
+    <string name="tvTitleFilter">Filter</string>
     <string name="characters">Characters</string>
     <string name="filter_status">Status</string>
     <string name="alive">Alive</string>
@@ -67,5 +67,7 @@
     <string name="air_date">Air date</string>
     <string name="filter">Filter</string>
     <string name="all_character_list">All character list:</string>
+    <string name="choose_species">Choose species</string>
+    <string name="choose_type">Choose type</string>
 
 </resources>

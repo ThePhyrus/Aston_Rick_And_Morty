@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.paging.ExperimentalPagingApi
 
 import roman.bannikov.aston_rick_and_morty.view.fragments.character.CharacterDetailsFragment
-import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.characters_filter_fragment.CharacterFiltersFragment
+import roman.bannikov.aston_rick_and_morty.view.fragments.character.CharacterFilterFragment
 import roman.bannikov.aston_rick_and_morty.view.fragments.character.CharacterListFragment
 import roman.bannikov.aston_rick_and_morty.presentation.screens.episodes.episode_details_fragment.EpisodeDetailsFragment
 import roman.bannikov.aston_rick_and_morty.presentation.screens.episodes.episodes_filter_fragment.EpisodeFiltersFragment
@@ -141,7 +141,7 @@ class MainActivity : AppCompatActivity(), Navigator {
     }
 
     override fun openCharactersFilterFragment() {
-        CharacterFiltersFragment().show(supportFragmentManager, "CHARACTERS_FILTER_FRAGMENT")
+        CharacterFilterFragment().show(supportFragmentManager, "CHARACTERS_FILTER_FRAGMENT")
     }
 
     override fun openEpisodesFilterFragment() {

@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation.adapters.characters_adapter_for_details
+package roman.bannikov.aston_rick_and_morty.view.adapters.characters_adapter_for_details
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

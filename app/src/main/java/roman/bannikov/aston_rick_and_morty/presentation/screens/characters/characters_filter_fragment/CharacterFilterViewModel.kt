@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class CharacterFiltersViewModel(
+class CharacterFilterViewModel(
     private val getListCharactersSpeciesUseCase: GetListCharactersSpeciesUseCase,
     private val getListTypesSpeciesUseCase: GetListCharactersTypesUseCase,
 ): ViewModel() {

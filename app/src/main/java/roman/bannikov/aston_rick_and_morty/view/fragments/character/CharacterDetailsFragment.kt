@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
-import roman.bannikov.aston_rick_and_morty.presentation.adapters.character_details_adapter.EpisodeListForDetailsAdapter
+import roman.bannikov.aston_rick_and_morty.view.adapters.character.CharacterDetailsAdapter
 import roman.bannikov.aston_rick_and_morty.presentation.models.character.CharacterPresentation
 import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import kotlinx.coroutines.launch
@@ -29,7 +29,7 @@ class CharacterDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentCharacterDetailsBinding
     private lateinit var vm: CharacterDetailsViewModel
-    private var episodeListForDetailsAdapter: EpisodeListForDetailsAdapter? = null
+    private var characterDetailsAdapter: CharacterDetailsAdapter? = null
 
 
     private var characterId by Delegates.notNull<Int>()
@@ -100,19 +100,19 @@ class CharacterDetailsFragment : Fragment() {
     }
 
     private fun initView() {
-        episodeListForDetailsAdapter = EpisodeListForDetailsAdapter()
+        characterDetailsAdapter = CharacterDetailsAdapter()
 
         with(binding.rvOnCharacterDetailsFragment) {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = episodeListForDetailsAdapter
+            adapter = characterDetailsAdapter
         }
-        episodeListForDetailsAdapter!!.onEpisodeItem = {navigator().openEpisodesDetailFragment(it.id)}
+        characterDetailsAdapter!!.onEpisodeItem = {navigator().openEpisodesDetailFragment(it.id)}
     }
 
     private fun observeVm() {
         lifecycle.coroutineScope.launch {
             vm.episodesList.observe(viewLifecycleOwner, Observer {
-                episodeListForDetailsAdapter!!.submitList(it)
+                characterDetailsAdapter!!.submitList(it)
             })
         }
 

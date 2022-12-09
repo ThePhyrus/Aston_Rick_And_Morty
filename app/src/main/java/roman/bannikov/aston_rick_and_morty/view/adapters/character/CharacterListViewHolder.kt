@@ -1,6 +1,5 @@
-package roman.bannikov.aston_rick_and_morty.presentation.adapters.characters_adapter_for_details
+package roman.bannikov.aston_rick_and_morty.view.adapters.character
 
-import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import com.bumptech.glide.Glide
@@ -10,20 +9,20 @@ import roman.bannikov.aston_rick_and_morty.databinding.ItemCharactersBinding
 
 import roman.bannikov.aston_rick_and_morty.presentation.models.character.CharacterPresentation
 
-class CharactersListForDetailsViewHolder(
+
+class CharacterListViewHolder(
     itemView: View
 ) : RecyclerView.ViewHolder(itemView) {
 
     private val binding = ItemCharactersBinding.bind(itemView)
 
-    @SuppressLint("SetTextI18n")
     fun bind(item: CharacterPresentation) = with(binding) {
         tvCharacterNameInItemCharacter.text = item.name
         tvCharacterSpeciesInItemCharacter.text = item.species
         tvCharacterStatusInItemCharacter.text = item.status
         tvCharacterGenderInItemCharacter.text = item.gender
 
- /*       when (item.gender) {
+/*        when (item.gender) {
             "Male" -> itemGender.setImageResource(R.drawable.ic_male)
             "Female" -> itemGender.setImageResource(R.drawable.ic_female)
             "Unknown" -> itemGender.setImageResource(R.drawable.ic_unknown)

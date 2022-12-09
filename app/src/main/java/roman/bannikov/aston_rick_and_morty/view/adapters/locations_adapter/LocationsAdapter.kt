@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation.adapters.locations_adapter
+package roman.bannikov.aston_rick_and_morty.view.adapters.locations_adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

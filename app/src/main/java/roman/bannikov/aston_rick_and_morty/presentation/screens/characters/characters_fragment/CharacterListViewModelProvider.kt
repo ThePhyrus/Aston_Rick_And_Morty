@@ -10,7 +10,7 @@ import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyData
 import roman.bannikov.aston_rick_and_morty.domain.use_cases.characters.characters_usecases.GetAllCharactersUseCase
 
 @ExperimentalPagingApi
-class CharactersViewModelProvider(
+class CharacterListViewModelProvider(
     context: Context
 ) : ViewModelProvider.Factory {
 
@@ -43,7 +43,7 @@ class CharactersViewModelProvider(
     }
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return CharactersViewModel(
+        return CharacterListViewModel(
             getAllCharactersUseCase = getAllCharactersUseCase
         ) as T
     }

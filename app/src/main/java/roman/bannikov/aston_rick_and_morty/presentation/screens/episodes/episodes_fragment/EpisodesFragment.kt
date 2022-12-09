@@ -8,7 +8,7 @@ import androidx.lifecycle.*
 import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import roman.bannikov.aston_rick_and_morty.presentation.adapters.episodes_adapter.EpisodesAdapter
+import roman.bannikov.aston_rick_and_morty.view.adapters.episodes_adapter.EpisodesAdapter
 import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview

@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation.adapters.character_details_adapter
+package roman.bannikov.aston_rick_and_morty.view.adapters.character
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.View
@@ -6,7 +6,7 @@ import roman.bannikov.aston_rick_and_morty.databinding.ItemEpisodesInCharacterDe
 
 import roman.bannikov.aston_rick_and_morty.presentation.models.episode.EpisodePresentation
 
-class EpisodeListForDetailsViewHolder(
+class CharacterDetailsViewHolder(
     itemView: View
 ) : RecyclerView.ViewHolder(itemView) {
 

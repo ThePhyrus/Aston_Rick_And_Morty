@@ -12,15 +12,15 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import roman.bannikov.aston_rick_and_morty.presentation.adapters.characters_adapter.CharactersAdapter
+import roman.bannikov.aston_rick_and_morty.view.adapters.character.CharacterListAdapter
 import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentCharacterListBinding
-import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.characters_fragment.CharactersViewModel
-import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.characters_fragment.CharactersViewModelProvider
+import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.characters_fragment.CharacterListViewModel
+import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.characters_fragment.CharacterListViewModelProvider
 
 
 @ExperimentalPagingApi
@@ -29,7 +29,7 @@ import roman.bannikov.aston_rick_and_morty.presentation.screens.characters.chara
 class CharacterListFragment : Fragment() {
 
     private lateinit var binding: FragmentCharacterListBinding
-    private var charactersAdapter: CharactersAdapter = CharactersAdapter()
+    private var characterListAdapter: CharacterListAdapter = CharacterListAdapter()
 
     private var params: MutableMap<String, String?> = mutableMapOf(
         "name" to null,
@@ -39,7 +39,7 @@ class CharacterListFragment : Fragment() {
         "type" to null
     )
 
-    private lateinit var vm: CharactersViewModel
+    private lateinit var vm: CharacterListViewModel
 
     companion object {
         private const val KEY_GENDER: String = "KEY_GENDER"
@@ -82,8 +82,8 @@ class CharacterListFragment : Fragment() {
 
         vm = ViewModelProvider(
             this,
-            CharactersViewModelProvider(requireContext())
-        )[CharactersViewModel::class.java]
+            CharacterListViewModelProvider(requireContext())
+        )[CharacterListViewModel::class.java]
 
         initRecyclerView()
         collectUiState()
@@ -139,9 +139,9 @@ class CharacterListFragment : Fragment() {
         with(binding.rvCharacters) {
             layoutManager = LinearLayoutManager(requireContext())
             layoutManager = GridLayoutManager(requireContext(), 2)
-            adapter = charactersAdapter
+            adapter = characterListAdapter
         }
-        charactersAdapter.onCharacterItem = { navigator().openCharacterDetailFragment(it.id) }
+        characterListAdapter.onCharacterItem = { navigator().openCharacterDetailFragment(it.id) }
     }
 
     private fun setUpSwipeToRefresh() {
@@ -156,7 +156,7 @@ class CharacterListFragment : Fragment() {
 
     private fun collectUiState() {
         viewLifecycleOwner.lifecycleScope.launch {
-            vm.charactersFlow.collectLatest { charactersAdapter.submitData(it) }
+            vm.charactersFlow.collectLatest { characterListAdapter.submitData(it) }
         }
     }
 
