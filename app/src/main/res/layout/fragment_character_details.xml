@@ -118,14 +118,14 @@
         android:layout_margin="@dimen/margin"
         android:text="@string/episodes_with_this_character"
         android:textSize="@dimen/text_size_grande"
-        app:layout_constraintBottom_toTopOf="@id/rvOnCharacterDetailsFragment"
+        app:layout_constraintBottom_toTopOf="@id/rvCharacterDetails"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivCharacterImage" />
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvOnCharacterDetailsFragment"
+        android:id="@+id/rvCharacterDetails"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -143,9 +143,9 @@
         android:foregroundGravity="center"
         android:indeterminateTint="@color/yellow"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/rvOnCharacterDetailsFragment"
-        app:layout_constraintEnd_toEndOf="@+id/rvOnCharacterDetailsFragment"
-        app:layout_constraintStart_toStartOf="@+id/rvOnCharacterDetailsFragment"
-        app:layout_constraintTop_toTopOf="@+id/rvOnCharacterDetailsFragment" />
+        app:layout_constraintBottom_toBottomOf="@+id/rvCharacterDetails"
+        app:layout_constraintEnd_toEndOf="@+id/rvCharacterDetails"
+        app:layout_constraintStart_toStartOf="@+id/rvCharacterDetails"
+        app:layout_constraintTop_toTopOf="@+id/rvCharacterDetails" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

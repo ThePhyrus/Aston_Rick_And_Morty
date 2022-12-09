@@ -71,7 +71,7 @@ class LocationDetailsFragment : Fragment() {
     private fun initView() {
         characterListForDetailsAdapter = CharacterListForDetailsAdapter()
 
-        with(binding.rvLocationDetail) {
+        with(binding.rvLocationDetails) {
             layoutManager = LinearLayoutManager(requireContext())
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = characterListForDetailsAdapter
@@ -96,9 +96,9 @@ class LocationDetailsFragment : Fragment() {
     }
 
     private fun initUI(locationDetails: LocationPresentation) {
-        binding.locationNameDetail.text = locationDetails.name
-        binding.locationTypeDetail.text = "Type: ${locationDetails.type}"
-        binding.locationDimensionsLocation.text = "Dimension: ${locationDetails.dimension}"
+        binding.tvLocationNameInLocationDetails.text = locationDetails.name
+        binding.tvLocationTypeInLocationDetails.text = "Type: ${locationDetails.type}"
+        binding.tvLocationDimensionInLocationDetails.text = "Dimension: ${locationDetails.dimension}"
     }
 
     private fun init() {

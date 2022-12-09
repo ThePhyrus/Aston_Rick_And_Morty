@@ -76,5 +76,9 @@
     <string name="location_name">Location name</string>
     <string name="location_type">Location type</string>
     <string name="location_dimension">Location dimension</string>
+    <string name="choose_dimension">Choose dimension</string>
+    <string name="location_information">Location information:</string>
+    <string name="episode_information">Episode information:</string>
+    <string name="all_characters_at_this_location">All characters at this location:</string>
 
 </resources>

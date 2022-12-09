@@ -10,7 +10,6 @@
         android:id="@+id/svLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_mini"
         app:iconifiedByDefault="false"
         app:layout_constraintEnd_toStartOf="@+id/btnFilterLocation"
         app:layout_constraintStart_toStartOf="parent"

@@ -102,7 +102,7 @@ class CharacterDetailsFragment : Fragment() {
     private fun initView() {
         characterDetailsAdapter = CharacterDetailsAdapter()
 
-        with(binding.rvOnCharacterDetailsFragment) {
+        with(binding.rvCharacterDetails) {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = characterDetailsAdapter
         }

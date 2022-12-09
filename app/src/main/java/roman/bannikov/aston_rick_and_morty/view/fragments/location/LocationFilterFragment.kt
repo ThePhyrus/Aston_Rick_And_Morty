@@ -14,14 +14,14 @@ import androidx.lifecycle.repeatOnLifecycle
 import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.launch
-import roman.bannikov.aston_rick_and_morty.databinding.FragmentLocationsFilterBinding
+import roman.bannikov.aston_rick_and_morty.databinding.FragmentLocationFilterBinding
 import roman.bannikov.aston_rick_and_morty.viewmodel.location.LocationFilterViewModel
 import roman.bannikov.aston_rick_and_morty.viewmodel.location.LocationFilterViewModelProvider
 
 
 class LocationFilterFragment : BottomSheetDialogFragment() {
 
-    private lateinit var binding: FragmentLocationsFilterBinding
+    private lateinit var binding: FragmentLocationFilterBinding
 
     private var type: String? = null
     private var dimension: String? = null
@@ -34,7 +34,7 @@ class LocationFilterFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentLocationsFilterBinding.inflate(layoutInflater, container, false)
+        binding = FragmentLocationFilterBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -47,16 +47,16 @@ class LocationFilterFragment : BottomSheetDialogFragment() {
         )[LocationFilterViewModel::class.java]
         observeVm()
 
-        binding.btnApplyFilterLocations.setOnClickListener {
+        binding.btnApplyFilterLocation.setOnClickListener {
             navigator().openLocationsFragmentWithArg(type = type, dimension = dimension)
             dismiss()
         }
 
-        binding.btnFilterLocationsDimension.setOnClickListener {
+        binding.btnFilterLocationDimension.setOnClickListener {
             getDimension(dimensionsList)
         }
 
-        binding.btnFilterLocationsType.setOnClickListener {
+        binding.btnFilterLocationType.setOnClickListener {
             getType(typesList)
         }
     }

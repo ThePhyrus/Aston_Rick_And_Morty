@@ -12,10 +12,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin"
-        android:textAllCaps="false"
         android:text="@string/btn_back_text"
+        android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvLocationInformation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/location_information"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnBack"
+        app:layout_constraintTop_toTopOf="@+id/btnBack" />
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glFirst"
@@ -25,85 +37,74 @@
         app:layout_constraintGuide_begin="@dimen/gl_first_begin" />
 
     <TextView
-        android:id="@+id/location_name_detail"
+        android:id="@+id/tvLocationNameInLocationDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/empty"
-        android:textColor="@color/light_pink"
-        android:textSize="@dimen/planet_name_size"
-        android:textStyle="bold"
+        android:layout_margin="@dimen/margin"
+        android:text="@string/location_name"
+        android:textSize="@dimen/text_size_label"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/glFirst" />
 
     <TextView
-        android:id="@+id/location_type_detail"
+        android:id="@+id/tvLocationTypeInLocationDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/distance_between_text"
-        android:text="@string/empty"
-        android:textColor="@color/light_pink"
-        android:textSize="@dimen/item_name"
+        android:layout_margin="@dimen/margin"
+        android:text="@string/location_type"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/location_name_detail" />
+        app:layout_constraintTop_toBottomOf="@+id/tvLocationNameInLocationDetails" />
 
     <TextView
-        android:id="@+id/location_dimensions_location"
+        android:id="@+id/tvLocationDimensionInLocationDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/distance_between_text"
-        android:text="@string/empty"
-        android:textColor="@color/light_pink"
-        android:textSize="@dimen/item_name"
+        android:layout_margin="@dimen/margin"
+        android:text="@string/location_dimension"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/location_type_detail" />
+        app:layout_constraintTop_toBottomOf="@+id/tvLocationTypeInLocationDetails" />
 
     <TextView
+        android:id="@+id/tvAllCharactersInLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/distance_horizontal"
-        android:text="@string/residents"
-        android:textColor="@color/light_pink"
-        android:textSize="@dimen/label_size"
-        app:layout_constraintBottom_toTopOf="@+id/glSecond"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_margin="@dimen/margin"
+        android:gravity="center"
+        android:text="@string/all_characters_at_this_location"
+        android:textSize="@dimen/text_size_large"
+        app:layout_constraintBottom_toTopOf="@id/rvLocationDetails"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvLocationDimensionInLocationDetails" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glSecond"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="189dp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_location_detail"
-        android:layout_width="@dimen/zero"
-        android:layout_height="@dimen/zero"
+        android:id="@+id/rvLocationDetails"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/glSecond"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@id/tvAllCharactersInLocation"
         app:spanCount="2"
         tools:listitem="@layout/item_characters"
         tools:orientation="vertical" />
 
     <ProgressBar
-        android:id="@+id/progress_bar_location_details"
+        android:id="@+id/pbLocationDetails"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:foregroundGravity="center"
-        android:indeterminateTint="@color/yellow"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/rv_location_detail"
-        app:layout_constraintEnd_toEndOf="@+id/rv_location_detail"
-        app:layout_constraintStart_toStartOf="@+id/rv_location_detail"
-        app:layout_constraintTop_toTopOf="@+id/rv_location_detail" />
+        app:layout_constraintBottom_toBottomOf="@+id/rvLocationDetails"
+        app:layout_constraintEnd_toEndOf="@+id/rvLocationDetails"
+        app:layout_constraintStart_toStartOf="@+id/rvLocationDetails"
+        app:layout_constraintTop_toTopOf="@+id/rvLocationDetails" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
