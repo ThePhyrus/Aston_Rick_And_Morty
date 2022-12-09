@@ -21,7 +21,7 @@
         android:id="@+id/tvCharacterInformation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/character_information"
+        android:text="@string/character_details"
         android:textSize="@dimen/text_size_label"
         app:layout_constraintBottom_toBottomOf="@+id/btnBack"
         app:layout_constraintEnd_toEndOf="parent"

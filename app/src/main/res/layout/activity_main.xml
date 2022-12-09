@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/image_main_bg_1280x2120"
     android:layout_height="match_parent"
     tools:context=".view.MainActivity">
 
