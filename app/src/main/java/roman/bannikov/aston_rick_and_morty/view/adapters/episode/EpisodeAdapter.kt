@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.view.adapters.episodes_adapter
+package roman.bannikov.aston_rick_and_morty.view.adapters.episode
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,18 +8,18 @@ import roman.bannikov.aston_rick_and_morty.R
 
 import roman.bannikov.aston_rick_and_morty.presentation.models.episode.EpisodePresentation
 
-class EpisodesAdapter : PagingDataAdapter<EpisodePresentation, EpisodesViewHolder>(
+class EpisodeAdapter : PagingDataAdapter<EpisodePresentation, EpisodeViewHolder>(
     EpisodesDiffCallback()
 ) {
 
     var onEpisodeItem: ((EpisodePresentation) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        EpisodesViewHolder(
+        EpisodeViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.item_episodes, parent, false))
 
 
-    override fun onBindViewHolder(holderContacts: EpisodesViewHolder, position: Int) {
+    override fun onBindViewHolder(holderContacts: EpisodeViewHolder, position: Int) {
         getItem(position)?.let { holderContacts.bind(it) }
         holderContacts.itemView.setOnClickListener {
             onEpisodeItem?.invoke(getItem(position)!!)

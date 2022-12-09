@@ -12,7 +12,7 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 
-import roman.bannikov.aston_rick_and_morty.view.adapters.characters_adapter_for_details.CharactersListForDetailsAdapter
+import roman.bannikov.aston_rick_and_morty.view.adapters.character.CharactersListForDetailsAdapter
 import roman.bannikov.aston_rick_and_morty.presentation.models.episode.EpisodePresentation
 import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import kotlinx.coroutines.launch

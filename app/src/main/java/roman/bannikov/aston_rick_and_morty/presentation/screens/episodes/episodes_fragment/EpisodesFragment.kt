@@ -8,7 +8,7 @@ import androidx.lifecycle.*
 import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import roman.bannikov.aston_rick_and_morty.view.adapters.episodes_adapter.EpisodesAdapter
+import roman.bannikov.aston_rick_and_morty.view.adapters.episode.EpisodeAdapter
 import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -23,7 +23,7 @@ import roman.bannikov.aston_rick_and_morty.databinding.FragmentEpisodesBinding
 class EpisodesFragment : Fragment() {
 
     private lateinit var binding: FragmentEpisodesBinding
-    private var episodesAdapter: EpisodesAdapter = EpisodesAdapter()
+    private var episodeAdapter: EpisodeAdapter = EpisodeAdapter()
 
     private var episode: String? = null
 
@@ -110,9 +110,9 @@ class EpisodesFragment : Fragment() {
         with(binding.rvEpisodes) {
             layoutManager = LinearLayoutManager(requireContext())
             layoutManager = GridLayoutManager(requireContext(), 2)
-            adapter = episodesAdapter
+            adapter = episodeAdapter
         }
-        episodesAdapter.onEpisodeItem = { navigator().openEpisodesDetailFragment(it.id) }
+        episodeAdapter.onEpisodeItem = { navigator().openEpisodesDetailFragment(it.id) }
     }
 
     private fun setUpSwipeToRefresh() {
@@ -128,7 +128,7 @@ class EpisodesFragment : Fragment() {
     private fun collectUiState() {
 
         viewLifecycleOwner.lifecycleScope.launch {
-            vm.episodesFlow.collectLatest  { episodesAdapter.submitData(it) }
+            vm.episodesFlow.collectLatest  { episodeAdapter.submitData(it) }
         }
     }
 

@@ -5,25 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.ExperimentalPagingApi
-import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.distinctUntilChangedBy
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentLocationsBinding
-import roman.bannikov.aston_rick_and_morty.view.adapters.locations_adapter.LocationsAdapter
+import roman.bannikov.aston_rick_and_morty.view.adapters.location.LocationAdapter
 import roman.bannikov.aston_rick_and_morty.presentation.navigator
 
 @ExperimentalPagingApi
@@ -32,7 +28,7 @@ import roman.bannikov.aston_rick_and_morty.presentation.navigator
 class LocationsFragment : Fragment() {
 
     private lateinit var binding: FragmentLocationsBinding
-    private var locationsAdapter: LocationsAdapter = LocationsAdapter()
+    private var locationAdapter: LocationAdapter = LocationAdapter()
 
     private var params: MutableMap<String, String?> = mutableMapOf(
         "name" to null,
@@ -126,10 +122,10 @@ class LocationsFragment : Fragment() {
         with(binding.rvLocations) {
             layoutManager = LinearLayoutManager(requireContext())
             layoutManager = GridLayoutManager(requireContext(), 2)
-            adapter = locationsAdapter
+            adapter = locationAdapter
         }
 
-        locationsAdapter.onLocationItem = { navigator().openLocationsDetailFragment(it.id) }
+        locationAdapter.onLocationItem = { navigator().openLocationsDetailFragment(it.id) }
     }
 
     private fun performSearchEvent(query: String) {
@@ -149,7 +145,7 @@ class LocationsFragment : Fragment() {
     private fun collectUiState() {
 
         viewLifecycleOwner.lifecycleScope.launch {
-            vm.locationsFlow.collectLatest { locationsAdapter?.submitData(it) }
+            vm.locationsFlow.collectLatest { locationAdapter?.submitData(it) }
         }
     }
 
