@@ -6,7 +6,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import roman.bannikov.aston_rick_and_morty.R
-import roman.bannikov.aston_rick_and_morty.databinding.ItemCharactersBinding
+import roman.bannikov.aston_rick_and_morty.databinding.ItemCharacterBinding
 
 import roman.bannikov.aston_rick_and_morty.presentation.models.character.CharacterPresentation
 
@@ -14,7 +14,7 @@ class CharacterListForDetailsViewHolder(
     itemView: View
 ) : RecyclerView.ViewHolder(itemView) {
 
-    private val binding = ItemCharactersBinding.bind(itemView)
+    private val binding = ItemCharacterBinding.bind(itemView)
 
     @SuppressLint("SetTextI18n")
     fun bind(item: CharacterPresentation) = with(binding) {
@@ -32,8 +32,8 @@ class CharacterListForDetailsViewHolder(
 
         Glide.with(itemView)
             .load(item.imageUrl)
-            .placeholder(R.drawable.ic_loading)
-            .error(R.drawable.ic_dissconect)
+            .placeholder(R.drawable.ic_loading_placeholder)
+            .error(R.drawable.ic_loading_error)
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
             .centerCrop()
             .into(ivCharacterImageInItemCharacter)

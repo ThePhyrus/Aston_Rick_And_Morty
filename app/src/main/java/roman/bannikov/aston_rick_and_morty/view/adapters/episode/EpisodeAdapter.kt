@@ -16,7 +16,7 @@ class EpisodeAdapter : PagingDataAdapter<EpisodePresentation, EpisodeViewHolder>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         EpisodeViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_episodes, parent, false))
+            LayoutInflater.from(parent.context).inflate(R.layout.item_episode_in_episode_list, parent, false))
 
 
     override fun onBindViewHolder(holderContacts: EpisodeViewHolder, position: Int) {

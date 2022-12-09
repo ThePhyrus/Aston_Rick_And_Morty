@@ -1,12 +1,13 @@
 package roman.bannikov.aston_rick_and_morty.view
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentManager
 import androidx.paging.ExperimentalPagingApi
-
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import roman.bannikov.aston_rick_and_morty.R
+import roman.bannikov.aston_rick_and_morty.presentation.Navigator
 import roman.bannikov.aston_rick_and_morty.view.fragments.character.CharacterDetailsFragment
 import roman.bannikov.aston_rick_and_morty.view.fragments.character.CharacterFilterFragment
 import roman.bannikov.aston_rick_and_morty.view.fragments.character.CharacterListFragment
@@ -16,11 +17,6 @@ import roman.bannikov.aston_rick_and_morty.view.fragments.episode.EpisodeListFra
 import roman.bannikov.aston_rick_and_morty.view.fragments.location.LocationDetailsFragment
 import roman.bannikov.aston_rick_and_morty.view.fragments.location.LocationFilterFragment
 import roman.bannikov.aston_rick_and_morty.view.fragments.location.LocationListFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import roman.bannikov.aston_rick_and_morty.R
-import roman.bannikov.aston_rick_and_morty.presentation.Navigator
-import roman.bannikov.aston_rick_and_morty.viewmodel.SplashScreenViewModel
 
 //todo узнать, почему неизветно происхождение Морти (origin unknown)
 
@@ -29,16 +25,11 @@ import roman.bannikov.aston_rick_and_morty.viewmodel.SplashScreenViewModel
 @ExperimentalPagingApi
 class MainActivity : AppCompatActivity(), Navigator {
 
-    private val vm: SplashScreenViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        installSplashScreen().apply {
-            setKeepOnScreenCondition {
-                vm.isLoading.value
-            }
-        }
+
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {

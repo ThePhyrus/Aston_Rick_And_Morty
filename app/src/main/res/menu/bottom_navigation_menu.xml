@@ -3,16 +3,16 @@
 
     <item
         android:id="@+id/characterListFragment"
-        android:icon="@drawable/characters_nav_menu"
+        android:icon="@drawable/ic_characters_for_bottom_navigation_view"
         android:title="@string/characters" />
 
     <item
         android:id="@+id/episodesFragment"
-        android:icon="@drawable/episodes_nav_menu"
+        android:icon="@drawable/ic_episodes_for_bottom_navigation_view"
         android:title="@string/episodes" />
     <item
         android:id="@+id/locationsFragment"
-        android:icon="@drawable/location_nav_menu"
+        android:icon="@drawable/ic_location_for_bottom_navigation_view"
         android:title="@string/locations" />
 
 

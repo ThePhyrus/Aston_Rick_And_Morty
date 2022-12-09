@@ -14,7 +14,7 @@
         android:adjustViewBounds="true"
         android:alpha="1"
         android:scaleType="centerCrop"
-        android:src="@drawable/image_for_episode_card_2"
+        android:src="@drawable/image_for_item_episode_in_character_details"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

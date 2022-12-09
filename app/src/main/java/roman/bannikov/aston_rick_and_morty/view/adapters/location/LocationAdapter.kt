@@ -15,7 +15,7 @@ class LocationAdapter : PagingDataAdapter<LocationPresentation, LocationViewHold
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         LocationViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_locations, parent, false))
+            LayoutInflater.from(parent.context).inflate(R.layout.item_location, parent, false))
 
 
     override fun onBindViewHolder(holderContacts: LocationViewHolder, position: Int) {

@@ -66,7 +66,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvAllLocationList"
             app:spanCount="2"
-            tools:listitem="@layout/item_locations"
+            tools:listitem="@layout/item_location"
             tools:orientation="vertical" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

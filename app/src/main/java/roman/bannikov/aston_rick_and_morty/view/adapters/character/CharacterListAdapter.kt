@@ -16,7 +16,7 @@ class CharacterListAdapter : PagingDataAdapter<CharacterPresentation, CharacterL
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         CharacterListViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_characters, parent, false))
+            LayoutInflater.from(parent.context).inflate(R.layout.item_character, parent, false))
 
     override fun onBindViewHolder(holderContacts: CharacterListViewHolder, position: Int) {
         getItem(position)?.let { holderContacts.bind(it) }

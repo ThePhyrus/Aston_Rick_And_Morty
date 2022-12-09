@@ -16,7 +16,7 @@ class CharacterDetailsAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         CharacterDetailsViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_episodes_in_character_details, parent, false)
+                .inflate(R.layout.item_episode_in_character_details, parent, false)
         )
 
     override fun onBindViewHolder(holderContacts: CharacterDetailsViewHolder, position: Int) {

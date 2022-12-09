@@ -133,8 +133,8 @@ class CharacterDetailsFragment : Fragment() {
         }
         Glide.with(requireContext())
             .load(characterDetails.imageUrl)
-            .placeholder(R.drawable.ic_loading)
-            .error(R.drawable.ic_dissconect)
+            .placeholder(R.drawable.ic_loading_placeholder)
+            .error(R.drawable.ic_loading_error)
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
             .centerCrop()
             .into(binding.ivCharacterImage)
