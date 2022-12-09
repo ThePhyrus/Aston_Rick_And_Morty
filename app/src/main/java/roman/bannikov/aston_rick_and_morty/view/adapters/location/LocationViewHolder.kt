@@ -14,8 +14,8 @@ class LocationViewHolder(
 
     fun bind(item: LocationPresentation) = with(binding) {
 
-        nameLocationItem.text = item.name
-        dimensionLocationItem.text = item.dimension
-        typeLocationItem.text = item.dimension
+        tvLocationName.text = item.name
+        tvLocationDimension.text = item.dimension
+        tvLocationType.text = item.type
     }
 }

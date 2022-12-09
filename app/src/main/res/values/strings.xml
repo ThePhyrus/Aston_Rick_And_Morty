@@ -72,5 +72,9 @@
     <string name="all_episode_list">All episode list:</string>
     <string name="all_characters_in_this_episode">All characters in this episode:</string>
     <string name="choose_episode">Choose episode</string>
+    <string name="all_location_list">All location list:</string>
+    <string name="location_name">Location name</string>
+    <string name="location_type">Location type</string>
+    <string name="location_dimension">Location dimension</string>
 
 </resources>

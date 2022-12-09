@@ -18,7 +18,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import roman.bannikov.aston_rick_and_morty.databinding.FragmentLocationsBinding
+import roman.bannikov.aston_rick_and_morty.databinding.FragmentLocationListBinding
 import roman.bannikov.aston_rick_and_morty.view.adapters.location.LocationAdapter
 import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import roman.bannikov.aston_rick_and_morty.viewmodel.location.LocationListViewModel
@@ -29,7 +29,7 @@ import roman.bannikov.aston_rick_and_morty.viewmodel.location.LocationListViewMo
 @FlowPreview
 class LocationListFragment : Fragment() {
 
-    private lateinit var binding: FragmentLocationsBinding
+    private lateinit var binding: FragmentLocationListBinding
     private var locationAdapter: LocationAdapter = LocationAdapter()
 
     private var params: MutableMap<String, String?> = mutableMapOf(
@@ -66,7 +66,7 @@ class LocationListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentLocationsBinding.inflate(layoutInflater, container, false)
+        binding = FragmentLocationListBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -89,11 +89,11 @@ class LocationListFragment : Fragment() {
 
         setUpSwipeToRefresh()
 
-        binding.btnFilterLocations.setOnClickListener {
+        binding.btnFilterLocation.setOnClickListener {
             navigator().openLocationsFilterFragment()
         }
 
-        binding.searchLocations.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.svLocation.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
@@ -135,10 +135,10 @@ class LocationListFragment : Fragment() {
     }
 
     private fun setUpSwipeToRefresh() {
-        binding.swipeRefreshLocations.apply {
+        binding.srLocationList.apply {
             setOnRefreshListener {
                 vm.getLocationsByParams(null, null, null)
-                binding.swipeRefreshLocations.isRefreshing = false
+                binding.srLocationList.isRefreshing = false
                 binding.rvLocations.scrollToPosition(0)
             }
         }
