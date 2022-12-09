@@ -72,7 +72,7 @@ class EpisodeDetailsFragment : Fragment() {
     private fun initView() {
         charactersListForDetailsAdapter = CharactersListForDetailsAdapter()
 
-        with(binding.rvEpisodeDetail) {
+        with(binding.rvEpisodeDetails) {
             layoutManager = LinearLayoutManager(requireContext())
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = charactersListForDetailsAdapter
@@ -97,9 +97,9 @@ class EpisodeDetailsFragment : Fragment() {
     }
 
     private fun initUI(presentationDetails: EpisodePresentation) {
-        binding.episodeAirDateDetail.text = presentationDetails.air_date
-        binding.episodeNameDetail.text = presentationDetails.name
-        binding.episodeNumberDetail.text = "Series ${presentationDetails.episode}"
+        binding.tvEpisodeAirDateInEpisodeDetails.text = presentationDetails.air_date
+        binding.tvEpisodeNameInEpisodeDetails.text = presentationDetails.name
+        binding.tvEpisodeCodeInEpisodeDetails.text = presentationDetails.episode
     }
 
     private fun init() {

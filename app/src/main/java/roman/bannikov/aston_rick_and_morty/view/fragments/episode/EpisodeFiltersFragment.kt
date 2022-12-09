@@ -14,13 +14,13 @@ import androidx.lifecycle.repeatOnLifecycle
 import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.launch
-import roman.bannikov.aston_rick_and_morty.databinding.FragmentEpisodesFilterBinding
+import roman.bannikov.aston_rick_and_morty.databinding.FragmentEpisodeFilterBinding
 import roman.bannikov.aston_rick_and_morty.viewmodel.episode.EpisodeFilterViewModel
 import roman.bannikov.aston_rick_and_morty.viewmodel.episode.EpisodeFilterViewModelProvider
 
 class EpisodeFiltersFragment : BottomSheetDialogFragment() {
 
-    private lateinit var binding: FragmentEpisodesFilterBinding
+    private lateinit var binding: FragmentEpisodeFilterBinding
     private var episode: String? = null
     private var episodesList: MutableList<String> = mutableListOf<String>()
     private lateinit var vm: EpisodeFilterViewModel
@@ -29,7 +29,7 @@ class EpisodeFiltersFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentEpisodesFilterBinding.inflate(layoutInflater, container, false)
+        binding = FragmentEpisodeFilterBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -42,12 +42,12 @@ class EpisodeFiltersFragment : BottomSheetDialogFragment() {
         )[EpisodeFilterViewModel::class.java]
         observeVm()
 
-        binding.btnApplyFilterEpisodes.setOnClickListener {
+        binding.btnApplyFilterEpisode.setOnClickListener {
             navigator().openEpisodesFragmentWithArg(episode = episode)
             dismiss()
         }
 
-        binding.btnFilterEpisodesEpisodes.setOnClickListener {
+        binding.btnChooseEpisode.setOnClickListener {
             getEpisode(episodesList)
         }
     }

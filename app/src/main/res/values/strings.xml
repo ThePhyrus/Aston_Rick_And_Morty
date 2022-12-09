@@ -70,5 +70,7 @@
     <string name="choose_species">Choose species</string>
     <string name="choose_type">Choose type</string>
     <string name="all_episode_list">All episode list:</string>
+    <string name="all_characters_in_this_episode">All characters in this episode:</string>
+    <string name="choose_episode">Choose episode</string>
 
 </resources>
