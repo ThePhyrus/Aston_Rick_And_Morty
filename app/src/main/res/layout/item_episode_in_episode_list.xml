@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/episode_card"
     android:layout_width="wrap_content"
-    android:layout_height="@dimen/square_card_200_dp"
-    android:layout_margin="@dimen/margin"
-    app:cardCornerRadius="@dimen/radius_shape">
+    android:layout_height="@dimen/square_200dp"
+    android:layout_margin="@dimen/margin">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/image"
         android:scaleType="fitXY"
         android:src="@drawable/image_for_item_episode_in_episode_list"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,7 +25,7 @@
         android:gravity="center"
         android:text="@string/episode_name"
         android:textColor="@color/mr_black_text_color"
-        android:textSize="@dimen/text_size_big"
+        android:textSize="@dimen/text_size_16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +37,7 @@
         android:layout_margin="@dimen/margin_mini"
         android:text="@string/episode_code"
         android:textColor="@color/mr_black_text_color"
-        android:textSize="@dimen/text_size_small"
+        android:textSize="@dimen/text_size_12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -47,8 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_mini"
         android:text="@string/air_date"
-        android:textSize="@dimen/text_size_small"
         android:textColor="@color/mr_black_text_color"
+        android:textSize="@dimen/text_size_12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

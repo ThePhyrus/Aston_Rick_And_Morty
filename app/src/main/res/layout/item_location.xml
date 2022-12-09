@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/location_card"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/square_card_200_dp"
+    android:layout_height="@dimen/square_200dp"
     android:layout_margin="@dimen/margin">
 
     <ImageView
         android:id="@+id/ivLocationImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/image"
         android:scaleType="centerCrop"
         android:src="@drawable/image_for_location_item"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,7 +35,7 @@
         android:gravity="center"
         android:text="@string/location_name"
         android:textColor="@color/mr_white_text_color"
-        android:textSize="@dimen/text_size_large"
+        android:textSize="@dimen/text_size_18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

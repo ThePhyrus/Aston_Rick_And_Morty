@@ -13,8 +13,8 @@ class CharacterDetailsViewHolder(
     private val binding = ItemEpisodeInCharacterDetailsBinding.bind(itemView)
 
     fun bind(item: EpisodePresentation) = with(binding) {
-        tvEpisodeCodeInCard.text = item.episode
-        tvEpisodeNameInCard.text = item.name
-        tvEpisodeAirDate.text = item.air_date
+        tvEpisodeCodeInItem.text = item.episode
+        tvEpisodeNameInItem.text = item.name
+        tvEpisodeAirDateInItem.text = item.air_date
     }
 }

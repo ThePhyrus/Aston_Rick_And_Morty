@@ -13,7 +13,7 @@
         android:padding="@dimen/padding"
         android:text="@string/filter"
         android:textAlignment="center"
-        android:textSize="@dimen/text_size_label" />
+        android:textSize="@dimen/text_size_22sp" />
 
     <LinearLayout
         android:layout_width="wrap_content"

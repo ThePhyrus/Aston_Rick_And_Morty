@@ -11,5 +11,5 @@
     <!--    Mr.Color-->
     <color name="mr_black_text_color">#000000</color>
     <color name="mr_white_text_color">#FFFFFF</color>
-    <color name="mr_foreground_card_color">#A6000000</color>
+    <color name="mr_foreground_in_item_color">#A6000000</color>
 </resources>

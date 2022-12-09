@@ -21,18 +21,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/episode_details"
-        android:textSize="@dimen/text_size_label"
+        android:textSize="@dimen/text_size_22sp"
         app:layout_constraintBottom_toBottomOf="@+id/btnBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnBack"
         app:layout_constraintTop_toTopOf="@+id/btnBack" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glFirst"
+        android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="@dimen/gl_first_begin" />
+        app:layout_constraintGuide_begin="@dimen/guideline_begin" />
 
     <TextView
         android:id="@+id/tvEpisodeNameInEpisodeDetails"
@@ -41,10 +41,10 @@
         android:ems="12"
         android:gravity="center"
         android:text="@string/episode_name"
-        android:textSize="@dimen/text_size_label"
+        android:textSize="@dimen/text_size_22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/glFirst" />
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <TextView
         android:id="@+id/tvEpisodeAirDateInEpisodeDetails"
@@ -73,7 +73,7 @@
         android:layout_margin="@dimen/margin"
         android:gravity="center"
         android:text="@string/all_characters_in_this_episode"
-        android:textSize="@dimen/text_size_large"
+        android:textSize="@dimen/text_size_18sp"
         app:layout_constraintBottom_toTopOf="@id/rvEpisodeDetails"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,8 +82,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvEpisodeDetails"
-        android:layout_width="@dimen/zero"
-        android:layout_height="@dimen/zero"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

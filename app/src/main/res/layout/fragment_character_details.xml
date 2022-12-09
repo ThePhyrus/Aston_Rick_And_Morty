@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/character_details"
-        android:textSize="@dimen/text_size_label"
+        android:textSize="@dimen/text_size_22sp"
         app:layout_constraintBottom_toBottomOf="@+id/btnBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnBack"
@@ -30,20 +30,21 @@
 
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glFirst"
+        android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="@dimen/gl_first_begin" />
+        app:layout_constraintGuide_begin="@dimen/guideline_begin" />
 
     <ImageView
         android:id="@+id/ivCharacterImage"
-        android:layout_width="@dimen/square_image_150dp"
-        android:layout_height="@dimen/square_image_150dp"
+        android:layout_width="@dimen/square_150dp"
+        android:layout_height="@dimen/square_150dp"
         android:layout_margin="@dimen/margin"
+        android:contentDescription="@string/image"
         android:src="@drawable/ic_character_placeholder"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/glFirst" />
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <LinearLayout
         android:id="@+id/linearCharacterInformation"
@@ -117,7 +118,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin"
         android:text="@string/episodes_with_this_character"
-        android:textSize="@dimen/text_size_grande"
+        android:textSize="@dimen/text_size_20sp"
         app:layout_constraintBottom_toTopOf="@id/rvCharacterDetails"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
