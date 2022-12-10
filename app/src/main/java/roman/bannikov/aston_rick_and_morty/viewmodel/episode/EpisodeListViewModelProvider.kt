@@ -23,7 +23,7 @@ class EpisodeListViewModelProvider(
     }
 
     private val episodesApi by lazy {
-        retrofitInstance.episodesApi
+        retrofitInstance.episodeApi
     }
 
     private val db by lazy {
@@ -34,7 +34,7 @@ class EpisodeListViewModelProvider(
         EpisodesRepositoryImpl(
             db = db,
             episodeDetailsApi = episodeDetailsApi,
-            episodesApi = episodesApi
+            episodeApi = episodesApi
         )
     }
 

@@ -11,8 +11,8 @@ import retrofit2.Response
 import roman.bannikov.aston_rick_and_morty.data.mapper.CharacterDataToCharacterDomain
 import roman.bannikov.aston_rick_and_morty.data.models.character.CharacterData
 import roman.bannikov.aston_rick_and_morty.data.paging.CharacterRemoteMediator
-import roman.bannikov.aston_rick_and_morty.data.remote.api.chatacters.CharacterDetailsApi
-import roman.bannikov.aston_rick_and_morty.data.remote.api.chatacters.CharactersApi
+import roman.bannikov.aston_rick_and_morty.data.remote.api.chatacter.CharacterDetailsApi
+import roman.bannikov.aston_rick_and_morty.data.remote.api.chatacter.CharacterApi
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
 import roman.bannikov.aston_rick_and_morty.domain.models.character.CharacterDomain
 import roman.bannikov.aston_rick_and_morty.domain.repositories.characters_repositories.CharactersRepository
@@ -22,7 +22,7 @@ import java.io.IOException
 @ExperimentalPagingApi
 class CharactersRepositoryImpl(
     private val characterDetailsApi: CharacterDetailsApi,
-    private val charactersApi: CharactersApi,
+    private val characterApi: CharacterApi,
     private val db: RickAndMortyDatabase
 ) : CharactersRepository {
 
@@ -54,7 +54,7 @@ class CharactersRepositoryImpl(
                 enablePlaceholders = true,
             ),
             remoteMediator = CharacterRemoteMediator(
-                charactersApi = charactersApi,
+                characterApi = characterApi,
                 db = db,
                 name = name,
                 status = status,
@@ -76,7 +76,7 @@ class CharactersRepositoryImpl(
                 if (ids.size > 1) {
                     val idsString: String = ids.joinToString(separator = ",")
                     val characterDataFromApi: Response<List<CharacterData>> =
-                        charactersApi.getCharactersByIds(ids = idsString)
+                        characterApi.getCharactersByIds(ids = idsString)
                     if (characterDataFromApi.isSuccessful) {
                         characterDataFromApi.body()
                             ?.let { db.getCharacterDao().insertAllCharacters(characters = it) }

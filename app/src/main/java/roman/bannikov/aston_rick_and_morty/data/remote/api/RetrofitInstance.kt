@@ -2,12 +2,12 @@ package roman.bannikov.aston_rick_and_morty.data.remote.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import roman.bannikov.aston_rick_and_morty.data.remote.api.chatacters.CharacterDetailsApi
-import roman.bannikov.aston_rick_and_morty.data.remote.api.chatacters.CharactersApi
-import roman.bannikov.aston_rick_and_morty.data.remote.api.episodes.EpisodeDetailsApi
-import roman.bannikov.aston_rick_and_morty.data.remote.api.episodes.EpisodesApi
-import roman.bannikov.aston_rick_and_morty.data.remote.api.locations.LocationDetailsApi
-import roman.bannikov.aston_rick_and_morty.data.remote.api.locations.LocationsApi
+import roman.bannikov.aston_rick_and_morty.data.remote.api.chatacter.CharacterDetailsApi
+import roman.bannikov.aston_rick_and_morty.data.remote.api.chatacter.CharacterApi
+import roman.bannikov.aston_rick_and_morty.data.remote.api.episode.EpisodeDetailsApi
+import roman.bannikov.aston_rick_and_morty.data.remote.api.episode.EpisodeApi
+import roman.bannikov.aston_rick_and_morty.data.remote.api.location.LocationDetailsApi
+import roman.bannikov.aston_rick_and_morty.data.remote.api.location.LocationApi
 
 object RetrofitInstance {
     private const val BASE_URL = "https://rickandmortyapi.com/api/"
@@ -18,16 +18,16 @@ object RetrofitInstance {
             .build()
     }
 
-    val charactersApi: CharactersApi by lazy {
-        retrofit.create(CharactersApi::class.java)
+    val characterApi: CharacterApi by lazy {
+        retrofit.create(CharacterApi::class.java)
     }
 
-    val episodesApi: EpisodesApi by lazy {
-        retrofit.create(EpisodesApi::class.java)
+    val episodeApi: EpisodeApi by lazy {
+        retrofit.create(EpisodeApi::class.java)
     }
 
-    val locationsApi: LocationsApi by lazy {
-        retrofit.create(LocationsApi::class.java)
+    val locationApi: LocationApi by lazy {
+        retrofit.create(LocationApi::class.java)
     }
 
     val characterDetailsApi: CharacterDetailsApi by lazy {

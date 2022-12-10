@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import roman.bannikov.aston_rick_and_morty.data.mapper.LocationDataToLocationDomain
 import roman.bannikov.aston_rick_and_morty.data.paging.LocationRemoteMediator
-import roman.bannikov.aston_rick_and_morty.data.remote.api.locations.LocationsApi
+import roman.bannikov.aston_rick_and_morty.data.remote.api.location.LocationApi
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
 import roman.bannikov.aston_rick_and_morty.domain.models.location.LocationDomain
 import roman.bannikov.aston_rick_and_morty.domain.repositories.locations_repositories.LocationsRepository
@@ -13,7 +13,7 @@ import roman.bannikov.aston_rick_and_morty.domain.repositories.locations_reposit
 
 @ExperimentalPagingApi
 class LocationsRepositoryImpl(
-    private val locationsApi: LocationsApi,
+    private val locationApi: LocationApi,
     private val db: RickAndMortyDatabase
 ) : LocationsRepository {
 
@@ -41,7 +41,7 @@ class LocationsRepositoryImpl(
                 enablePlaceholders = true,
             ),
             remoteMediator = LocationRemoteMediator(
-                locationsApi = locationsApi,
+                locationApi = locationApi,
                 db = db,
                 name = name,
                 type = type,

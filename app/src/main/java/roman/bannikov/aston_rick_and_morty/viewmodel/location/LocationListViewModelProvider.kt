@@ -15,7 +15,7 @@ class LocationListViewModelProvider(
 ) : ViewModelProvider.Factory {
 
     private val retrofitInstance by lazy {
-        RetrofitInstance.locationsApi
+        RetrofitInstance.locationApi
     }
 
     private val db by lazy {
@@ -23,7 +23,7 @@ class LocationListViewModelProvider(
     }
 
     private val locationsRepository by lazy {
-        LocationsRepositoryImpl(db = db, locationsApi = retrofitInstance)
+        LocationsRepositoryImpl(db = db, locationApi = retrofitInstance)
     }
 
     private val getAllLocationsUseCase by lazy {

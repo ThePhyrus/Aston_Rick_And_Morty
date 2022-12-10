@@ -29,7 +29,7 @@ class LocationDetailsViewModelProvider(
     }
 
     private val charactersApi by lazy {
-        retrofit.charactersApi
+        retrofit.characterApi
     }
 
     private val db by lazy {
@@ -42,7 +42,7 @@ class LocationDetailsViewModelProvider(
 
     private val charactersRepository by lazy {
         CharactersRepositoryImpl(
-            charactersApi = charactersApi,
+            characterApi = charactersApi,
             characterDetailsApi = characterDetailsApi,
             db = db
         )

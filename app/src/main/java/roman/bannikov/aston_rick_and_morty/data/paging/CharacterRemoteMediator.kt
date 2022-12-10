@@ -1,6 +1,5 @@
 package roman.bannikov.aston_rick_and_morty.data.paging
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -9,15 +8,15 @@ import androidx.room.withTransaction
 import retrofit2.HttpException
 import roman.bannikov.aston_rick_and_morty.data.models.PagedResponse
 import roman.bannikov.aston_rick_and_morty.data.models.character.CharacterData
-import roman.bannikov.aston_rick_and_morty.data.models.page_keys.CharactersPageKeys
-import roman.bannikov.aston_rick_and_morty.data.remote.api.chatacters.CharactersApi
+import roman.bannikov.aston_rick_and_morty.data.models.pages.CharacterPages
+import roman.bannikov.aston_rick_and_morty.data.remote.api.chatacter.CharacterApi
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
 import java.io.IOException
 
 
 @OptIn(ExperimentalPagingApi::class)
 class CharacterRemoteMediator(
-    private val charactersApi: CharactersApi,
+    private val characterApi: CharacterApi,
     private val db: RickAndMortyDatabase,
     private val name: String?,
     private val status: String?,
@@ -34,17 +33,14 @@ class CharacterRemoteMediator(
         state: PagingState<Int, CharacterData>
     ): MediatorResult {
 
-        Log.e("characters", "$gender $name   $status $type   $species")
-
         val page = when (val pageKeyData = getKeyPageData(loadType, state)) {
             is MediatorResult.Success -> return pageKeyData
             else -> pageKeyData as Int
         }
 
         try {
-
             val response: PagedResponse<CharacterData> =
-                charactersApi.getCharacters(
+                characterApi.getCharacters(
                     page = page,
                     name = name,
                     status = status,
@@ -52,11 +48,6 @@ class CharacterRemoteMediator(
                     type = type,
                     species = species
                 )
-            Log.e("aa11111aaaa", "${response.results}")
-            Log.e("aaaaaa", "${response.results.forEach { 
-                it.status
-            }}")
-
             val isEndOfList =
                 response.info.next == null
                         || response.toString().contains("error")
@@ -70,7 +61,7 @@ class CharacterRemoteMediator(
                 val prevKey = if (page == 1) null else page - 1
                 val nextKey = if (isEndOfList) null else page + 1
                 val keys = response.results.map {
-                    CharactersPageKeys(it.id, prevPage = prevKey, nextPage = nextKey)
+                    CharacterPages(it.id, prevPage = prevKey, nextPage = nextKey)
                 }
                 keyDao.insertAllCharactersKeys(remoteKeysCharacters = keys)
                 charactersDao.insertAllCharacters(characters = response.results)
@@ -85,7 +76,7 @@ class CharacterRemoteMediator(
 
     private suspend fun getRemoteKeyClosestToCurrentPosition(
         state: PagingState<Int, CharacterData>
-    ): CharactersPageKeys? {
+    ): CharacterPages? {
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.id?.let { id ->
                 keyDao.getCharactersRemoteKeys(id = id)
@@ -95,7 +86,7 @@ class CharacterRemoteMediator(
 
     private suspend fun getRemoteKeyForFirstItem(
         state: PagingState<Int, CharacterData>
-    ): CharactersPageKeys? {
+    ): CharacterPages? {
         return state.pages
             .firstOrNull { it.data.isNotEmpty() }
             ?.data?.firstOrNull()
@@ -106,7 +97,7 @@ class CharacterRemoteMediator(
 
     private suspend fun getRemoteKeyForLastItem(
         state: PagingState<Int, CharacterData>
-    ): CharactersPageKeys? {
+    ): CharacterPages? {
         return state.pages
             .lastOrNull { it.data.isNotEmpty() }
             ?.data?.lastOrNull()

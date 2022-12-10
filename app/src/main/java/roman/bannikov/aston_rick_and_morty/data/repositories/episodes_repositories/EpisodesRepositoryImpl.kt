@@ -11,8 +11,8 @@ import retrofit2.Response
 import roman.bannikov.aston_rick_and_morty.data.mapper.EpisodeDataToEpisodeDomain
 import roman.bannikov.aston_rick_and_morty.data.models.episode.EpisodeData
 import roman.bannikov.aston_rick_and_morty.data.paging.EpisodeRemoteMediator
-import roman.bannikov.aston_rick_and_morty.data.remote.api.episodes.EpisodeDetailsApi
-import roman.bannikov.aston_rick_and_morty.data.remote.api.episodes.EpisodesApi
+import roman.bannikov.aston_rick_and_morty.data.remote.api.episode.EpisodeDetailsApi
+import roman.bannikov.aston_rick_and_morty.data.remote.api.episode.EpisodeApi
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
 import roman.bannikov.aston_rick_and_morty.domain.models.episode.EpisodeDomain
 import roman.bannikov.aston_rick_and_morty.domain.repositories.episodes_repositories.EpisodesRepository
@@ -21,7 +21,7 @@ import java.io.IOException
 
 @ExperimentalPagingApi
 class EpisodesRepositoryImpl(
-    private val episodesApi: EpisodesApi,
+    private val episodeApi: EpisodeApi,
     private val episodeDetailsApi: EpisodeDetailsApi,
     private val db: RickAndMortyDatabase
 ) : EpisodesRepository {
@@ -48,7 +48,7 @@ class EpisodesRepositoryImpl(
                 enablePlaceholders = true,
             ),
             remoteMediator = EpisodeRemoteMediator(
-                episodesApi = episodesApi,
+                episodeApi = episodeApi,
                 db = db,
                 name = name,
                 episode = episode
@@ -68,7 +68,7 @@ class EpisodesRepositoryImpl(
                 if (ids.size > 1) {
                     val idsString: String = ids.joinToString(separator = ",")
                     val episodesFromApi: Response<List<EpisodeData>> =
-                        episodesApi.getEpisodesByIds(ids = idsString)
+                        episodeApi.getEpisodesByIds(ids = idsString)
                     if (episodesFromApi.isSuccessful) {
                         episodesFromApi.body()
                             ?.let { db.getEpisodeDao().insertAllEpisodes(episodeData = it) }

@@ -30,7 +30,7 @@ class EpisodeDetailsViewModelProvider(
     }
 
     private val charactersApi by lazy {
-        retrofit.charactersApi
+        retrofit.characterApi
     }
 
     private val db by lazy {
@@ -44,7 +44,7 @@ class EpisodeDetailsViewModelProvider(
     private val charactersRepository by lazy {
         CharactersRepositoryImpl(
             characterDetailsApi = characterDetailsApi,
-            charactersApi = charactersApi,
+            characterApi = charactersApi,
             db = db
         )
     }

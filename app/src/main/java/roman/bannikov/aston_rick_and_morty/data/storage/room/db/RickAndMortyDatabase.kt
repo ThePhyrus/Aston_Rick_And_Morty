@@ -8,9 +8,9 @@ import androidx.room.TypeConverters
 import roman.bannikov.aston_rick_and_morty.data.models.character.CharacterData
 import roman.bannikov.aston_rick_and_morty.data.models.episode.EpisodeData
 import roman.bannikov.aston_rick_and_morty.data.models.location.LocationData
-import roman.bannikov.aston_rick_and_morty.data.models.page_keys.CharactersPageKeys
-import roman.bannikov.aston_rick_and_morty.data.models.page_keys.EpisodesPageKeys
-import roman.bannikov.aston_rick_and_morty.data.models.page_keys.LocationsPageKeys
+import roman.bannikov.aston_rick_and_morty.data.models.pages.CharacterPages
+import roman.bannikov.aston_rick_and_morty.data.models.pages.EpisodePages
+import roman.bannikov.aston_rick_and_morty.data.models.pages.LocationPages
 import roman.bannikov.aston_rick_and_morty.data.storage.room.converter.Converter
 import roman.bannikov.aston_rick_and_morty.data.storage.room.dao.CharacterDao
 import roman.bannikov.aston_rick_and_morty.data.storage.room.dao.EpisodeDao
@@ -24,9 +24,9 @@ import roman.bannikov.aston_rick_and_morty.data.storage.room.dao.page_keys_dao.L
         CharacterData::class,
         LocationData::class,
         EpisodeData::class,
-        CharactersPageKeys::class,
-        LocationsPageKeys::class,
-        EpisodesPageKeys::class],
+        CharacterPages::class,
+        LocationPages::class,
+        EpisodePages::class],
     version = 4,
     exportSchema = false
 )

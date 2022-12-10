@@ -1,11 +1,11 @@
-package roman.bannikov.aston_rick_and_morty.data.remote.api.locations
+package roman.bannikov.aston_rick_and_morty.data.remote.api.location
 
 import retrofit2.Response
 import retrofit2.http.*
 import roman.bannikov.aston_rick_and_morty.data.models.PagedResponse
 import roman.bannikov.aston_rick_and_morty.data.models.location.LocationData
 
-interface LocationsApi {
+interface LocationApi {
 
     /**
      * Get locations by filters.

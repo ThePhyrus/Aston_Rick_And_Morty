@@ -1,11 +1,11 @@
-package roman.bannikov.aston_rick_and_morty.data.remote.api.chatacters
+package roman.bannikov.aston_rick_and_morty.data.remote.api.chatacter
 
 import retrofit2.Response
 import retrofit2.http.*
 import roman.bannikov.aston_rick_and_morty.data.models.PagedResponse
 import roman.bannikov.aston_rick_and_morty.data.models.character.CharacterData
 
-interface CharactersApi {
+interface CharacterApi {
 
     /**
      * Get character page.

@@ -9,15 +9,15 @@ import androidx.room.withTransaction
 import retrofit2.HttpException
 import roman.bannikov.aston_rick_and_morty.data.models.PagedResponse
 import roman.bannikov.aston_rick_and_morty.data.models.episode.EpisodeData
-import roman.bannikov.aston_rick_and_morty.data.models.page_keys.EpisodesPageKeys
-import roman.bannikov.aston_rick_and_morty.data.remote.api.episodes.EpisodesApi
+import roman.bannikov.aston_rick_and_morty.data.models.pages.EpisodePages
+import roman.bannikov.aston_rick_and_morty.data.remote.api.episode.EpisodeApi
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
 import java.io.IOException
 
 
 @OptIn(ExperimentalPagingApi::class)
 class EpisodeRemoteMediator(
-    private val episodesApi: EpisodesApi,
+    private val episodeApi: EpisodeApi,
     private val db: RickAndMortyDatabase,
     private val name: String?,
     private val episode: String?
@@ -46,7 +46,7 @@ class EpisodeRemoteMediator(
         try {
 
             val response: PagedResponse<EpisodeData> =
-                episodesApi.getEpisodes(
+                episodeApi.getEpisodes(
                     page = page,
                     name = name,
                     episode = episode
@@ -65,7 +65,7 @@ class EpisodeRemoteMediator(
                 val prevKey = if (page == 1) null else page - 1
                 val nextKey = if (isEndOfList) null else page + 1
                 val keys = response.results.map {
-                    EpisodesPageKeys(it.id, prevPage = prevKey, nextPage = nextKey)
+                    EpisodePages(it.id, prevPage = prevKey, nextPage = nextKey)
                 }
                 keyDao.insertAllEpisodesKeys(remoteKeysEpisodes = keys)
                 episodesDao.insertAllEpisodes(episodeData = response.results)
@@ -80,7 +80,7 @@ class EpisodeRemoteMediator(
 
     private suspend fun getRemoteKeyClosestToCurrentPosition(
         state: PagingState<Int, EpisodeData>
-    ): EpisodesPageKeys? {
+    ): EpisodePages? {
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.id?.let { id ->
                 keyDao.getEpisodesRemoteKeys(id = id)
@@ -90,7 +90,7 @@ class EpisodeRemoteMediator(
 
     private suspend fun getRemoteKeyForFirstItem(
         state: PagingState<Int, EpisodeData>
-    ): EpisodesPageKeys? {
+    ): EpisodePages? {
         return state.pages
             .firstOrNull { it.data.isNotEmpty() }
             ?.data?.firstOrNull()
@@ -101,7 +101,7 @@ class EpisodeRemoteMediator(
 
     private suspend fun getRemoteKeyForLastItem(
         state: PagingState<Int, EpisodeData>
-    ): EpisodesPageKeys? {
+    ): EpisodePages? {
         return state.pages
             .lastOrNull { it.data.isNotEmpty() }
             ?.data?.lastOrNull()

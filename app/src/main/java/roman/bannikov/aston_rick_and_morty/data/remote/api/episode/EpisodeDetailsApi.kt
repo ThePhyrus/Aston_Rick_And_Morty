@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.data.remote.api.episodes
+package roman.bannikov.aston_rick_and_morty.data.remote.api.episode
 
 import retrofit2.Response
 import retrofit2.http.GET
