@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.data.repositories.episodes_repositories
+package roman.bannikov.aston_rick_and_morty.data.repositories.episode
 
 import android.util.Log
 import androidx.paging.*
@@ -11,8 +11,8 @@ import retrofit2.Response
 import roman.bannikov.aston_rick_and_morty.data.mapper.EpisodeDataToEpisodeDomain
 import roman.bannikov.aston_rick_and_morty.data.models.episode.EpisodeData
 import roman.bannikov.aston_rick_and_morty.data.paging.EpisodeRemoteMediator
-import roman.bannikov.aston_rick_and_morty.data.remote.api.episode.EpisodeDetailsApi
-import roman.bannikov.aston_rick_and_morty.data.remote.api.episode.EpisodeApi
+import roman.bannikov.aston_rick_and_morty.data.api.episode.EpisodeDetailsApi
+import roman.bannikov.aston_rick_and_morty.data.api.episode.EpisodeApi
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
 import roman.bannikov.aston_rick_and_morty.domain.models.episode.EpisodeDomain
 import roman.bannikov.aston_rick_and_morty.domain.repositories.episodes_repositories.EpisodesRepository
@@ -20,7 +20,7 @@ import java.io.IOException
 
 
 @ExperimentalPagingApi
-class EpisodesRepositoryImpl(
+class EpisodeRepositoryImpl(
     private val episodeApi: EpisodeApi,
     private val episodeDetailsApi: EpisodeDetailsApi,
     private val db: RickAndMortyDatabase

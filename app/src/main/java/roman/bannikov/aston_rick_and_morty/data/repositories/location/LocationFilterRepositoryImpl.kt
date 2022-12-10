@@ -1,10 +1,10 @@
-package roman.bannikov.aston_rick_and_morty.data.repositories.locations_repositories
+package roman.bannikov.aston_rick_and_morty.data.repositories.location
 
 import kotlinx.coroutines.flow.Flow
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
 import roman.bannikov.aston_rick_and_morty.domain.repositories.locations_repositories.GetLocationFiltersRepository
 
-class GetLocationFiltersRepositoryImpl(
+class LocationFilterRepositoryImpl(
     private val db: RickAndMortyDatabase
 ) : GetLocationFiltersRepository {
 

@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.data.repositories.characters_repositories
+package roman.bannikov.aston_rick_and_morty.data.repositories.character
 
 import android.util.Log
 import androidx.paging.*
@@ -11,8 +11,8 @@ import retrofit2.Response
 import roman.bannikov.aston_rick_and_morty.data.mapper.CharacterDataToCharacterDomain
 import roman.bannikov.aston_rick_and_morty.data.models.character.CharacterData
 import roman.bannikov.aston_rick_and_morty.data.paging.CharacterRemoteMediator
-import roman.bannikov.aston_rick_and_morty.data.remote.api.chatacter.CharacterDetailsApi
-import roman.bannikov.aston_rick_and_morty.data.remote.api.chatacter.CharacterApi
+import roman.bannikov.aston_rick_and_morty.data.api.chatacter.CharacterDetailsApi
+import roman.bannikov.aston_rick_and_morty.data.api.chatacter.CharacterApi
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
 import roman.bannikov.aston_rick_and_morty.domain.models.character.CharacterDomain
 import roman.bannikov.aston_rick_and_morty.domain.repositories.characters_repositories.CharactersRepository
@@ -20,7 +20,7 @@ import java.io.IOException
 
 
 @ExperimentalPagingApi
-class CharactersRepositoryImpl(
+class CharacterRepositoryImpl(
     private val characterDetailsApi: CharacterDetailsApi,
     private val characterApi: CharacterApi,
     private val db: RickAndMortyDatabase

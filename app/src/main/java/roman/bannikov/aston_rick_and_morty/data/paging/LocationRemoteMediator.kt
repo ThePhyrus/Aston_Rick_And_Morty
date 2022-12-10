@@ -9,7 +9,7 @@ import retrofit2.HttpException
 import roman.bannikov.aston_rick_and_morty.data.models.PagedResponse
 import roman.bannikov.aston_rick_and_morty.data.models.location.LocationData
 import roman.bannikov.aston_rick_and_morty.data.models.pages.LocationPages
-import roman.bannikov.aston_rick_and_morty.data.remote.api.location.LocationApi
+import roman.bannikov.aston_rick_and_morty.data.api.location.LocationApi
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
 import java.io.IOException
 

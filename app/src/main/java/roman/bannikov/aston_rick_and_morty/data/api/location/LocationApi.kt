@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.data.remote.api.location
+package roman.bannikov.aston_rick_and_morty.data.api.location
 
 import retrofit2.Response
 import retrofit2.http.*

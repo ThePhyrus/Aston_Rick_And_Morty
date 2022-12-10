@@ -3,7 +3,7 @@ package roman.bannikov.aston_rick_and_morty.viewmodel.location
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import roman.bannikov.aston_rick_and_morty.data.repositories.locations_repositories.GetLocationFiltersRepositoryImpl
+import roman.bannikov.aston_rick_and_morty.data.repositories.location.LocationFilterRepositoryImpl
 import roman.bannikov.aston_rick_and_morty.data.repositories.settings_repositories.LocationSettingsRepositoryImpl
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
 import roman.bannikov.aston_rick_and_morty.data.storage.sharedPref.LocationSettingsPref
@@ -19,8 +19,8 @@ class LocationFilterViewModelProvider(
         RickAndMortyDatabase(context = context)
     }
 
-    private val getLocationFiltersRepositoryImpl by lazy {
-        GetLocationFiltersRepositoryImpl(db = db)
+    private val locationFilterRepositoryImpl by lazy {
+        LocationFilterRepositoryImpl(db = db)
     }
 
     private val locationSettingsPref by lazy {
@@ -33,11 +33,11 @@ class LocationFilterViewModelProvider(
 
 
     private val getListLocationsDimensionsUseCase by lazy {
-        GetListLocationsDimensionsUseCase(getLocationFiltersRepository = getLocationFiltersRepositoryImpl)
+        GetListLocationsDimensionsUseCase(getLocationFiltersRepository = locationFilterRepositoryImpl)
     }
 
     private val getListLocationsTypesUseCase by lazy {
-        GetListLocationsTypesUseCase(getLocationFiltersRepository = getLocationFiltersRepositoryImpl)
+        GetListLocationsTypesUseCase(getLocationFiltersRepository = locationFilterRepositoryImpl)
     }
 
     private val locationSettingsUseCases by lazy {

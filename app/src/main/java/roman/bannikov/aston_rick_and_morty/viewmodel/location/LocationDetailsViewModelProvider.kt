@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.paging.ExperimentalPagingApi
-import roman.bannikov.aston_rick_and_morty.data.remote.api.RetrofitInstance
-import roman.bannikov.aston_rick_and_morty.data.repositories.characters_repositories.CharactersRepositoryImpl
-import roman.bannikov.aston_rick_and_morty.data.repositories.locations_repositories.LocationDetailsRepositoryImpl
+import roman.bannikov.aston_rick_and_morty.data.api.Retrofit
+import roman.bannikov.aston_rick_and_morty.data.repositories.character.CharacterRepositoryImpl
+import roman.bannikov.aston_rick_and_morty.data.repositories.location.LocationDetailsRepositoryImpl
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
 import roman.bannikov.aston_rick_and_morty.domain.use_cases.characters.characters_usecases.GetAllCharactersByIdsUseCase
 import roman.bannikov.aston_rick_and_morty.domain.use_cases.locations.location_details_use_cases.GetLocationByIdUseCase
@@ -17,7 +17,7 @@ class LocationDetailsViewModelProvider(
 ) : ViewModelProvider.Factory {
 
     private val retrofit by lazy {
-        RetrofitInstance
+        Retrofit
     }
 
     private val characterDetailsApi by lazy {
@@ -41,7 +41,7 @@ class LocationDetailsViewModelProvider(
     }
 
     private val charactersRepository by lazy {
-        CharactersRepositoryImpl(
+        CharacterRepositoryImpl(
             characterApi = charactersApi,
             characterDetailsApi = characterDetailsApi,
             db = db

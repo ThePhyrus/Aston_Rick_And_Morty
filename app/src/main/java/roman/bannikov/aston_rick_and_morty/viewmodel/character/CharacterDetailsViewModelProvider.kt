@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.paging.ExperimentalPagingApi
-import roman.bannikov.aston_rick_and_morty.data.remote.api.RetrofitInstance
-import roman.bannikov.aston_rick_and_morty.data.repositories.characters_repositories.CharacterDetailsRepositoryImpl
-import roman.bannikov.aston_rick_and_morty.data.repositories.episodes_repositories.EpisodesRepositoryImpl
+import roman.bannikov.aston_rick_and_morty.data.api.Retrofit
+import roman.bannikov.aston_rick_and_morty.data.repositories.character.CharacterDetailsRepositoryImpl
+import roman.bannikov.aston_rick_and_morty.data.repositories.episode.EpisodeRepositoryImpl
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
 import roman.bannikov.aston_rick_and_morty.domain.use_cases.characters.character_details_use_cases.GetCharacterByIdUseCase
 import roman.bannikov.aston_rick_and_morty.domain.use_cases.episodes.episodes_usecases.GetAllEpisodesByIdsUseCase
@@ -18,7 +18,7 @@ class CharacterDetailsViewModelProvider(
 ) : ViewModelProvider.Factory {
 
     private val retrofit by lazy {
-        RetrofitInstance
+        Retrofit
     }
 
     private val characterDetailsApi by lazy {
@@ -42,7 +42,7 @@ class CharacterDetailsViewModelProvider(
     }
 
     private val episodesRepository by lazy {
-        EpisodesRepositoryImpl(
+        EpisodeRepositoryImpl(
             episodeApi = episodesApi,
             episodeDetailsApi = episodeDetailsApi,
             db = db)

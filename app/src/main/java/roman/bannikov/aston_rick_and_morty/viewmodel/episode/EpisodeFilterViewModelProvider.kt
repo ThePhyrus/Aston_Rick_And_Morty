@@ -3,7 +3,7 @@ package roman.bannikov.aston_rick_and_morty.viewmodel.episode
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import roman.bannikov.aston_rick_and_morty.data.repositories.episodes_repositories.GetEpisodeFiltersRepositoryImpl
+import roman.bannikov.aston_rick_and_morty.data.repositories.episode.EpisodeFilterRepositoryImpl
 import roman.bannikov.aston_rick_and_morty.data.repositories.settings_repositories.EpisodeSettingsRepositoryImpl
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
 import roman.bannikov.aston_rick_and_morty.data.storage.sharedPref.EpisodeSettingsPref
@@ -19,7 +19,7 @@ class EpisodeFilterViewModelProvider(
     }
 
     private val getEpisodeFiltersRepository by lazy {
-        GetEpisodeFiltersRepositoryImpl(db = db)
+        EpisodeFilterRepositoryImpl(db = db)
     }
     private val episodeSettingsPref by lazy {
         EpisodeSettingsPref(context = context)

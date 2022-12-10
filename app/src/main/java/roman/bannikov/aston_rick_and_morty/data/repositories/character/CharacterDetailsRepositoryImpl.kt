@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.data.repositories.characters_repositories
+package roman.bannikov.aston_rick_and_morty.data.repositories.character
 
 import android.util.Log
 import kotlinx.coroutines.Dispatchers
@@ -7,7 +7,7 @@ import retrofit2.HttpException
 import retrofit2.Response
 import roman.bannikov.aston_rick_and_morty.data.mapper.CharacterDataToCharacterDomain
 import roman.bannikov.aston_rick_and_morty.data.models.character.CharacterData
-import roman.bannikov.aston_rick_and_morty.data.remote.api.chatacter.CharacterDetailsApi
+import roman.bannikov.aston_rick_and_morty.data.api.chatacter.CharacterDetailsApi
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
 import roman.bannikov.aston_rick_and_morty.domain.models.character.CharacterDomain
 import roman.bannikov.aston_rick_and_morty.domain.repositories.characters_repositories.CharacterDetailsRepository
