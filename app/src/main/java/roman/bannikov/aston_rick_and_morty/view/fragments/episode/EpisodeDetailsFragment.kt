@@ -1,22 +1,21 @@
 package roman.bannikov.aston_rick_and_morty.view.fragments.episode
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.coroutineScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-
-import roman.bannikov.aston_rick_and_morty.view.adapters.character.CharacterListForDetailsAdapter
-import roman.bannikov.aston_rick_and_morty.presentation.models.episode.EpisodePresentation
-import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentEpisodeDetailsBinding
+import roman.bannikov.aston_rick_and_morty.presentation.models.episode.EpisodePresentation
+import roman.bannikov.aston_rick_and_morty.utils.navigator
+import roman.bannikov.aston_rick_and_morty.view.adapters.character.CharacterListForDetailsAdapter
 import roman.bannikov.aston_rick_and_morty.viewmodel.episode.EpisodeDetailsViewModel
 import roman.bannikov.aston_rick_and_morty.viewmodel.episode.EpisodeDetailsViewModelProvider
 import kotlin.properties.Delegates

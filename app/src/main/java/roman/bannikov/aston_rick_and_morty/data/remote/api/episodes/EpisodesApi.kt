@@ -1,9 +1,9 @@
 package roman.bannikov.aston_rick_and_morty.data.remote.api.episodes
 
-import roman.bannikov.aston_rick_and_morty.data.models.PagedResponse
-import roman.bannikov.aston_rick_and_morty.data.models.episodes.Episode
 import retrofit2.Response
 import retrofit2.http.*
+import roman.bannikov.aston_rick_and_morty.data.models.PagedResponse
+import roman.bannikov.aston_rick_and_morty.data.models.episode.EpisodeData
 
 interface EpisodesApi {
 
@@ -19,7 +19,7 @@ interface EpisodesApi {
         @Query("page") page: Int,
         @Query("name") name: String?,
         @Query("episode") episode: String?
-    ): PagedResponse<Episode>
+    ): PagedResponse<EpisodeData>
 
     /**
      * Get episodes by ids.
@@ -29,5 +29,5 @@ interface EpisodesApi {
     @GET("episode/{ids}")
     suspend fun getEpisodesByIds(
         @Path("ids") ids: String
-    ): Response<List<Episode>>
+    ): Response<List<EpisodeData>>
 }

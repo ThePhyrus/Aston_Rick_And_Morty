@@ -1,16 +1,16 @@
 package roman.bannikov.aston_rick_and_morty.data.repositories.episodes_repositories
 
 import android.util.Log
-import roman.bannikov.aston_rick_and_morty.data.mapper.entity_to_domain_model.EpisodeEntityToDomainModel
-import roman.bannikov.aston_rick_and_morty.data.models.episodes.Episode
-import roman.bannikov.aston_rick_and_morty.data.remote.api.episodes.EpisodeDetailsApi
-import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
-import roman.bannikov.aston_rick_and_morty.domain.models.episode.EpisodeModel
-import roman.bannikov.aston_rick_and_morty.domain.repositories.episodes_repositories.EpisodeDetailsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import retrofit2.Response
+import roman.bannikov.aston_rick_and_morty.data.mapper.EpisodeDataToEpisodeDomain
+import roman.bannikov.aston_rick_and_morty.data.models.episode.EpisodeData
+import roman.bannikov.aston_rick_and_morty.data.remote.api.episodes.EpisodeDetailsApi
+import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
+import roman.bannikov.aston_rick_and_morty.domain.models.episode.EpisodeDomain
+import roman.bannikov.aston_rick_and_morty.domain.repositories.episodes_repositories.EpisodeDetailsRepository
 import java.io.IOException
 
 
@@ -19,13 +19,13 @@ class EpisodeDetailsRepositoryImpl(
     private val db: RickAndMortyDatabase
 ) : EpisodeDetailsRepository {
 
-    override suspend fun getEpisodeById(id: Int): EpisodeModel = withContext(Dispatchers.IO) {
+    override suspend fun getEpisodeById(id: Int): EpisodeDomain = withContext(Dispatchers.IO) {
         try {
-            val episodeFromApi: Response<Episode> =
+            val episodeDataFromApi: Response<EpisodeData> =
                 episodeDetailsApi.getEpisodeById(id = id)
-            if (episodeFromApi.isSuccessful) {
-                episodeFromApi.body()
-                    ?.let { db.getEpisodeDao().insertEpisode(episode = it) }
+            if (episodeDataFromApi.isSuccessful) {
+                episodeDataFromApi.body()
+                    ?.let { db.getEpisodeDao().insertEpisode(episodeData = it) }
             }
 
         } catch (e: HttpException) {
@@ -34,7 +34,7 @@ class EpisodeDetailsRepositoryImpl(
             Log.e("Log", "${e.message}")
         }
 
-        return@withContext EpisodeEntityToDomainModel().transform(
+        return@withContext EpisodeDataToEpisodeDomain().transform(
             db.getEpisodeDao().getEpisodeById(id = id)
         )
     }

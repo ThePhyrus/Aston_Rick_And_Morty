@@ -1,9 +1,9 @@
 package roman.bannikov.aston_rick_and_morty.domain.use_cases.locations.locations_usecases
 
 import androidx.paging.PagingData
-import roman.bannikov.aston_rick_and_morty.domain.models.location.LocationModel
-import roman.bannikov.aston_rick_and_morty.domain.repositories.locations_repositories.LocationsRepository
 import kotlinx.coroutines.flow.Flow
+import roman.bannikov.aston_rick_and_morty.domain.models.location.LocationDomain
+import roman.bannikov.aston_rick_and_morty.domain.repositories.locations_repositories.LocationsRepository
 
 class GetAllLocationsUseCase(
     private val locationsRepository: LocationsRepository
@@ -13,7 +13,7 @@ class GetAllLocationsUseCase(
         name: String?,
         type: String?,
         dimension: String?
-    ): Flow<PagingData<LocationModel>> {
+    ): Flow<PagingData<LocationDomain>> {
         return locationsRepository.getAllLocations(
             name = name,
             type = type,

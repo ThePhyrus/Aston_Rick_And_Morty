@@ -12,13 +12,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import roman.bannikov.aston_rick_and_morty.view.adapters.character.CharacterListAdapter
-import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentCharacterListBinding
+import roman.bannikov.aston_rick_and_morty.utils.navigator
+import roman.bannikov.aston_rick_and_morty.view.adapters.character.CharacterListAdapter
 import roman.bannikov.aston_rick_and_morty.viewmodel.character.CharacterListViewModel
 import roman.bannikov.aston_rick_and_morty.viewmodel.character.CharacterListViewModelProvider
 

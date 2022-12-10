@@ -1,10 +1,10 @@
-package roman.bannikov.aston_rick_and_morty.data.models.episodes
+package roman.bannikov.aston_rick_and_morty.data.models.episode
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "EPISODES_TABLE")
-data class Episode(
+data class EpisodeData(
     @PrimaryKey val id: Int,
     val name: String,
     val characters: List<String>,

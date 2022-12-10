@@ -1,14 +1,17 @@
 package roman.bannikov.aston_rick_and_morty.viewmodel.location
 
-import androidx.lifecycle.*
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingData
 import androidx.paging.map
-
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import roman.bannikov.aston_rick_and_morty.domain.use_cases.locations.locations_usecases.GetAllLocationsUseCase
 import roman.bannikov.aston_rick_and_morty.presentation.mapper.domain_model_to_presentation.GetLocationPresentationModel
 import roman.bannikov.aston_rick_and_morty.presentation.models.location.LocationPresentation
-import kotlinx.coroutines.flow.*
 
 
 @ExperimentalPagingApi

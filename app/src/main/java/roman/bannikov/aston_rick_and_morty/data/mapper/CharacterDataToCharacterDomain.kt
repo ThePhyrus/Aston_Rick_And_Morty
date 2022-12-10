@@ -1,13 +1,12 @@
-package roman.bannikov.aston_rick_and_morty.data.mapper.entity_to_domain_model
+package roman.bannikov.aston_rick_and_morty.data.mapper
 
-import roman.bannikov.aston_rick_and_morty.data.mapper.Mapper
-import roman.bannikov.aston_rick_and_morty.data.models.characters.Characters
-import roman.bannikov.aston_rick_and_morty.domain.models.character.CharacterModel
+import roman.bannikov.aston_rick_and_morty.data.models.character.CharacterData
+import roman.bannikov.aston_rick_and_morty.domain.models.character.CharacterDomain
 
-class CharacterEntityToDomainModel :
-    Mapper<Characters, CharacterModel> {
+class CharacterDataToCharacterDomain :
+    Mapper<CharacterData, CharacterDomain> {
 
-    override fun transform(data: Characters): CharacterModel {
+    override fun transform(data: CharacterData): CharacterDomain {
 
         val originLocation: Map<String, String> = mapOf(
             Pair("location_name", data.origin.name),
@@ -23,7 +22,7 @@ class CharacterEntityToDomainModel :
             }.toIntOrNull()
         }
 
-        return CharacterModel(
+        return CharacterDomain(
             id = data.id,
             name = data.name,
             species = data.species,

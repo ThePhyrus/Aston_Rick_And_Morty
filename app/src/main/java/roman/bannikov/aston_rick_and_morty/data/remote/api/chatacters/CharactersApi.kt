@@ -1,9 +1,9 @@
 package roman.bannikov.aston_rick_and_morty.data.remote.api.chatacters
 
-import roman.bannikov.aston_rick_and_morty.data.models.characters.Characters
-import roman.bannikov.aston_rick_and_morty.data.models.PagedResponse
 import retrofit2.Response
 import retrofit2.http.*
+import roman.bannikov.aston_rick_and_morty.data.models.PagedResponse
+import roman.bannikov.aston_rick_and_morty.data.models.character.CharacterData
 
 interface CharactersApi {
 
@@ -26,7 +26,7 @@ interface CharactersApi {
         @Query("species") species: String?,
         @Query("type") type: String?,
         @Query("gender") gender: String?
-    ): PagedResponse<Characters>
+    ): PagedResponse<CharacterData>
 
     /**
      * Get characters by id.
@@ -36,5 +36,5 @@ interface CharactersApi {
     @GET("character/{ids}")
     suspend fun getCharactersByIds(
         @Path("ids") ids: String
-    ): Response<List<Characters>>
+    ): Response<List<CharacterData>>
 }

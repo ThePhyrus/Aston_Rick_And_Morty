@@ -1,11 +1,17 @@
 package roman.bannikov.aston_rick_and_morty.viewmodel.character
 
-import androidx.lifecycle.*
-import androidx.paging.*
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.PagingData
+import androidx.paging.map
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import roman.bannikov.aston_rick_and_morty.domain.use_cases.characters.characters_usecases.GetAllCharactersUseCase
 import roman.bannikov.aston_rick_and_morty.presentation.mapper.domain_model_to_presentation.GetCharacterPresentationModel
 import roman.bannikov.aston_rick_and_morty.presentation.models.character.CharacterPresentation
-import kotlinx.coroutines.flow.*
 
 
 @ExperimentalPagingApi

@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.data.paging.epispdes_paging
+package roman.bannikov.aston_rick_and_morty.data.paging
 
 import android.util.Log
 import androidx.paging.ExperimentalPagingApi
@@ -6,22 +6,22 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
+import retrofit2.HttpException
 import roman.bannikov.aston_rick_and_morty.data.models.PagedResponse
-import roman.bannikov.aston_rick_and_morty.data.models.episodes.Episode
+import roman.bannikov.aston_rick_and_morty.data.models.episode.EpisodeData
 import roman.bannikov.aston_rick_and_morty.data.models.page_keys.EpisodesPageKeys
 import roman.bannikov.aston_rick_and_morty.data.remote.api.episodes.EpisodesApi
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
-import retrofit2.HttpException
 import java.io.IOException
 
 
 @OptIn(ExperimentalPagingApi::class)
-class EpisodesRemoteMediator(
+class EpisodeRemoteMediator(
     private val episodesApi: EpisodesApi,
     private val db: RickAndMortyDatabase,
     private val name: String?,
     private val episode: String?
-) : RemoteMediator<Int, Episode>() {
+) : RemoteMediator<Int, EpisodeData>() {
 
     override suspend fun initialize(): InitializeAction {
         return InitializeAction.LAUNCH_INITIAL_REFRESH
@@ -32,7 +32,7 @@ class EpisodesRemoteMediator(
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, Episode>
+        state: PagingState<Int, EpisodeData>
     ): MediatorResult {
 
         Log.e("episode", "$name $episode")
@@ -45,7 +45,7 @@ class EpisodesRemoteMediator(
 
         try {
 
-            val response: PagedResponse<Episode> =
+            val response: PagedResponse<EpisodeData> =
                 episodesApi.getEpisodes(
                     page = page,
                     name = name,
@@ -68,7 +68,7 @@ class EpisodesRemoteMediator(
                     EpisodesPageKeys(it.id, prevPage = prevKey, nextPage = nextKey)
                 }
                 keyDao.insertAllEpisodesKeys(remoteKeysEpisodes = keys)
-                episodesDao.insertAllEpisodes(episodes = response.results)
+                episodesDao.insertAllEpisodes(episodeData = response.results)
             }
             return MediatorResult.Success(endOfPaginationReached = isEndOfList)
         } catch (exception: IOException) {
@@ -79,7 +79,7 @@ class EpisodesRemoteMediator(
     }
 
     private suspend fun getRemoteKeyClosestToCurrentPosition(
-        state: PagingState<Int, Episode>
+        state: PagingState<Int, EpisodeData>
     ): EpisodesPageKeys? {
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.id?.let { id ->
@@ -89,7 +89,7 @@ class EpisodesRemoteMediator(
     }
 
     private suspend fun getRemoteKeyForFirstItem(
-        state: PagingState<Int, Episode>
+        state: PagingState<Int, EpisodeData>
     ): EpisodesPageKeys? {
         return state.pages
             .firstOrNull { it.data.isNotEmpty() }
@@ -100,7 +100,7 @@ class EpisodesRemoteMediator(
     }
 
     private suspend fun getRemoteKeyForLastItem(
-        state: PagingState<Int, Episode>
+        state: PagingState<Int, EpisodeData>
     ): EpisodesPageKeys? {
         return state.pages
             .lastOrNull { it.data.isNotEmpty() }
@@ -112,7 +112,7 @@ class EpisodesRemoteMediator(
 
     private suspend fun getKeyPageData(
         loadType: LoadType,
-        state: PagingState<Int, Episode>
+        state: PagingState<Int, EpisodeData>
     ): Any {
         return when (loadType) {
             LoadType.REFRESH -> {

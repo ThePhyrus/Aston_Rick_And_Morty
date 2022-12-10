@@ -1,9 +1,9 @@
 package roman.bannikov.aston_rick_and_morty.data.remote.api.locations
 
-import roman.bannikov.aston_rick_and_morty.data.models.location.Location
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import roman.bannikov.aston_rick_and_morty.data.models.location.LocationData
 
 interface LocationDetailsApi {
 
@@ -15,5 +15,5 @@ interface LocationDetailsApi {
     @GET("location/{id}")
     suspend fun getLocationById(
         @Path("id") id: Int
-    ): Response<Location>
+    ): Response<LocationData>
 }

@@ -1,11 +1,11 @@
-package roman.bannikov.aston_rick_and_morty.data.models.characters
+package roman.bannikov.aston_rick_and_morty.data.models.character
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "CHARACTERS_TABLE")
-data class Characters(
+data class CharacterData(
     @PrimaryKey val id: Int,
     val name: String,
     val status: String,
@@ -14,9 +14,9 @@ data class Characters(
     val gender: String,
     val image: String,
     @ColumnInfo(name = "origin")
-    val origin: LinkedLocation,
+    val origin: OriginLocation,
     @ColumnInfo(name = "location")
-    val location: LinkedLocation,
+    val location: OriginLocation,
     @ColumnInfo(name = "episodes")
     val episode: List<String>
 )

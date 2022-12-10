@@ -2,8 +2,8 @@ package roman.bannikov.aston_rick_and_morty.data.storage.room.dao
 
 import androidx.paging.PagingSource
 import androidx.room.*
-import roman.bannikov.aston_rick_and_morty.data.models.episodes.Episode
 import kotlinx.coroutines.flow.Flow
+import roman.bannikov.aston_rick_and_morty.data.models.episode.EpisodeData
 
 
 @Dao
@@ -14,10 +14,10 @@ interface EpisodeDao {
      * With the replacement of the same episodes.
      * This method is used when we request a list of episodes from the server.
      *
-     * @param episodes - Episodes List.
+     * @param episodeData - Episodes List.
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAllEpisodes(episodes: List<Episode?>?)
+    suspend fun insertAllEpisodes(episodeData: List<EpisodeData?>?)
 
 
 
@@ -34,10 +34,10 @@ interface EpisodeDao {
      * With the replacement of the same episode.
      * This method is used when we request a episode from the server (by id).
      *
-     * @param episode - Episode.
+     * @param episodeData - Episode.
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertEpisode(episode: Episode)
+    suspend fun insertEpisode(episodeData: EpisodeData)
 
     /**
      * Get all filtered episodes with pagination. (name, episode).
@@ -55,7 +55,7 @@ interface EpisodeDao {
     fun getFilteredEpisodes(
         name: String?,
         episode: String?,
-    ): PagingSource<Int, Episode>
+    ): PagingSource<Int, EpisodeData>
 
     /**
      * Get all episodes by ids without pagination.
@@ -69,7 +69,7 @@ interface EpisodeDao {
         WHERE id IN (:ids)
         ORDER BY id ASC"""
     )
-    suspend fun getEpisodesByIds(ids: List<Int>): List<Episode>
+    suspend fun getEpisodesByIds(ids: List<Int>): List<EpisodeData>
 
     /**
      * Get episode by id
@@ -77,7 +77,7 @@ interface EpisodeDao {
      * @param id - Episode id.
      */
     @Query("SELECT * FROM EPISODES_TABLE WHERE id = :id")
-    suspend fun getEpisodeById(id: Int): Episode
+    suspend fun getEpisodeById(id: Int): EpisodeData
 
     /**
      * Get all episodes from db.

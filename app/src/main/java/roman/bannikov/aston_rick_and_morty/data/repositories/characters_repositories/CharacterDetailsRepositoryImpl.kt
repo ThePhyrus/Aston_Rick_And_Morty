@@ -1,16 +1,16 @@
 package roman.bannikov.aston_rick_and_morty.data.repositories.characters_repositories
 
 import android.util.Log
-import roman.bannikov.aston_rick_and_morty.data.mapper.entity_to_domain_model.CharacterEntityToDomainModel
-import roman.bannikov.aston_rick_and_morty.data.models.characters.Characters
-import roman.bannikov.aston_rick_and_morty.data.remote.api.chatacters.CharacterDetailsApi
-import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
-import roman.bannikov.aston_rick_and_morty.domain.models.character.CharacterModel
-import roman.bannikov.aston_rick_and_morty.domain.repositories.characters_repositories.CharacterDetailsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import retrofit2.Response
+import roman.bannikov.aston_rick_and_morty.data.mapper.CharacterDataToCharacterDomain
+import roman.bannikov.aston_rick_and_morty.data.models.character.CharacterData
+import roman.bannikov.aston_rick_and_morty.data.remote.api.chatacters.CharacterDetailsApi
+import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
+import roman.bannikov.aston_rick_and_morty.domain.models.character.CharacterDomain
+import roman.bannikov.aston_rick_and_morty.domain.repositories.characters_repositories.CharacterDetailsRepository
 import java.io.IOException
 
 
@@ -19,9 +19,9 @@ class CharacterDetailsRepositoryImpl(
     private val db: RickAndMortyDatabase
 ) : CharacterDetailsRepository {
 
-    override suspend fun getCharacterById(id: Int): CharacterModel = withContext(Dispatchers.IO) {
+    override suspend fun getCharacterById(id: Int): CharacterDomain = withContext(Dispatchers.IO) {
         try {
-            val characterFromApi: Response<Characters> =
+            val characterFromApi: Response<CharacterData> =
                 characterDetailsApi.getCharacterById(id = id)
             if (characterFromApi.isSuccessful) {
                 characterFromApi.body()
@@ -34,7 +34,7 @@ class CharacterDetailsRepositoryImpl(
             Log.e("Log", "${e.message}")
         }
 
-        return@withContext CharacterEntityToDomainModel().transform(
+        return@withContext CharacterDataToCharacterDomain().transform(
             db.getCharacterDao().getCharacterById(id = id)
         )
     }

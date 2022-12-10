@@ -10,11 +10,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-
-import roman.bannikov.aston_rick_and_morty.presentation.navigator
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentLocationFilterBinding
+import roman.bannikov.aston_rick_and_morty.utils.navigator
 import roman.bannikov.aston_rick_and_morty.viewmodel.location.LocationFilterViewModel
 import roman.bannikov.aston_rick_and_morty.viewmodel.location.LocationFilterViewModelProvider
 

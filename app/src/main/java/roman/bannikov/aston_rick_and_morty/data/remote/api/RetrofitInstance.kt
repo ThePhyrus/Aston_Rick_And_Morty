@@ -1,13 +1,13 @@
 package roman.bannikov.aston_rick_and_morty.data.remote.api
 
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import roman.bannikov.aston_rick_and_morty.data.remote.api.chatacters.CharacterDetailsApi
 import roman.bannikov.aston_rick_and_morty.data.remote.api.chatacters.CharactersApi
 import roman.bannikov.aston_rick_and_morty.data.remote.api.episodes.EpisodeDetailsApi
 import roman.bannikov.aston_rick_and_morty.data.remote.api.episodes.EpisodesApi
 import roman.bannikov.aston_rick_and_morty.data.remote.api.locations.LocationDetailsApi
 import roman.bannikov.aston_rick_and_morty.data.remote.api.locations.LocationsApi
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
     private const val BASE_URL = "https://rickandmortyapi.com/api/"

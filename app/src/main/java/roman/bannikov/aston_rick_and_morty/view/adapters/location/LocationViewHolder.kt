@@ -1,7 +1,7 @@
 package roman.bannikov.aston_rick_and_morty.view.adapters.location
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import roman.bannikov.aston_rick_and_morty.databinding.ItemLocationBinding
 import roman.bannikov.aston_rick_and_morty.presentation.models.location.LocationPresentation
 

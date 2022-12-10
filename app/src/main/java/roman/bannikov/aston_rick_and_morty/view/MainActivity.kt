@@ -7,7 +7,7 @@ import androidx.paging.ExperimentalPagingApi
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import roman.bannikov.aston_rick_and_morty.R
-import roman.bannikov.aston_rick_and_morty.presentation.Navigator
+import roman.bannikov.aston_rick_and_morty.utils.Navigator
 import roman.bannikov.aston_rick_and_morty.view.fragments.character.CharacterDetailsFragment
 import roman.bannikov.aston_rick_and_morty.view.fragments.character.CharacterFilterFragment
 import roman.bannikov.aston_rick_and_morty.view.fragments.character.CharacterListFragment

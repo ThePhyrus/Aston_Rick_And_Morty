@@ -1,9 +1,9 @@
 package roman.bannikov.aston_rick_and_morty.data.storage.room.converter
 
 import androidx.room.TypeConverter
-import roman.bannikov.aston_rick_and_morty.data.models.characters.LinkedLocation
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import roman.bannikov.aston_rick_and_morty.data.models.character.OriginLocation
 
 
 object Converter {
@@ -22,14 +22,14 @@ object Converter {
 
     @JvmStatic
     @TypeConverter
-    fun locationToString(location: LinkedLocation): String {
+    fun locationToString(location: OriginLocation): String {
         return Gson().toJson(location)
     }
 
     @JvmStatic
     @TypeConverter
-    fun stringToLocation(json: String): LinkedLocation {
-        val listType = object : TypeToken<LinkedLocation>() {}.type
+    fun stringToLocation(json: String): OriginLocation {
+        val listType = object : TypeToken<OriginLocation>() {}.type
         return Gson().fromJson(json, listType)
     }
 }

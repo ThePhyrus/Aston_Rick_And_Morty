@@ -4,11 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.domain.use_cases.locations.location_filters_use_cases.GetListLocationsDimensionsUseCase
 import roman.bannikov.aston_rick_and_morty.domain.use_cases.locations.location_filters_use_cases.GetListLocationsTypesUseCase
 import roman.bannikov.aston_rick_and_morty.domain.use_cases.settings.LocationsSettingsUseCases
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 
 class LocationFilterViewModel(
     private val getListLocationsDimensionsUseCase: GetListLocationsDimensionsUseCase,

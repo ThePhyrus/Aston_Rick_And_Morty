@@ -2,8 +2,8 @@ package roman.bannikov.aston_rick_and_morty.data.storage.room.dao
 
 import androidx.paging.PagingSource
 import androidx.room.*
-import roman.bannikov.aston_rick_and_morty.data.models.characters.Characters
 import kotlinx.coroutines.flow.Flow
+import roman.bannikov.aston_rick_and_morty.data.models.character.CharacterData
 
 
 @Dao
@@ -17,7 +17,7 @@ interface CharacterDao {
      * @param characters - Character List.
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAllCharacters(characters: List<Characters?>?)
+    suspend fun insertAllCharacters(characters: List<CharacterData?>?)
 
     /**
      * Get all characters with pagination.
@@ -25,7 +25,7 @@ interface CharacterDao {
      * @return
      */
     @Query("SELECT * FROM CHARACTERS_TABLE")
-    fun getAllCharacters(): Flow<List <Characters>>
+    fun getAllCharacters(): Flow<List <CharacterData>>
 
     /**
      * Delete all characters for pagination.
@@ -43,7 +43,7 @@ interface CharacterDao {
      * @param character - Character.
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCharacter(character: Characters)
+    suspend fun insertCharacter(character: CharacterData)
 
     /**
      * Get all filtered characters with pagination. (name, status, gender, type, species).
@@ -70,7 +70,7 @@ interface CharacterDao {
         gender: String?,
         type: String?,
         species: String?,
-    ): PagingSource<Int, Characters>
+    ): PagingSource<Int, CharacterData>
 
     /**
      * Get all characters by ids without pagination.
@@ -84,7 +84,7 @@ interface CharacterDao {
         WHERE id IN (:ids)
         ORDER BY id ASC"""
     )
-    suspend fun getCharactersByIds(ids: List<Int>): List<Characters>
+    suspend fun getCharactersByIds(ids: List<Int>): List<CharacterData>
 
     /**
      * Get character by id
@@ -92,7 +92,7 @@ interface CharacterDao {
      * @param id - Character id.
      */
     @Query("SELECT * FROM CHARACTERS_TABLE WHERE id = :id")
-    suspend fun getCharacterById(id: Int): Characters
+    suspend fun getCharacterById(id: Int): CharacterData
 
     /**
      * Get all types from db.

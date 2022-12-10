@@ -1,14 +1,14 @@
 package roman.bannikov.aston_rick_and_morty.data.repositories.locations_repositories
 
 import androidx.paging.*
-import roman.bannikov.aston_rick_and_morty.data.mapper.entity_to_domain_model.LocationEntityToDomainModel
-import roman.bannikov.aston_rick_and_morty.data.paging.locations_paging.LocationsRemoteMediator
-import roman.bannikov.aston_rick_and_morty.data.remote.api.locations.LocationsApi
-import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
-import roman.bannikov.aston_rick_and_morty.domain.models.location.LocationModel
-import roman.bannikov.aston_rick_and_morty.domain.repositories.locations_repositories.LocationsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import roman.bannikov.aston_rick_and_morty.data.mapper.LocationDataToLocationDomain
+import roman.bannikov.aston_rick_and_morty.data.paging.LocationRemoteMediator
+import roman.bannikov.aston_rick_and_morty.data.remote.api.locations.LocationsApi
+import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
+import roman.bannikov.aston_rick_and_morty.domain.models.location.LocationDomain
+import roman.bannikov.aston_rick_and_morty.domain.repositories.locations_repositories.LocationsRepository
 
 
 @ExperimentalPagingApi
@@ -21,7 +21,7 @@ class LocationsRepositoryImpl(
         name: String?,
         type: String?,
         dimension: String?
-    ): Flow<PagingData<LocationModel>> {
+    ): Flow<PagingData<LocationDomain>> {
 
         val pagingSourceFactory =
             {
@@ -40,7 +40,7 @@ class LocationsRepositoryImpl(
                 jumpThreshold = Int.MIN_VALUE,
                 enablePlaceholders = true,
             ),
-            remoteMediator = LocationsRemoteMediator(
+            remoteMediator = LocationRemoteMediator(
                 locationsApi = locationsApi,
                 db = db,
                 name = name,
@@ -50,12 +50,12 @@ class LocationsRepositoryImpl(
             pagingSourceFactory = pagingSourceFactory
         ).flow.map { pagingData ->
             pagingData.map { it ->
-                LocationEntityToDomainModel().transform(it)
+                LocationDataToLocationDomain().transform(it)
             }
         }
     }
 
-    override suspend fun getAllLocationsByIds(ids: List<Int>): List<LocationModel> {
+    override suspend fun getAllLocationsByIds(ids: List<Int>): List<LocationDomain> {
         TODO("Not yet implemented")
     }
 }

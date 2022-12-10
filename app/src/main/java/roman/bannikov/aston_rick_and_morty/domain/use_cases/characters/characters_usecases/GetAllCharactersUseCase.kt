@@ -1,9 +1,9 @@
 package roman.bannikov.aston_rick_and_morty.domain.use_cases.characters.characters_usecases
 
 import androidx.paging.PagingData
-import roman.bannikov.aston_rick_and_morty.domain.models.character.CharacterModel
-import roman.bannikov.aston_rick_and_morty.domain.repositories.characters_repositories.CharactersRepository
 import kotlinx.coroutines.flow.Flow
+import roman.bannikov.aston_rick_and_morty.domain.models.character.CharacterDomain
+import roman.bannikov.aston_rick_and_morty.domain.repositories.characters_repositories.CharactersRepository
 
 class GetAllCharactersUseCase(
     private val charactersRepository: CharactersRepository
@@ -15,7 +15,7 @@ class GetAllCharactersUseCase(
         gender: String?,
         type: String?,
         species: String?
-    ): Flow<PagingData<CharacterModel>> {
+    ): Flow<PagingData<CharacterDomain>> {
         return charactersRepository.getAllCharacters(
             name = name,
             status = status,

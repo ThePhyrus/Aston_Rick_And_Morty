@@ -2,8 +2,8 @@ package roman.bannikov.aston_rick_and_morty.data.storage.room.dao
 
 import androidx.paging.PagingSource
 import androidx.room.*
-import roman.bannikov.aston_rick_and_morty.data.models.location.Location
 import kotlinx.coroutines.flow.Flow
+import roman.bannikov.aston_rick_and_morty.data.models.location.LocationData
 
 
 @Dao
@@ -14,10 +14,10 @@ interface LocationDao {
      * With the replacement of the same locations.
      * This method is used when we request a list of locations from the server.
      *
-     * @param locations - Locations List.
+     * @param locationData - Locations List.
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAllLocations(locations: List<Location?>?)
+    fun insertAllLocations(locationData: List<LocationData?>?)
 
     /**
      * Delete all locations for pagination.
@@ -32,10 +32,10 @@ interface LocationDao {
      * With the replacement of the same location.
      * This method is used when we request a location from the server (by id).
      *
-     * @param location - Location.
+     * @param locationData - Location.
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertLocation(location: Location)
+    suspend fun insertLocation(locationData: LocationData)
 
     /**
      * Get all filtered locations with pagination. (name, status, gender, type, species).
@@ -56,7 +56,7 @@ interface LocationDao {
         name: String?,
         type: String?,
         dimension: String?,
-    ):  PagingSource<Int, Location>
+    ):  PagingSource<Int, LocationData>
 
     /**
      * Get location by id
@@ -64,7 +64,7 @@ interface LocationDao {
      * @param id - Location id.
      */
     @Query("SELECT * FROM LOCATIONS_TABLE WHERE id = :id")
-    suspend fun getLocationById(id: Int): Location
+    suspend fun getLocationById(id: Int): LocationData
 
     /**
      * Get all types from db.

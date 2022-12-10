@@ -2,11 +2,11 @@ package roman.bannikov.aston_rick_and_morty.viewmodel.character
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import roman.bannikov.aston_rick_and_morty.domain.use_cases.characters.character_filters_use_case.GetListCharactersSpeciesUseCase
-import roman.bannikov.aston_rick_and_morty.domain.use_cases.characters.character_filters_use_case.GetListCharactersTypesUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import roman.bannikov.aston_rick_and_morty.domain.use_cases.characters.character_filters_use_case.GetListCharactersSpeciesUseCase
+import roman.bannikov.aston_rick_and_morty.domain.use_cases.characters.character_filters_use_case.GetListCharactersTypesUseCase
 
 class CharacterFilterViewModel(
     private val getListCharactersSpeciesUseCase: GetListCharactersSpeciesUseCase,

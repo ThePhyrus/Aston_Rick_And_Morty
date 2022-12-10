@@ -1,9 +1,9 @@
 package roman.bannikov.aston_rick_and_morty.data.remote.api.locations
 
-import roman.bannikov.aston_rick_and_morty.data.models.PagedResponse
-import roman.bannikov.aston_rick_and_morty.data.models.location.Location
 import retrofit2.Response
 import retrofit2.http.*
+import roman.bannikov.aston_rick_and_morty.data.models.PagedResponse
+import roman.bannikov.aston_rick_and_morty.data.models.location.LocationData
 
 interface LocationsApi {
 
@@ -20,7 +20,7 @@ interface LocationsApi {
         @Query("name") name: String?,
         @Query("type") type: String?,
         @Query("dimension") dimension: String?
-    ): PagedResponse<Location>
+    ): PagedResponse<LocationData>
 
     /**
      * Get locations by id.
@@ -30,7 +30,7 @@ interface LocationsApi {
     @GET("location/{ids}")
     suspend fun getLocationsByIds(
         @Path("ids") ids: String
-    ): Response<List<Location>>
+    ): Response<List<LocationData>>
 
 
     /**
@@ -44,5 +44,5 @@ interface LocationsApi {
         @Query("name") name: String?,
         @Query("type") type: String?,
         @Query("dimension") dimension: String?
-    ): Response<List<Location>>
+    ): Response<List<LocationData>>
 }

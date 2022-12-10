@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import roman.bannikov.aston_rick_and_morty.domain.use_cases.episodes.episode_filters_use_cases.GetListEpisodesUseCase
-import roman.bannikov.aston_rick_and_morty.domain.use_cases.settings.EpisodesSettingsUseCases
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import roman.bannikov.aston_rick_and_morty.domain.use_cases.episodes.episode_filters_use_cases.GetListEpisodesUseCase
+import roman.bannikov.aston_rick_and_morty.domain.use_cases.settings.EpisodesSettingsUseCases
 
 class EpisodeFilterViewModel(
     private val getListEpisodesUseCase: GetListEpisodesUseCase,

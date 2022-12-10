@@ -1,14 +1,13 @@
 package roman.bannikov.aston_rick_and_morty.view.adapters.character
 
-import android.annotation.SuppressLint
-import androidx.recyclerview.widget.RecyclerView
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import roman.bannikov.aston_rick_and_morty.R
 import roman.bannikov.aston_rick_and_morty.databinding.ItemCharacterBinding
-
 import roman.bannikov.aston_rick_and_morty.presentation.models.character.CharacterPresentation
+
 
 class CharacterListForDetailsViewHolder(
     itemView: View
@@ -16,19 +15,11 @@ class CharacterListForDetailsViewHolder(
 
     private val binding = ItemCharacterBinding.bind(itemView)
 
-    @SuppressLint("SetTextI18n")
     fun bind(item: CharacterPresentation) = with(binding) {
         tvCharacterNameInItemCharacter.text = item.name
         tvCharacterSpeciesInItemCharacter.text = item.species
         tvCharacterStatusInItemCharacter.text = item.status
         tvCharacterGenderInItemCharacter.text = item.gender
-
- /*       when (item.gender) {
-            "Male" -> itemGender.setImageResource(R.drawable.ic_male)
-            "Female" -> itemGender.setImageResource(R.drawable.ic_female)
-            "Unknown" -> itemGender.setImageResource(R.drawable.ic_unknown)
-            else -> itemGender.setImageResource(R.drawable.ic_genderless)
-        }*/
 
         Glide.with(itemView)
             .load(item.imageUrl)

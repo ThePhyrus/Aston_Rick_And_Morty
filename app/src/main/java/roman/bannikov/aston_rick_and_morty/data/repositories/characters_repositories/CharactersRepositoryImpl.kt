@@ -2,20 +2,20 @@ package roman.bannikov.aston_rick_and_morty.data.repositories.characters_reposit
 
 import android.util.Log
 import androidx.paging.*
-import roman.bannikov.aston_rick_and_morty.data.mapper.entity_to_domain_model.CharacterEntityToDomainModel
-import roman.bannikov.aston_rick_and_morty.data.models.characters.Characters
-import roman.bannikov.aston_rick_and_morty.data.paging.characters_paging.CharactersRemoteMediator
-import roman.bannikov.aston_rick_and_morty.data.remote.api.chatacters.CharacterDetailsApi
-import roman.bannikov.aston_rick_and_morty.data.remote.api.chatacters.CharactersApi
-import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
-import roman.bannikov.aston_rick_and_morty.domain.models.character.CharacterModel
-import roman.bannikov.aston_rick_and_morty.domain.repositories.characters_repositories.CharactersRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import retrofit2.Response
+import roman.bannikov.aston_rick_and_morty.data.mapper.CharacterDataToCharacterDomain
+import roman.bannikov.aston_rick_and_morty.data.models.character.CharacterData
+import roman.bannikov.aston_rick_and_morty.data.paging.CharacterRemoteMediator
+import roman.bannikov.aston_rick_and_morty.data.remote.api.chatacters.CharacterDetailsApi
+import roman.bannikov.aston_rick_and_morty.data.remote.api.chatacters.CharactersApi
+import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
+import roman.bannikov.aston_rick_and_morty.domain.models.character.CharacterDomain
+import roman.bannikov.aston_rick_and_morty.domain.repositories.characters_repositories.CharactersRepository
 import java.io.IOException
 
 
@@ -32,7 +32,7 @@ class CharactersRepositoryImpl(
         gender: String?,
         type: String?,
         species: String?
-    ): Flow<PagingData<CharacterModel>> {
+    ): Flow<PagingData<CharacterDomain>> {
 
         val pagingSourceFactory =
             {
@@ -53,7 +53,7 @@ class CharactersRepositoryImpl(
                 jumpThreshold = Int.MIN_VALUE,
                 enablePlaceholders = true,
             ),
-            remoteMediator = CharactersRemoteMediator(
+            remoteMediator = CharacterRemoteMediator(
                 charactersApi = charactersApi,
                 db = db,
                 name = name,
@@ -65,25 +65,25 @@ class CharactersRepositoryImpl(
             pagingSourceFactory = pagingSourceFactory
         ).flow.map { pagingData ->
             pagingData.map { it ->
-                CharacterEntityToDomainModel().transform(it)
+                CharacterDataToCharacterDomain().transform(it)
             }
         }
     }
 
-    override suspend fun getAllCharactersByIds(ids: List<Int>): List<CharacterModel> =
+    override suspend fun getAllCharactersByIds(ids: List<Int>): List<CharacterDomain> =
         withContext(Dispatchers.IO) {
             try {
                 if (ids.size > 1) {
                     val idsString: String = ids.joinToString(separator = ",")
-                    val charactersFromApi: Response<List<Characters>> =
+                    val characterDataFromApi: Response<List<CharacterData>> =
                         charactersApi.getCharactersByIds(ids = idsString)
-                    if (charactersFromApi.isSuccessful) {
-                        charactersFromApi.body()
+                    if (characterDataFromApi.isSuccessful) {
+                        characterDataFromApi.body()
                             ?.let { db.getCharacterDao().insertAllCharacters(characters = it) }
                     }
                 }
                 if (ids.size == 1) {
-                    val characterFromApi: Response<Characters> =
+                    val characterFromApi: Response<CharacterData> =
                         characterDetailsApi.getCharacterById(id = ids[0])
                     if (characterFromApi.isSuccessful) {
                         characterFromApi.body()
@@ -98,7 +98,7 @@ class CharactersRepositoryImpl(
             }
 
             return@withContext db.getCharacterDao().getCharactersByIds(ids = ids).map {
-                CharacterEntityToDomainModel().transform(it)
+                CharacterDataToCharacterDomain().transform(it)
             }
         }
 }

@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.presentation
+package roman.bannikov.aston_rick_and_morty.utils
 
 import androidx.fragment.app.Fragment
 
