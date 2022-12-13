@@ -55,7 +55,7 @@ class LocationRepositoryImpl(
         }
     }
 
-    override suspend fun getAllLocationsByIds(ids: List<Int>): List<LocationDomain> {
+    override suspend fun getAllLocationsById(id: List<Int>): List<LocationDomain> {
         TODO("Not yet implemented")
     }
 }

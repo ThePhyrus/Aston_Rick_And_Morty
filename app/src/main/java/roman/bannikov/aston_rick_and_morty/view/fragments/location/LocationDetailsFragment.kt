@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentLocationDetailsBinding
-import roman.bannikov.aston_rick_and_morty.presentation.models.location.LocationPresentation
+import roman.bannikov.aston_rick_and_morty.view.models.location.LocationView
 import roman.bannikov.aston_rick_and_morty.utils.navigator
 import roman.bannikov.aston_rick_and_morty.view.adapters.character.CharacterListForDetailsAdapter
 import roman.bannikov.aston_rick_and_morty.viewmodel.location.LocationDetailsViewModel
@@ -94,7 +94,7 @@ class LocationDetailsFragment : Fragment() {
         }
     }
 
-    private fun initUI(locationDetails: LocationPresentation) {
+    private fun initUI(locationDetails: LocationView) {
         binding.tvLocationNameInLocationDetails.text = locationDetails.name
         binding.tvLocationTypeInLocationDetails.text = "Type: ${locationDetails.type}"
         binding.tvLocationDimensionInLocationDetails.text = "Dimension: ${locationDetails.dimension}"

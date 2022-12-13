@@ -1,7 +1,7 @@
-package roman.bannikov.aston_rick_and_morty.presentation.models.character
+package roman.bannikov.aston_rick_and_morty.view.models.character
 
 
-data class CharacterPresentation(
+data class CharacterView(
     val id: Int,
     val name: String,
     val status: String,

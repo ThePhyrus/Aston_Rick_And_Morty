@@ -1,15 +1,15 @@
-package roman.bannikov.aston_rick_and_morty.presentation.mapper.domain_model_to_presentation
+package roman.bannikov.aston_rick_and_morty.view.mapper
 
 import roman.bannikov.aston_rick_and_morty.data.mapper.Mapper
 import roman.bannikov.aston_rick_and_morty.domain.models.character.CharacterDomain
-import roman.bannikov.aston_rick_and_morty.presentation.models.character.CharacterPresentation
+import roman.bannikov.aston_rick_and_morty.view.models.character.CharacterView
 
-class GetCharacterPresentationModel :
-    Mapper<CharacterDomain, CharacterPresentation> {
+class CharacterDomainToCharacterView :
+    Mapper<CharacterDomain, CharacterView> {
 
-    override fun transform(data: CharacterDomain): CharacterPresentation {
+    override fun transform(data: CharacterDomain): CharacterView {
 
-        return CharacterPresentation(
+        return CharacterView(
             id = data.id,
             name = data.name,
             species = data.species,

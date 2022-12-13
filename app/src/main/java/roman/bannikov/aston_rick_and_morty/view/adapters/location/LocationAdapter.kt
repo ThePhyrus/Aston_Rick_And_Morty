@@ -5,13 +5,13 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import roman.bannikov.aston_rick_and_morty.R
-import roman.bannikov.aston_rick_and_morty.presentation.models.location.LocationPresentation
+import roman.bannikov.aston_rick_and_morty.view.models.location.LocationView
 
-class LocationAdapter : PagingDataAdapter<LocationPresentation, LocationViewHolder>(
+class LocationAdapter : PagingDataAdapter<LocationView, LocationViewHolder>(
     LocationsDiffCallback()
 ) {
 
-    var onLocationItem: ((LocationPresentation) -> Unit)? = null
+    var onLocationItem: ((LocationView) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         LocationViewHolder(
@@ -25,18 +25,18 @@ class LocationAdapter : PagingDataAdapter<LocationPresentation, LocationViewHold
         }
     }
 
-    private class LocationsDiffCallback : DiffUtil.ItemCallback<LocationPresentation>() {
+    private class LocationsDiffCallback : DiffUtil.ItemCallback<LocationView>() {
 
         override fun areItemsTheSame(
-            oldItem: LocationPresentation,
-            newItem: LocationPresentation
+            oldItem: LocationView,
+            newItem: LocationView
         ): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: LocationPresentation,
-            newItem: LocationPresentation
+            oldItem: LocationView,
+            newItem: LocationView
         ): Boolean {
             return oldItem == newItem
         }

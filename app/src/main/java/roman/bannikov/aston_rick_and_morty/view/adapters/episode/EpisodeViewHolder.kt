@@ -3,7 +3,7 @@ package roman.bannikov.aston_rick_and_morty.view.adapters.episode
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import roman.bannikov.aston_rick_and_morty.databinding.ItemEpisodeInEpisodeListBinding
-import roman.bannikov.aston_rick_and_morty.presentation.models.episode.EpisodePresentation
+import roman.bannikov.aston_rick_and_morty.view.models.episode.EpisodeView
 
 
 class EpisodeViewHolder(
@@ -12,7 +12,7 @@ class EpisodeViewHolder(
 
     private val binding = ItemEpisodeInEpisodeListBinding.bind(itemView)
 
-    fun bind(item: EpisodePresentation) = with(binding) {
+    fun bind(item: EpisodeView) = with(binding) {
         tvEpisodeName.text = item.name
         tvAirDate.text = item.air_date
         tvEpisodeCode.text = item.episode

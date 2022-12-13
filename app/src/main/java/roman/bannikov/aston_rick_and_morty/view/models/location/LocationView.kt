@@ -1,6 +1,6 @@
-package roman.bannikov.aston_rick_and_morty.presentation.models.location
+package roman.bannikov.aston_rick_and_morty.view.models.location
 
-data class LocationPresentation(
+data class LocationView(
     val id: Int,
     val name: String,
     val type: String,

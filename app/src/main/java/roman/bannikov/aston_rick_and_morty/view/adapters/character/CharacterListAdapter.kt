@@ -6,13 +6,13 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import roman.bannikov.aston_rick_and_morty.R
 
-import roman.bannikov.aston_rick_and_morty.presentation.models.character.CharacterPresentation
+import roman.bannikov.aston_rick_and_morty.view.models.character.CharacterView
 
-class CharacterListAdapter : PagingDataAdapter<CharacterPresentation, CharacterListViewHolder>(
+class CharacterListAdapter : PagingDataAdapter<CharacterView, CharacterListViewHolder>(
     CharactersDiffCallback()
 ) {
 
-    var onCharacterItem: ((CharacterPresentation) -> Unit)? = null
+    var onCharacterItem: ((CharacterView) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         CharacterListViewHolder(
@@ -25,18 +25,18 @@ class CharacterListAdapter : PagingDataAdapter<CharacterPresentation, CharacterL
         }
     }
 
-    private class CharactersDiffCallback : DiffUtil.ItemCallback<CharacterPresentation>() {
+    private class CharactersDiffCallback : DiffUtil.ItemCallback<CharacterView>() {
 
         override fun areItemsTheSame(
-            oldItem: CharacterPresentation,
-            newItem: CharacterPresentation
+            oldItem: CharacterView,
+            newItem: CharacterView
         ): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: CharacterPresentation,
-            newItem: CharacterPresentation
+            oldItem: CharacterView,
+            newItem: CharacterView
         ): Boolean {
             return oldItem == newItem
         }

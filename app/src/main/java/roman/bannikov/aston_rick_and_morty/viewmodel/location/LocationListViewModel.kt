@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import roman.bannikov.aston_rick_and_morty.domain.use_cases.locations.locations_usecases.GetAllLocationsUseCase
-import roman.bannikov.aston_rick_and_morty.presentation.mapper.domain_model_to_presentation.GetLocationPresentationModel
-import roman.bannikov.aston_rick_and_morty.presentation.models.location.LocationPresentation
+import roman.bannikov.aston_rick_and_morty.view.mapper.LocationDomainToLocationView
+import roman.bannikov.aston_rick_and_morty.view.models.location.LocationView
 
 
 @ExperimentalPagingApi
@@ -30,7 +30,7 @@ class LocationListViewModel(
 
     val filteredTrigger: MutableLiveData<MutableMap<String, String?>> = _filteredTrigger
 
-    private var _locationsFlow = MutableSharedFlow<PagingData<LocationPresentation>>()
+    private var _locationsFlow = MutableSharedFlow<PagingData<LocationView>>()
     val locationsFlow = _locationsFlow
 
     init {
@@ -48,7 +48,7 @@ class LocationListViewModel(
             dimension = dimension
         ).onEach {
             _locationsFlow.emit(
-                it.map { obj -> GetLocationPresentationModel().transform(obj) }
+                it.map { obj -> LocationDomainToLocationView().transform(obj) }
             )
         }.launchIn(viewModelScope)
     }

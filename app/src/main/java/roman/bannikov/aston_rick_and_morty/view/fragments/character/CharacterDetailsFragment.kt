@@ -14,7 +14,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.R
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentCharacterDetailsBinding
-import roman.bannikov.aston_rick_and_morty.presentation.models.character.CharacterPresentation
+import roman.bannikov.aston_rick_and_morty.view.models.character.CharacterView
 import roman.bannikov.aston_rick_and_morty.utils.navigator
 
 import roman.bannikov.aston_rick_and_morty.view.adapters.character.CharacterDetailsAdapter
@@ -123,7 +123,7 @@ class CharacterDetailsFragment : Fragment() {
         }
     }
 
-    private fun initUI(characterDetails: CharacterPresentation) {
+    private fun initUI(characterDetails: CharacterView) {
         if (characterDetails.lastLocation.getValue("location_id").isNotEmpty()) {
             lastLocationId = characterDetails.lastLocation.getValue("location_id").toInt()
         }

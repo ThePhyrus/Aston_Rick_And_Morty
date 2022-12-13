@@ -12,5 +12,5 @@ interface LocationsRepository {
         dimension: String?
     ): Flow<PagingData<LocationDomain>>
 
-    suspend fun getAllLocationsByIds(ids: List<Int>): List<LocationDomain>
+    suspend fun getAllLocationsById(id: List<Int>): List<LocationDomain>
 }

@@ -6,7 +6,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import roman.bannikov.aston_rick_and_morty.R
 import roman.bannikov.aston_rick_and_morty.databinding.ItemCharacterBinding
-import roman.bannikov.aston_rick_and_morty.presentation.models.character.CharacterPresentation
+import roman.bannikov.aston_rick_and_morty.view.models.character.CharacterView
 
 
 class CharacterListViewHolder(
@@ -15,7 +15,7 @@ class CharacterListViewHolder(
 
     private val binding = ItemCharacterBinding.bind(itemView)
 
-    fun bind(item: CharacterPresentation) = with(binding) {
+    fun bind(item: CharacterView) = with(binding) {
         tvCharacterNameInItemCharacter.text = item.name
         tvCharacterSpeciesInItemCharacter.text = item.species
         tvCharacterStatusInItemCharacter.text = item.status

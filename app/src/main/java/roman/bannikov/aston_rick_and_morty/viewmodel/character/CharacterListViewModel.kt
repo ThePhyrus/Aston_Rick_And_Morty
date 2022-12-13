@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import roman.bannikov.aston_rick_and_morty.domain.use_cases.characters.characters_usecases.GetAllCharactersUseCase
-import roman.bannikov.aston_rick_and_morty.presentation.mapper.domain_model_to_presentation.GetCharacterPresentationModel
-import roman.bannikov.aston_rick_and_morty.presentation.models.character.CharacterPresentation
+import roman.bannikov.aston_rick_and_morty.view.mapper.CharacterDomainToCharacterView
+import roman.bannikov.aston_rick_and_morty.view.models.character.CharacterView
 
 
 @ExperimentalPagingApi
@@ -30,7 +30,7 @@ class CharacterListViewModel(
     )
     val filteredTrigger: MutableStateFlow<MutableMap<String, String?>> = _filteredTrigger
 
-    private var _charactersFlow = MutableSharedFlow<PagingData<CharacterPresentation>>()
+    private var _charactersFlow = MutableSharedFlow<PagingData<CharacterView>>()
     val charactersFlow = _charactersFlow
 
     fun getCharactersByParams(
@@ -48,7 +48,7 @@ class CharacterListViewModel(
             species = species
         ).onEach {
             _charactersFlow.emit(
-                it.map { obj -> GetCharacterPresentationModel().transform(obj) }
+                it.map { obj -> CharacterDomainToCharacterView().transform(obj) }
             )
         }.launchIn(viewModelScope)
     }

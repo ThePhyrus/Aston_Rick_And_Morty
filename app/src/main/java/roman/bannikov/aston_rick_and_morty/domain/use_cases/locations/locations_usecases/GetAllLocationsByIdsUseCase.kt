@@ -10,8 +10,8 @@ class GetAllLocationsByIdsUseCase(
     suspend fun execute(
         ids: List<Int>
     ): List<LocationDomain> {
-        return locationsRepository.getAllLocationsByIds(
-            ids = ids
+        return locationsRepository.getAllLocationsById(
+            id = ids
         )
     }
 }

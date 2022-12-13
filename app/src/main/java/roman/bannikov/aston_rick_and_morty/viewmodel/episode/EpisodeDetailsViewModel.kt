@@ -6,26 +6,26 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.domain.use_cases.characters.characters_usecases.GetAllCharactersByIdsUseCase
 import roman.bannikov.aston_rick_and_morty.domain.use_cases.episodes.episode_details_use_cases.GetEpisodeByIdUseCase
-import roman.bannikov.aston_rick_and_morty.presentation.mapper.domain_model_to_presentation.GetCharacterPresentationModel
-import roman.bannikov.aston_rick_and_morty.presentation.mapper.domain_model_to_presentation.GetEpisodePresentationModel
-import roman.bannikov.aston_rick_and_morty.presentation.models.character.CharacterPresentation
-import roman.bannikov.aston_rick_and_morty.presentation.models.episode.EpisodePresentation
+import roman.bannikov.aston_rick_and_morty.view.mapper.CharacterDomainToCharacterView
+import roman.bannikov.aston_rick_and_morty.view.mapper.EpisodeDomainToEpisodeView
+import roman.bannikov.aston_rick_and_morty.view.models.character.CharacterView
+import roman.bannikov.aston_rick_and_morty.view.models.episode.EpisodeView
 
 class EpisodeDetailsViewModel(
     private val getEpisodeByIdUseCase: GetEpisodeByIdUseCase,
     private val getAllCharactersByIdsUseCase: GetAllCharactersByIdsUseCase
 ): ViewModel() {
 
-    private val _episodeDetails = MutableLiveData<EpisodePresentation>()
-    val episodeDetails: MutableLiveData<EpisodePresentation> = _episodeDetails
+    private val _episodeDetails = MutableLiveData<EpisodeView>()
+    val episodeDetails: MutableLiveData<EpisodeView> = _episodeDetails
 
-    private val _charactersList = MutableLiveData<List<CharacterPresentation>>()
-    val charactersList: MutableLiveData<List<CharacterPresentation>> = _charactersList
+    private val _charactersList = MutableLiveData<List<CharacterView>>()
+    val charactersList: MutableLiveData<List<CharacterView>> = _charactersList
 
     fun getEpisode(id: Int) {
         viewModelScope.launch {
             _episodeDetails.value =
-                GetEpisodePresentationModel().transform(getEpisodeByIdUseCase.execute(id = id))
+                EpisodeDomainToEpisodeView().transform(getEpisodeByIdUseCase.execute(id = id))
         }
     }
 
@@ -33,7 +33,7 @@ class EpisodeDetailsViewModel(
         viewModelScope.launch {
             _charactersList.value =
                 getAllCharactersByIdsUseCase.execute(ids = ids).map {
-                    GetCharacterPresentationModel().transform(it)
+                    CharacterDomainToCharacterView().transform(it)
                 }
         }
     }

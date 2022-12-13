@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentEpisodeDetailsBinding
-import roman.bannikov.aston_rick_and_morty.presentation.models.episode.EpisodePresentation
+import roman.bannikov.aston_rick_and_morty.view.models.episode.EpisodeView
 import roman.bannikov.aston_rick_and_morty.utils.navigator
 import roman.bannikov.aston_rick_and_morty.view.adapters.character.CharacterListForDetailsAdapter
 import roman.bannikov.aston_rick_and_morty.viewmodel.episode.EpisodeDetailsViewModel
@@ -95,7 +95,7 @@ class EpisodeDetailsFragment : Fragment() {
         }
     }
 
-    private fun initUI(presentationDetails: EpisodePresentation) {
+    private fun initUI(presentationDetails: EpisodeView) {
         binding.tvEpisodeAirDateInEpisodeDetails.text = presentationDetails.air_date
         binding.tvEpisodeNameInEpisodeDetails.text = presentationDetails.name
         binding.tvEpisodeCodeInEpisodeDetails.text = presentationDetails.episode

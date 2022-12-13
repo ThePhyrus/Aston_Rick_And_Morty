@@ -6,15 +6,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import roman.bannikov.aston_rick_and_morty.R
 
-import roman.bannikov.aston_rick_and_morty.presentation.models.character.CharacterPresentation
+import roman.bannikov.aston_rick_and_morty.view.models.character.CharacterView
 
 
 class CharacterListForDetailsAdapter(
-) : ListAdapter<CharacterPresentation, CharacterListForDetailsViewHolder>(
+) : ListAdapter<CharacterView, CharacterListForDetailsViewHolder>(
     CharacterDetailsDiffCallback()
 ) {
 
-    var onCharacterItem: ((CharacterPresentation) -> Unit)? = null
+    var onCharacterItem: ((CharacterView) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         CharacterListForDetailsViewHolder(
@@ -29,18 +29,18 @@ class CharacterListForDetailsAdapter(
         }
     }
 
-    private class CharacterDetailsDiffCallback : DiffUtil.ItemCallback<CharacterPresentation>() {
+    private class CharacterDetailsDiffCallback : DiffUtil.ItemCallback<CharacterView>() {
 
         override fun areItemsTheSame(
-            oldItem: CharacterPresentation,
-            newItem: CharacterPresentation
+            oldItem: CharacterView,
+            newItem: CharacterView
         ): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: CharacterPresentation,
-            newItem: CharacterPresentation
+            oldItem: CharacterView,
+            newItem: CharacterView
         ): Boolean {
             return oldItem == newItem
         }

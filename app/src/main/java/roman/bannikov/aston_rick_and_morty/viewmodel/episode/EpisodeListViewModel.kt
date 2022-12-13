@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import roman.bannikov.aston_rick_and_morty.domain.use_cases.episodes.episodes_usecases.GetAllEpisodesUseCase
-import roman.bannikov.aston_rick_and_morty.presentation.mapper.domain_model_to_presentation.GetEpisodePresentationModel
-import roman.bannikov.aston_rick_and_morty.presentation.models.episode.EpisodePresentation
+import roman.bannikov.aston_rick_and_morty.view.mapper.EpisodeDomainToEpisodeView
+import roman.bannikov.aston_rick_and_morty.view.models.episode.EpisodeView
 
 
 @ExperimentalPagingApi
@@ -29,7 +29,7 @@ class EpisodeListViewModel(
 
     val filteredTrigger: MutableStateFlow<MutableMap<String, String?>> = _filteredTrigger
 
-    private var _episodesFlow = MutableSharedFlow<PagingData<EpisodePresentation>>()
+    private var _episodesFlow = MutableSharedFlow<PagingData<EpisodeView>>()
     val episodesFlow = _episodesFlow
 
     fun getEpisodeByParams(
@@ -41,7 +41,7 @@ class EpisodeListViewModel(
             episode = episode
         ).onEach {
             _episodesFlow.emit(
-                it.map { obj -> GetEpisodePresentationModel().transform(obj) }
+                it.map { obj -> EpisodeDomainToEpisodeView().transform(obj) }
             )
         }.launchIn(viewModelScope)
 
