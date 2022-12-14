@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.domain.repositories.locations_repositories
+package roman.bannikov.aston_rick_and_morty.domain.repositories.location
 
 import roman.bannikov.aston_rick_and_morty.domain.models.location.LocationDomain
 

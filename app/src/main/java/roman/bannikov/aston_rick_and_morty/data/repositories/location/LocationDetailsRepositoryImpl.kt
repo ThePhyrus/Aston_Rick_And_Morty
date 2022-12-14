@@ -10,7 +10,7 @@ import roman.bannikov.aston_rick_and_morty.data.models.location.LocationData
 import roman.bannikov.aston_rick_and_morty.data.api.location.LocationDetailsApi
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
 import roman.bannikov.aston_rick_and_morty.domain.models.location.LocationDomain
-import roman.bannikov.aston_rick_and_morty.domain.repositories.locations_repositories.LocationDetailsRepository
+import roman.bannikov.aston_rick_and_morty.domain.repositories.location.LocationDetailsRepository
 import java.io.IOException
 
 

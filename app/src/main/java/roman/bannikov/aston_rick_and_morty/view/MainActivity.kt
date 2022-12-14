@@ -26,10 +26,9 @@ import roman.bannikov.aston_rick_and_morty.view.fragments.location.LocationListF
 class MainActivity : AppCompatActivity(), Navigator {
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {

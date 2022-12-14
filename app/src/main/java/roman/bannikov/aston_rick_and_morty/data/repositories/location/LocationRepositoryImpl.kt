@@ -8,7 +8,7 @@ import roman.bannikov.aston_rick_and_morty.data.paging.LocationRemoteMediator
 import roman.bannikov.aston_rick_and_morty.data.api.location.LocationApi
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
 import roman.bannikov.aston_rick_and_morty.domain.models.location.LocationDomain
-import roman.bannikov.aston_rick_and_morty.domain.repositories.locations_repositories.LocationsRepository
+import roman.bannikov.aston_rick_and_morty.domain.repositories.location.LocationsRepository
 
 
 @ExperimentalPagingApi

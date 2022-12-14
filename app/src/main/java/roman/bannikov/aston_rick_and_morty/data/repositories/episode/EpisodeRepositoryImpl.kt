@@ -15,7 +15,7 @@ import roman.bannikov.aston_rick_and_morty.data.api.episode.EpisodeDetailsApi
 import roman.bannikov.aston_rick_and_morty.data.api.episode.EpisodeApi
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
 import roman.bannikov.aston_rick_and_morty.domain.models.episode.EpisodeDomain
-import roman.bannikov.aston_rick_and_morty.domain.repositories.episodes_repositories.EpisodesRepository
+import roman.bannikov.aston_rick_and_morty.domain.repositories.episode.EpisodesRepository
 import java.io.IOException
 
 

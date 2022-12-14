@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.domain.repositories.settings_repositories
+package roman.bannikov.aston_rick_and_morty.domain.repositories.settings
 
 interface EpisodeSettingsRepository {
 

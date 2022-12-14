@@ -1,6 +1,6 @@
 package roman.bannikov.aston_rick_and_morty.domain.use_cases.settings
 
-import roman.bannikov.aston_rick_and_morty.domain.repositories.settings_repositories.LocationSettingsRepository
+import roman.bannikov.aston_rick_and_morty.domain.repositories.settings.LocationSettingsRepository
 
 class LocationsSettingsUseCases(private val locationSettingsRepository: LocationSettingsRepository) {
 

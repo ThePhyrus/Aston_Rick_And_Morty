@@ -1,7 +1,7 @@
 package roman.bannikov.aston_rick_and_morty.data.repositories.settings_repositories
 
 import roman.bannikov.aston_rick_and_morty.data.storage.sharedPref.LocationSettingsPref
-import roman.bannikov.aston_rick_and_morty.domain.repositories.settings_repositories.LocationSettingsRepository
+import roman.bannikov.aston_rick_and_morty.domain.repositories.settings.LocationSettingsRepository
 
 class LocationSettingsRepositoryImpl(
     private val locationSettingsPref: LocationSettingsPref

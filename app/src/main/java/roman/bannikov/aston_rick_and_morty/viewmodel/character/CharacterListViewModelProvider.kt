@@ -39,7 +39,7 @@ class CharacterListViewModelProvider(
     }
 
     private val getAllCharactersUseCase by lazy {
-        GetAllCharactersUseCase(charactersRepository = charactersRepository)
+        GetAllCharactersUseCase(characterRepository = charactersRepository)
     }
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.domain.repositories.episodes_repositories
+package roman.bannikov.aston_rick_and_morty.domain.repositories.episode
 
 import kotlinx.coroutines.flow.Flow
 

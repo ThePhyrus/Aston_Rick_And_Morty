@@ -15,7 +15,7 @@ import roman.bannikov.aston_rick_and_morty.data.api.chatacter.CharacterDetailsAp
 import roman.bannikov.aston_rick_and_morty.data.api.chatacter.CharacterApi
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
 import roman.bannikov.aston_rick_and_morty.domain.models.character.CharacterDomain
-import roman.bannikov.aston_rick_and_morty.domain.repositories.characters_repositories.CharactersRepository
+import roman.bannikov.aston_rick_and_morty.domain.repositories.character.CharacterRepository
 import java.io.IOException
 
 
@@ -24,7 +24,7 @@ class CharacterRepositoryImpl(
     private val characterDetailsApi: CharacterDetailsApi,
     private val characterApi: CharacterApi,
     private val db: RickAndMortyDatabase
-) : CharactersRepository {
+) : CharacterRepository {
 
     override fun getAllCharacters(
         name: String?,

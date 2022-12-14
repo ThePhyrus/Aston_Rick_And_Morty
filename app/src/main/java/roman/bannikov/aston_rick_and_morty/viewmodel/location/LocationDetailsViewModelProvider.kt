@@ -53,7 +53,7 @@ class LocationDetailsViewModelProvider(
     }
 
     private val getAllCharactersByIdsUseCase by lazy {
-        GetAllCharactersByIdsUseCase(charactersRepository = charactersRepository)
+        GetAllCharactersByIdsUseCase(characterRepository = charactersRepository)
     }
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

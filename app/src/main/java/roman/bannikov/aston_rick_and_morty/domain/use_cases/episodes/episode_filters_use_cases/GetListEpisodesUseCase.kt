@@ -2,7 +2,7 @@ package roman.bannikov.aston_rick_and_morty.domain.use_cases.episodes.episode_fi
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import roman.bannikov.aston_rick_and_morty.domain.repositories.episodes_repositories.GetEpisodeFiltersRepository
+import roman.bannikov.aston_rick_and_morty.domain.repositories.episode.GetEpisodeFiltersRepository
 
 class GetListEpisodesUseCase(
     private val getEpisodeFiltersRepository: GetEpisodeFiltersRepository

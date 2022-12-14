@@ -1,6 +1,6 @@
 package roman.bannikov.aston_rick_and_morty.domain.use_cases.settings
 
-import roman.bannikov.aston_rick_and_morty.domain.repositories.settings_repositories.EpisodeSettingsRepository
+import roman.bannikov.aston_rick_and_morty.domain.repositories.settings.EpisodeSettingsRepository
 
 class EpisodesSettingsUseCases(private val episodesSettingsRepository: EpisodeSettingsRepository) {
 
