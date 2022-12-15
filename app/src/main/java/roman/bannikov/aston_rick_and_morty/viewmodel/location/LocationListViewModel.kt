@@ -9,7 +9,7 @@ import androidx.paging.map
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import roman.bannikov.aston_rick_and_morty.domain.use_cases.locations.locations_usecases.GetAllLocationsUseCase
+import roman.bannikov.aston_rick_and_morty.domain.usecases.locations.list.GetAllLocationsUseCase
 import roman.bannikov.aston_rick_and_morty.view.mapper.LocationDomainToLocationView
 import roman.bannikov.aston_rick_and_morty.view.models.location.LocationView
 

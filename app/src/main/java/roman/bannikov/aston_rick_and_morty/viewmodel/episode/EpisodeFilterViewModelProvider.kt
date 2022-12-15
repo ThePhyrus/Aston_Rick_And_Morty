@@ -7,8 +7,8 @@ import roman.bannikov.aston_rick_and_morty.data.repositories.episode.EpisodeFilt
 import roman.bannikov.aston_rick_and_morty.data.repositories.settings_repositories.EpisodeSettingsRepositoryImpl
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
 import roman.bannikov.aston_rick_and_morty.data.storage.sharedPref.EpisodeSettingsPref
-import roman.bannikov.aston_rick_and_morty.domain.use_cases.episodes.episode_filters_use_cases.GetListEpisodesUseCase
-import roman.bannikov.aston_rick_and_morty.domain.use_cases.settings.EpisodesSettingsUseCases
+import roman.bannikov.aston_rick_and_morty.domain.usecases.episode.filter.GetListEpisodesUseCase
+import roman.bannikov.aston_rick_and_morty.domain.usecases.settings.EpisodesSettingsUseCases
 
 class EpisodeFilterViewModelProvider(
     context: Context

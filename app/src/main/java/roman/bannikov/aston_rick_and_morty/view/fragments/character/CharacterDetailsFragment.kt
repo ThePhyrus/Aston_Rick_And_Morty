@@ -79,7 +79,7 @@ class CharacterDetailsFragment : Fragment() {
             } else {
                 Toast.makeText(
                     requireContext(),
-                    "Character's place of origin unknown.",
+                    getString(R.string.character_origin_unknown),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -91,7 +91,7 @@ class CharacterDetailsFragment : Fragment() {
             } else {
                 Toast.makeText(
                     requireContext(),
-                    "Character's last location is unknown.",
+                    "Character location unknown.",
                     Toast.LENGTH_SHORT
                 ).show()
             }

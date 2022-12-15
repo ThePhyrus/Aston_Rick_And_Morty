@@ -1,13 +1,13 @@
-package roman.bannikov.aston_rick_and_morty.domain.use_cases.locations.location_filters_use_cases
+package roman.bannikov.aston_rick_and_morty.domain.usecases.locations.filter
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import roman.bannikov.aston_rick_and_morty.domain.repositories.location.GetLocationFiltersRepository
 
-class GetListLocationsDimensionsUseCase(
+class GetListLocationsTypesUseCase(
     private val getLocationFiltersRepository: GetLocationFiltersRepository
 ) {
 
     fun execute(): Flow<List<String>> =
-        getLocationFiltersRepository.getListLocationsDimensions().map { it.distinct() }
+        getLocationFiltersRepository.getListLocationsTypes().map { it.distinct() }
 }

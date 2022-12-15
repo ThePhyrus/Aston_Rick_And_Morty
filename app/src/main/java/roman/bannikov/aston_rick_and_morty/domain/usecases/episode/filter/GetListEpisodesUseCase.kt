@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.domain.use_cases.episodes.episode_filters_use_cases
+package roman.bannikov.aston_rick_and_morty.domain.usecases.episode.filter
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

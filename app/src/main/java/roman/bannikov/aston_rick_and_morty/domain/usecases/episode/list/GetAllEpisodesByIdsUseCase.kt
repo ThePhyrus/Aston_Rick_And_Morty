@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.domain.use_cases.episodes.episodes_usecases
+package roman.bannikov.aston_rick_and_morty.domain.usecases.episode.list
 
 import roman.bannikov.aston_rick_and_morty.domain.models.episode.EpisodeDomain
 import roman.bannikov.aston_rick_and_morty.domain.repositories.episode.EpisodesRepository

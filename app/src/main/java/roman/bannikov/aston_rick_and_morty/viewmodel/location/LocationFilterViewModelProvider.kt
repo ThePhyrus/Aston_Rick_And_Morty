@@ -7,9 +7,9 @@ import roman.bannikov.aston_rick_and_morty.data.repositories.location.LocationFi
 import roman.bannikov.aston_rick_and_morty.data.repositories.settings_repositories.LocationSettingsRepositoryImpl
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
 import roman.bannikov.aston_rick_and_morty.data.storage.sharedPref.LocationSettingsPref
-import roman.bannikov.aston_rick_and_morty.domain.use_cases.locations.location_filters_use_cases.GetListLocationsDimensionsUseCase
-import roman.bannikov.aston_rick_and_morty.domain.use_cases.locations.location_filters_use_cases.GetListLocationsTypesUseCase
-import roman.bannikov.aston_rick_and_morty.domain.use_cases.settings.LocationsSettingsUseCases
+import roman.bannikov.aston_rick_and_morty.domain.usecases.locations.filter.GetListLocationsDimensionsUseCase
+import roman.bannikov.aston_rick_and_morty.domain.usecases.locations.filter.GetListLocationsTypesUseCase
+import roman.bannikov.aston_rick_and_morty.domain.usecases.settings.LocationsSettingsUseCases
 
 class LocationFilterViewModelProvider(
     context: Context

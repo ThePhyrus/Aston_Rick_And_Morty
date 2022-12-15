@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import roman.bannikov.aston_rick_and_morty.data.repositories.character.CharacterFilterRepositoryImpl
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
-import roman.bannikov.aston_rick_and_morty.domain.use_cases.characters.character_filters_use_case.GetListCharactersSpeciesUseCase
-import roman.bannikov.aston_rick_and_morty.domain.use_cases.characters.character_filters_use_case.GetListCharactersTypesUseCase
+import roman.bannikov.aston_rick_and_morty.domain.usecases.character.filter.GetListCharactersSpeciesUseCase
+import roman.bannikov.aston_rick_and_morty.domain.usecases.character.filter.GetListCharactersTypesUseCase
 
 class CharacterFilterViewModelProvider(
     context: Context

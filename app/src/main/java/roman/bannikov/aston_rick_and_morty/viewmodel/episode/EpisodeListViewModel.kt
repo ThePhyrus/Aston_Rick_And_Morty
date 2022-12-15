@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import roman.bannikov.aston_rick_and_morty.domain.use_cases.episodes.episodes_usecases.GetAllEpisodesUseCase
+import roman.bannikov.aston_rick_and_morty.domain.usecases.episode.list.GetAllEpisodesUseCase
 import roman.bannikov.aston_rick_and_morty.view.mapper.EpisodeDomainToEpisodeView
 import roman.bannikov.aston_rick_and_morty.view.models.episode.EpisodeView
 

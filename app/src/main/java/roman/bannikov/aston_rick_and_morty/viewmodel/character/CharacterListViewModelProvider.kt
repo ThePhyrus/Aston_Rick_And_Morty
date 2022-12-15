@@ -7,7 +7,7 @@ import androidx.paging.ExperimentalPagingApi
 import roman.bannikov.aston_rick_and_morty.data.api.Retrofit
 import roman.bannikov.aston_rick_and_morty.data.repositories.character.CharacterRepositoryImpl
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
-import roman.bannikov.aston_rick_and_morty.domain.use_cases.characters.characters_usecases.GetAllCharactersUseCase
+import roman.bannikov.aston_rick_and_morty.domain.usecases.character.list.GetAllCharactersUseCase
 
 @ExperimentalPagingApi
 class CharacterListViewModelProvider(

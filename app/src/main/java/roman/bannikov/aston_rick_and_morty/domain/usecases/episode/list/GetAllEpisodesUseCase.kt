@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.domain.use_cases.episodes.episodes_usecases
+package roman.bannikov.aston_rick_and_morty.domain.usecases.episode.list
 
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow

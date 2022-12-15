@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import roman.bannikov.aston_rick_and_morty.domain.use_cases.characters.characters_usecases.GetAllCharactersByIdsUseCase
-import roman.bannikov.aston_rick_and_morty.domain.use_cases.locations.location_details_use_cases.GetLocationByIdUseCase
+import roman.bannikov.aston_rick_and_morty.domain.usecases.character.list.GetAllCharactersByIdsUseCase
+import roman.bannikov.aston_rick_and_morty.domain.usecases.locations.details.GetLocationByIdUseCase
 import roman.bannikov.aston_rick_and_morty.view.mapper.CharacterDomainToCharacterView
 import roman.bannikov.aston_rick_and_morty.view.mapper.LocationDomainToLocationView
 import roman.bannikov.aston_rick_and_morty.view.models.character.CharacterView

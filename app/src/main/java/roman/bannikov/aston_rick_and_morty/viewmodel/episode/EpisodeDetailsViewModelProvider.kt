@@ -8,8 +8,8 @@ import roman.bannikov.aston_rick_and_morty.data.api.Retrofit
 import roman.bannikov.aston_rick_and_morty.data.repositories.character.CharacterRepositoryImpl
 import roman.bannikov.aston_rick_and_morty.data.repositories.episode.EpisodeDetailsRepositoryImpl
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
-import roman.bannikov.aston_rick_and_morty.domain.use_cases.characters.characters_usecases.GetAllCharactersByIdsUseCase
-import roman.bannikov.aston_rick_and_morty.domain.use_cases.episodes.episode_details_use_cases.GetEpisodeByIdUseCase
+import roman.bannikov.aston_rick_and_morty.domain.usecases.character.list.GetAllCharactersByIdsUseCase
+import roman.bannikov.aston_rick_and_morty.domain.usecases.episode.details.GetEpisodeByIdUseCase
 
 
 @ExperimentalPagingApi

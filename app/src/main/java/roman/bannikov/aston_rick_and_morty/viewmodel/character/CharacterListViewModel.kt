@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import roman.bannikov.aston_rick_and_morty.domain.use_cases.characters.characters_usecases.GetAllCharactersUseCase
+import roman.bannikov.aston_rick_and_morty.domain.usecases.character.list.GetAllCharactersUseCase
 import roman.bannikov.aston_rick_and_morty.view.mapper.CharacterDomainToCharacterView
 import roman.bannikov.aston_rick_and_morty.view.models.character.CharacterView
 

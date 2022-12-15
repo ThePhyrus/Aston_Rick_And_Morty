@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.domain.use_cases.characters.character_details_use_cases
+package roman.bannikov.aston_rick_and_morty.domain.usecases.character.details
 
 import roman.bannikov.aston_rick_and_morty.domain.models.character.CharacterDomain
 import roman.bannikov.aston_rick_and_morty.domain.repositories.character.CharacterDetailsRepository
