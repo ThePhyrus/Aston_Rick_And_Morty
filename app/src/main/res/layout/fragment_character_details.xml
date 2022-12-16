@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".view.fragments.character.CharacterDetailsFragment">
 
-
     <Button
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
@@ -28,7 +27,6 @@
         app:layout_constraintStart_toEndOf="@+id/btnBack"
         app:layout_constraintTop_toTopOf="@+id/btnBack" />
 
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
@@ -46,11 +44,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
-    <LinearLayout
-        android:id="@+id/linearCharacterInformation"
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollViewInCharacterDetails"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@id/ivCharacterImage"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,59 +56,133 @@
         app:layout_constraintTop_toTopOf="@id/ivCharacterImage">
 
 
-        <TextView
-            android:id="@+id/tvCharacterName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="12"
-            android:text="@string/character_name" />
+        <LinearLayout
+            android:id="@+id/linearCharacterInformation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvCharacterStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="12"
-            android:text="@string/character_status" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="12"
+                android:gravity="center"
+                android:text="@string/name"
+                android:textSize="@dimen/text_size_10sp" />
 
-        <TextView
-            android:id="@+id/tvCharacterType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="12"
-            android:text="@string/character_type" />
+            <TextView
+                android:id="@+id/tvCharacterName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="12"
+                android:gravity="center"
+                android:text="@string/empty"
+                android:textSize="@dimen/text_size_14sp" />
 
-        <TextView
-            android:id="@+id/tvCharacterSpecie"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="12"
-            android:text="@string/character_species" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="12"
+                android:gravity="center"
+                android:text="@string/status"
+                android:textSize="@dimen/text_size_10sp" />
 
-        <TextView
-            android:id="@+id/tvCharacterGender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="12"
-            android:text="@string/character_gender" />
+            <TextView
+                android:id="@+id/tvCharacterStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="12"
+                android:gravity="center"
+                android:text="@string/empty" />
 
-        <TextView
-            android:id="@+id/tvCharacterOrigin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:ems="12"
-            android:focusable="true"
-            android:text="@string/character_origin" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="12"
+                android:gravity="center"
+                android:text="@string/type"
+                android:textSize="@dimen/text_size_10sp" />
 
-        <TextView
-            android:id="@+id/tvCharacterLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:ems="12"
-            android:focusable="true"
-            android:text="@string/character_location" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tvCharacterType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="12"
+                android:gravity="center"
+                android:text="@string/empty" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="12"
+                android:gravity="center"
+                android:text="@string/species"
+                android:textSize="@dimen/text_size_10sp" />
+
+            <TextView
+                android:id="@+id/tvCharacterSpecie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="12"
+                android:gravity="center"
+                android:text="@string/empty" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="12"
+                android:gravity="center"
+                android:text="@string/gender_2"
+                android:textSize="@dimen/text_size_10sp" />
+
+            <TextView
+                android:id="@+id/tvCharacterGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="12"
+                android:gravity="center"
+                android:text="@string/empty" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="12"
+                android:gravity="center"
+                android:text="@string/origin"
+                android:textSize="@dimen/text_size_10sp" />
+
+            <TextView
+                android:id="@+id/tvCharacterOrigin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:ems="12"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/empty" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="12"
+                android:gravity="center"
+                android:text="@string/location"
+                android:textSize="@dimen/text_size_10sp" />
+
+            <TextView
+                android:id="@+id/tvCharacterLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:ems="12"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/empty" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
 
     <TextView
         android:id="@+id/tvEpisodesWithCharacter"
@@ -123,7 +195,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivCharacterImage" />
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCharacterDetails"

@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity(), Navigator {
         initBottomNavigationView()
     }
 
+    //initialize
     private fun initFirstScreen(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
@@ -95,28 +96,16 @@ class MainActivity : AppCompatActivity(), Navigator {
         }
     }
 
-    override fun launchLocationDetailsFragment(locationId: Int) {
+    //character
+    override fun launchCharacterListFragment() {
         supportFragmentManager.beginTransaction()
             .replace(
                 R.id.containerForFragment,
-                LocationDetailsFragment.newInstance(
-                    locationId = locationId
-                ),
-                TAG_LOCATION_DETAILS_FRAGMENT
-            ).addToBackStack(NAME_LOCATION_DETAILS_FRAGMENT)
+                CharacterListFragment(),
+                TAG_CHARACTER_LIST_FRAGMENT
+            ).addToBackStack(NAME_CHARACTER_LIST_FRAGMENT)
             .commit()
-    }
-
-    override fun launchEpisodeDetailsFragment(episodeId: Int) {
-        supportFragmentManager.beginTransaction()
-            .replace(
-                R.id.containerForFragment,
-                EpisodeDetailsFragment.newInstance(
-                    episodeId = episodeId
-                ),
-                TAG_EPISODE_DETAILS_FRAGMENT
-            ).addToBackStack(NAME_EPISODE_DETAILS_FRAGMENT)
-            .commit()
+        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
     }
 
     override fun launchCharacterDetailsFragment(characterId: Int) {
@@ -133,61 +122,6 @@ class MainActivity : AppCompatActivity(), Navigator {
 
     override fun launchCharacterFilterFragment() {
         CharacterFilterFragment().show(supportFragmentManager, TAG_CHARACTER_FILTER_FRAGMENT)
-    }
-
-    override fun launchEpisodeFilterFragment() {
-        EpisodeFilterFragment().show(supportFragmentManager, TAG_EPISODE_FILTER_FRAGMENT)
-    }
-
-    override fun launchLocationFilterFragment() {
-        LocationFilterFragment().show(supportFragmentManager, TAG_LOCATION_FILTER_FRAGMENT)
-    }
-
-    override fun launchCharacterListFragment() {
-        supportFragmentManager.beginTransaction()
-            .replace(
-                R.id.containerForFragment,
-                CharacterListFragment(),
-                TAG_CHARACTER_LIST_FRAGMENT
-            ).addToBackStack(NAME_CHARACTER_LIST_FRAGMENT)
-            .commit()
-        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-    }
-
-    override fun launchEpisodeListFragment() {
-        if (supportFragmentManager.backStackEntryCount > 0) {
-            val backEntry: FragmentManager.BackStackEntry =
-                supportFragmentManager.getBackStackEntryAt(
-                    supportFragmentManager.backStackEntryCount - 1
-                )
-            val tag = backEntry.name
-            if (tag == NAME_EPISODE_LIST_FRAGMENT) return
-        }
-        supportFragmentManager.beginTransaction()
-            .replace(
-                R.id.containerForFragment,
-                EpisodeListFragment(),
-                TAG_EPISODE_LIST_FRAGMENT
-            ).addToBackStack(NAME_EPISODE_LIST_FRAGMENT)
-            .commit()
-    }
-
-    override fun launchLocationListFragment() {
-        if (supportFragmentManager.backStackEntryCount > 0) {
-            val backEntry: FragmentManager.BackStackEntry =
-                supportFragmentManager.getBackStackEntryAt(
-                    supportFragmentManager.backStackEntryCount - 1
-                )
-            val name = backEntry.name
-            if (name == NAME_LOCATION_LIST_FRAGMENT) return
-        }
-        supportFragmentManager.beginTransaction()
-            .replace(
-                R.id.containerForFragment,
-                LocationListFragment(),
-                TAG_LOCATION_LIST_FRAGMENT
-            ).addToBackStack(NAME_LOCATION_LIST_FRAGMENT)
-            .commit()
     }
 
     override fun launchFilteredCharacterListFragment(
@@ -207,16 +141,39 @@ class MainActivity : AppCompatActivity(), Navigator {
             .commit()
     }
 
-    override fun launchFilteredEpisodeListFragment(episode: String?) {
+    //location
+    override fun launchLocationListFragment() {
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            val backEntry: FragmentManager.BackStackEntry =
+                supportFragmentManager.getBackStackEntryAt(
+                    supportFragmentManager.backStackEntryCount - 1
+                )
+            val name = backEntry.name
+            if (name == NAME_LOCATION_LIST_FRAGMENT) return
+        }
         supportFragmentManager.beginTransaction()
             .replace(
                 R.id.containerForFragment,
-                EpisodeListFragment.newInstance(
-                    episode = episode
-                ),
-                TAG_FILTERED_EPISODE_LIST
-            ).addToBackStack(NAME_FILTERED_EPISODE_LIST)
+                LocationListFragment(),
+                TAG_LOCATION_LIST_FRAGMENT
+            ).addToBackStack(NAME_LOCATION_LIST_FRAGMENT)
             .commit()
+    }
+
+    override fun launchLocationDetailsFragment(locationId: Int) {
+        supportFragmentManager.beginTransaction()
+            .replace(
+                R.id.containerForFragment,
+                LocationDetailsFragment.newInstance(
+                    locationId = locationId
+                ),
+                TAG_LOCATION_DETAILS_FRAGMENT
+            ).addToBackStack(NAME_LOCATION_DETAILS_FRAGMENT)
+            .commit()
+    }
+
+    override fun launchLocationFilterFragment() {
+        LocationFilterFragment().show(supportFragmentManager, TAG_LOCATION_FILTER_FRAGMENT)
     }
 
     override fun launchFilteredLocationListFragment(type: String?, dimension: String?) {
@@ -232,6 +189,55 @@ class MainActivity : AppCompatActivity(), Navigator {
             .commit()
     }
 
+    //episode
+    override fun launchEpisodeListFragment() {
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            val backEntry: FragmentManager.BackStackEntry =
+                supportFragmentManager.getBackStackEntryAt(
+                    supportFragmentManager.backStackEntryCount - 1
+                )
+            val tag = backEntry.name
+            if (tag == NAME_EPISODE_LIST_FRAGMENT) return
+        }
+        supportFragmentManager.beginTransaction()
+            .replace(
+                R.id.containerForFragment,
+                EpisodeListFragment(),
+                TAG_EPISODE_LIST_FRAGMENT
+            ).addToBackStack(NAME_EPISODE_LIST_FRAGMENT)
+            .commit()
+    }
+
+    override fun launchEpisodeDetailsFragment(episodeId: Int) {
+        supportFragmentManager.beginTransaction()
+            .replace(
+                R.id.containerForFragment,
+                EpisodeDetailsFragment.newInstance(
+                    episodeId = episodeId
+                ),
+                TAG_EPISODE_DETAILS_FRAGMENT
+            ).addToBackStack(NAME_EPISODE_DETAILS_FRAGMENT)
+            .commit()
+    }
+
+    override fun launchEpisodeFilterFragment() {
+        EpisodeFilterFragment().show(supportFragmentManager, TAG_EPISODE_FILTER_FRAGMENT)
+    }
+
+    override fun launchFilteredEpisodeListFragment(episode: String?) {
+        supportFragmentManager.beginTransaction()
+            .replace(
+                R.id.containerForFragment,
+                EpisodeListFragment.newInstance(
+                    episode = episode
+                ),
+                TAG_FILTERED_EPISODE_LIST
+            ).addToBackStack(NAME_FILTERED_EPISODE_LIST)
+            .commit()
+    }
+
+
+    //go back
     override fun onBackPressed() {
         val fragment1: CharacterListFragment? =
             supportFragmentManager.findFragmentByTag(TAG_CHARACTER_LIST_FRAGMENT)

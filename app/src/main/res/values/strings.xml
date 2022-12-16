@@ -15,7 +15,7 @@
     <string name="character_location">Character location</string>
     <string name="character_name">Character name</string>
     <string name="character_origin">Character origin</string>
-    <string name="character_species">Character specie</string>
+    <string name="character_species">Character species</string>
     <string name="character_status">Character status</string>
     <string name="character_type">Character type</string>
     <string name="characters">Characters</string>
@@ -44,8 +44,15 @@
     <string name="search_character">Search character</string>
     <string name="search_episode">Search episode</string>
     <string name="search_location">Search Location</string>
-    <string name="status">Status</string>
+    <string name="status">Status:</string>
     <string name="unknown">Unknown</string>
     <string name="image">image</string>
-    <string name="character_origin_unknown">Character origin unknown.</string>
+    <string name="error">Error</string>
+    <string name="name">Name:</string>
+    <string name="empty">Empty</string>
+    <string name="type">Type:</string>
+    <string name="species">Species:</string>
+    <string name="gender_2">Gender:</string>
+    <string name="origin">Origin:</string>
+    <string name="location">Location:</string>
 </resources>
