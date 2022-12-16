@@ -16,8 +16,8 @@ import roman.bannikov.aston_rick_and_morty.databinding.FragmentLocationDetailsBi
 import roman.bannikov.aston_rick_and_morty.view.models.location.LocationView
 import roman.bannikov.aston_rick_and_morty.utils.navigator
 import roman.bannikov.aston_rick_and_morty.view.adapters.character.CharacterListForDetailsAdapter
-import roman.bannikov.aston_rick_and_morty.viewmodel.location.LocationDetailsViewModel
-import roman.bannikov.aston_rick_and_morty.viewmodel.location.LocationDetailsViewModelProvider
+import roman.bannikov.aston_rick_and_morty.view.viewmodels.location.LocationDetailsViewModel
+import roman.bannikov.aston_rick_and_morty.view.viewmodels.location.LocationDetailsViewModelProvider
 import kotlin.properties.Delegates
 
 @ExperimentalPagingApi

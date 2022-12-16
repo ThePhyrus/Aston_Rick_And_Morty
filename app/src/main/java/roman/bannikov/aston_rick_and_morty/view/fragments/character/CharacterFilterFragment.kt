@@ -16,8 +16,8 @@ import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.R
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentCharacterFilterBinding
 import roman.bannikov.aston_rick_and_morty.utils.navigator
-import roman.bannikov.aston_rick_and_morty.viewmodel.character.CharacterFilterViewModel
-import roman.bannikov.aston_rick_and_morty.viewmodel.character.CharacterFilterViewModelProvider
+import roman.bannikov.aston_rick_and_morty.view.viewmodels.character.CharacterFilterViewModel
+import roman.bannikov.aston_rick_and_morty.view.viewmodels.character.CharacterFilterViewModelProvider
 
 
 class CharacterFilterFragment : BottomSheetDialogFragment() {

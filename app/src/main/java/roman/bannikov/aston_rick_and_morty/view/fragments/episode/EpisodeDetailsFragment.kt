@@ -16,8 +16,8 @@ import roman.bannikov.aston_rick_and_morty.databinding.FragmentEpisodeDetailsBin
 import roman.bannikov.aston_rick_and_morty.view.models.episode.EpisodeView
 import roman.bannikov.aston_rick_and_morty.utils.navigator
 import roman.bannikov.aston_rick_and_morty.view.adapters.character.CharacterListForDetailsAdapter
-import roman.bannikov.aston_rick_and_morty.viewmodel.episode.EpisodeDetailsViewModel
-import roman.bannikov.aston_rick_and_morty.viewmodel.episode.EpisodeDetailsViewModelProvider
+import roman.bannikov.aston_rick_and_morty.view.viewmodels.episode.EpisodeDetailsViewModel
+import roman.bannikov.aston_rick_and_morty.view.viewmodels.episode.EpisodeDetailsViewModelProvider
 import kotlin.properties.Delegates
 
 

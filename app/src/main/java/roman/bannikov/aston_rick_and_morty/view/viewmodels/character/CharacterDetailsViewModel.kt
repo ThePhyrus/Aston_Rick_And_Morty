@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.viewmodel.character
+package roman.bannikov.aston_rick_and_morty.view.viewmodels.character
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

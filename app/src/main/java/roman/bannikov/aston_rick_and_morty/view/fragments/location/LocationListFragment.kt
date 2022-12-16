@@ -20,8 +20,8 @@ import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentLocationListBinding
 import roman.bannikov.aston_rick_and_morty.utils.navigator
 import roman.bannikov.aston_rick_and_morty.view.adapters.location.LocationAdapter
-import roman.bannikov.aston_rick_and_morty.viewmodel.location.LocationListViewModel
-import roman.bannikov.aston_rick_and_morty.viewmodel.location.LocationListViewModelProvider
+import roman.bannikov.aston_rick_and_morty.view.viewmodels.location.LocationListViewModel
+import roman.bannikov.aston_rick_and_morty.view.viewmodels.location.LocationListViewModelProvider
 
 @ExperimentalPagingApi
 @ExperimentalCoroutinesApi

@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.viewmodel.episode
+package roman.bannikov.aston_rick_and_morty.view.viewmodels.episode
 
 import android.content.Context
 import androidx.lifecycle.ViewModel

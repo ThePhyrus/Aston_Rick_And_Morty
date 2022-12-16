@@ -15,8 +15,8 @@ import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentEpisodeListBinding
 import roman.bannikov.aston_rick_and_morty.utils.navigator
 import roman.bannikov.aston_rick_and_morty.view.adapters.episode.EpisodeAdapter
-import roman.bannikov.aston_rick_and_morty.viewmodel.episode.EpisodeListViewModel
-import roman.bannikov.aston_rick_and_morty.viewmodel.episode.EpisodeListViewModelProvider
+import roman.bannikov.aston_rick_and_morty.view.viewmodels.episode.EpisodeListViewModel
+import roman.bannikov.aston_rick_and_morty.view.viewmodels.episode.EpisodeListViewModelProvider
 
 
 @ExperimentalPagingApi

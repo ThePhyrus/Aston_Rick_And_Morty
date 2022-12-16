@@ -1,6 +1,5 @@
 package roman.bannikov.aston_rick_and_morty.view.fragments.character
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,8 +18,8 @@ import roman.bannikov.aston_rick_and_morty.view.models.character.CharacterView
 import roman.bannikov.aston_rick_and_morty.utils.navigator
 
 import roman.bannikov.aston_rick_and_morty.view.adapters.character.CharacterDetailsAdapter
-import roman.bannikov.aston_rick_and_morty.viewmodel.character.CharacterDetailsViewModel
-import roman.bannikov.aston_rick_and_morty.viewmodel.character.CharacterDetailsViewModelProvider
+import roman.bannikov.aston_rick_and_morty.view.viewmodels.character.CharacterDetailsViewModel
+import roman.bannikov.aston_rick_and_morty.view.viewmodels.character.CharacterDetailsViewModelProvider
 import kotlin.properties.Delegates
 
 

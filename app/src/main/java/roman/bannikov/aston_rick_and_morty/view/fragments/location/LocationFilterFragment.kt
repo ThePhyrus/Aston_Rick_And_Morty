@@ -14,8 +14,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentLocationFilterBinding
 import roman.bannikov.aston_rick_and_morty.utils.navigator
-import roman.bannikov.aston_rick_and_morty.viewmodel.location.LocationFilterViewModel
-import roman.bannikov.aston_rick_and_morty.viewmodel.location.LocationFilterViewModelProvider
+import roman.bannikov.aston_rick_and_morty.view.viewmodels.location.LocationFilterViewModel
+import roman.bannikov.aston_rick_and_morty.view.viewmodels.location.LocationFilterViewModelProvider
 
 
 class LocationFilterFragment : BottomSheetDialogFragment() {

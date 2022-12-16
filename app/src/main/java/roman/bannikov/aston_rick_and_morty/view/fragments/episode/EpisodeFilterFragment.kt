@@ -14,8 +14,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentEpisodeFilterBinding
 import roman.bannikov.aston_rick_and_morty.utils.navigator
-import roman.bannikov.aston_rick_and_morty.viewmodel.episode.EpisodeFilterViewModel
-import roman.bannikov.aston_rick_and_morty.viewmodel.episode.EpisodeFilterViewModelProvider
+import roman.bannikov.aston_rick_and_morty.view.viewmodels.episode.EpisodeFilterViewModel
+import roman.bannikov.aston_rick_and_morty.view.viewmodels.episode.EpisodeFilterViewModelProvider
 
 class EpisodeFilterFragment : BottomSheetDialogFragment() {
 

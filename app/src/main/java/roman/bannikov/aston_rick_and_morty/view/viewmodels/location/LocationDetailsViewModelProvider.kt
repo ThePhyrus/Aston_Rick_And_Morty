@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.viewmodel.episode
+package roman.bannikov.aston_rick_and_morty.view.viewmodels.location
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
@@ -6,14 +6,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.paging.ExperimentalPagingApi
 import roman.bannikov.aston_rick_and_morty.data.api.Retrofit
 import roman.bannikov.aston_rick_and_morty.data.repositories.character.CharacterRepositoryImpl
-import roman.bannikov.aston_rick_and_morty.data.repositories.episode.EpisodeDetailsRepositoryImpl
+import roman.bannikov.aston_rick_and_morty.data.repositories.location.LocationDetailsRepositoryImpl
 import roman.bannikov.aston_rick_and_morty.data.storage.room.db.AppDatabase
 import roman.bannikov.aston_rick_and_morty.domain.usecases.character.list.GetAllCharactersByIdsUseCase
-import roman.bannikov.aston_rick_and_morty.domain.usecases.episode.details.GetEpisodeByIdUseCase
-
+import roman.bannikov.aston_rick_and_morty.domain.usecases.locations.details.GetLocationByIdUseCase
 
 @ExperimentalPagingApi
-class EpisodeDetailsViewModelProvider(
+class LocationDetailsViewModelProvider(
     context: Context
 ) : ViewModelProvider.Factory {
 
@@ -25,8 +24,8 @@ class EpisodeDetailsViewModelProvider(
         retrofit.characterDetailsApi
     }
 
-    private val episodeDetailsApi by lazy {
-        retrofit.episodeDetailsApi
+    private val locationDetailsApi by lazy {
+        retrofit.locationDetailsApi
     }
 
     private val charactersApi by lazy {
@@ -37,20 +36,20 @@ class EpisodeDetailsViewModelProvider(
         AppDatabase(context = context)
     }
 
-    private val episodeDetailsRepository by lazy {
-        EpisodeDetailsRepositoryImpl(episodeDetailsApi = episodeDetailsApi, db = db)
+    private val locationDetailsRepository by lazy {
+        LocationDetailsRepositoryImpl(locationDetailsApi = locationDetailsApi, db = db)
     }
 
     private val charactersRepository by lazy {
         CharacterRepositoryImpl(
-            characterDetailsApi = characterDetailsApi,
             characterApi = charactersApi,
+            characterDetailsApi = characterDetailsApi,
             db = db
         )
     }
 
-    private val getEpisodeByIdUseCase by lazy {
-        GetEpisodeByIdUseCase(episodeDetailsRepository = episodeDetailsRepository)
+    private val getLocationByIdUseCase by lazy {
+        GetLocationByIdUseCase(locationDetailsRepository = locationDetailsRepository)
     }
 
     private val getAllCharactersByIdsUseCase by lazy {
@@ -58,8 +57,8 @@ class EpisodeDetailsViewModelProvider(
     }
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return EpisodeDetailsViewModel(
-            getEpisodeByIdUseCase = getEpisodeByIdUseCase,
+        return LocationDetailsViewModel(
+            getLocationByIdUseCase = getLocationByIdUseCase,
             getAllCharactersByIdsUseCase = getAllCharactersByIdsUseCase
         ) as T
     }
