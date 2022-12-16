@@ -19,19 +19,19 @@ class CharacterListViewModel(
     private val getAllCharactersUseCase: GetAllCharactersUseCase,
 ) : ViewModel() {
 
+    private var _charactersFlow = MutableSharedFlow<PagingData<CharacterView>>()
+    val charactersFlow = _charactersFlow
+
     private val _filteredTrigger = MutableStateFlow<MutableMap<String, String?>>(
         mutableMapOf(
-            "name" to null,
-            "gender" to null,
-            "status" to null,
-            "species" to null,
-            "type" to null
+            MAP_KEY_CHARACTER_NAME to null,
+            MAP_KEY_CHARACTER_GENDER to null,
+            MAP_KEY_CHARACTER_STATUS to null,
+            MAP_KEY_CHARACTER_SPECIES to null,
+            MAP_KEY_CHARACTER_TYPE to null
         )
     )
     val filteredTrigger: MutableStateFlow<MutableMap<String, String?>> = _filteredTrigger
-
-    private var _charactersFlow = MutableSharedFlow<PagingData<CharacterView>>()
-    val charactersFlow = _charactersFlow
 
     fun getCharactersByParams(
         name: String?,
@@ -48,8 +48,17 @@ class CharacterListViewModel(
             species = species
         ).onEach {
             _charactersFlow.emit(
-                it.map { obj -> CharacterDomainToCharacterView().transform(obj) }
+                it.map { entity -> CharacterDomainToCharacterView().transform(entity) }
             )
         }.launchIn(viewModelScope)
     }
+
+    companion object{
+        const val MAP_KEY_CHARACTER_NAME = "name"
+        const val MAP_KEY_CHARACTER_GENDER = "gender"
+        const val MAP_KEY_CHARACTER_STATUS = "status"
+        const val MAP_KEY_CHARACTER_SPECIES = "species"
+        const val MAP_KEY_CHARACTER_TYPE = "type"
+    }
+
 }
