@@ -24,11 +24,81 @@ import kotlin.properties.Delegates
 @ExperimentalPagingApi
 class EpisodeDetailsFragment : Fragment() {
 
-    private lateinit var binding: FragmentEpisodeDetailsBinding
-    private lateinit var vm: EpisodeDetailsViewModel
+    private var _binding: FragmentEpisodeDetailsBinding? = null
+    private val binding: FragmentEpisodeDetailsBinding get() = _binding!!
+
+    private lateinit var viewModel: EpisodeDetailsViewModel
+
     private var characterListForDetailsAdapter: CharacterListForDetailsAdapter? = null
 
     private var episodeId by Delegates.notNull<Int>()
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            episodeId = it.getInt(KEY_EPISODE_ID)
+        }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentEpisodeDetailsBinding.inflate(layoutInflater, container, false)
+        binding.btnBack.setOnClickListener {
+            navigator().goBack()
+        }
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initViewModel()
+        observeViewModel()
+        initView()
+    }
+
+    private fun initViewModel() {
+        viewModel = ViewModelProvider(
+            this,
+            EpisodeDetailsViewModelProvider(requireContext())
+        )[EpisodeDetailsViewModel::class.java]
+        viewModel.getEpisode(episodeId)
+    }
+
+    private fun initView() {
+        characterListForDetailsAdapter = CharacterListForDetailsAdapter()
+
+        with(binding.rvEpisodeDetails) {
+            layoutManager = GridLayoutManager(requireContext(), 2)
+            adapter = characterListForDetailsAdapter
+        }
+        characterListForDetailsAdapter!!.onCharacterItem =
+            { navigator().launchCharacterDetailsFragment(it.id) }
+    }
+
+    private fun observeViewModel() {
+        lifecycle.coroutineScope.launch {
+            viewModel.charactersList.observe(viewLifecycleOwner, Observer {
+                characterListForDetailsAdapter!!.submitList(it)
+            })
+        }
+
+        lifecycle.coroutineScope.launch {
+            viewModel.episodeDetails.observe(viewLifecycleOwner, Observer {
+                viewModel.getEpisodesList(it.residentsIds)
+                initUI(it)
+            })
+        }
+    }
+
+    private fun initUI(presentationDetails: EpisodeView) {
+        binding.tvEpisodeAirDateInEpisodeDetails.text = presentationDetails.air_date
+        binding.tvEpisodeNameInEpisodeDetails.text = presentationDetails.name
+        binding.tvEpisodeCodeInEpisodeDetails.text = presentationDetails.episode
+    }
+
 
     companion object {
         private const val KEY_EPISODE_ID: String = "KEY_EPISODE_ID"
@@ -44,66 +114,8 @@ class EpisodeDetailsFragment : Fragment() {
             }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        init()
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentEpisodeDetailsBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        vm = ViewModelProvider(
-            this,
-            EpisodeDetailsViewModelProvider(requireContext())
-        )[EpisodeDetailsViewModel::class.java]
-        vm.getEpisode(episodeId)
-        initView()
-        observeVm()
-    }
-
-    private fun initView() {
-        characterListForDetailsAdapter = CharacterListForDetailsAdapter()
-
-        with(binding.rvEpisodeDetails) {
-            layoutManager = LinearLayoutManager(requireContext())
-            layoutManager = GridLayoutManager(requireContext(), 2)
-            adapter = characterListForDetailsAdapter
-        }
-        characterListForDetailsAdapter!!.onCharacterItem =
-            { navigator().launchCharacterDetailsFragment(it.id) }
-    }
-
-    private fun observeVm() {
-        lifecycle.coroutineScope.launch {
-            vm.charactersList.observe(viewLifecycleOwner, Observer {
-                characterListForDetailsAdapter!!.submitList(it)
-            })
-        }
-
-        lifecycle.coroutineScope.launch {
-            vm.episodeDetails.observe(viewLifecycleOwner, Observer {
-                vm.getEpisodesList(it.residentsIds)
-                initUI(it)
-            })
-        }
-    }
-
-    private fun initUI(presentationDetails: EpisodeView) {
-        binding.tvEpisodeAirDateInEpisodeDetails.text = presentationDetails.air_date
-        binding.tvEpisodeNameInEpisodeDetails.text = presentationDetails.name
-        binding.tvEpisodeCodeInEpisodeDetails.text = presentationDetails.episode
-    }
-
-    private fun init() {
-        arguments?.let {
-            episodeId = it.getInt(KEY_EPISODE_ID)
-        }
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

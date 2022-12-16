@@ -23,7 +23,7 @@ import java.io.IOException
 class EpisodeRepositoryImpl(
     private val episodeApi: EpisodeApi,
     private val episodeDetailsApi: EpisodeDetailsApi,
-    private val db: AppDatabase
+    private val database: AppDatabase
 ) : EpisodesRepository {
 
     override fun getAllEpisodes(
@@ -33,7 +33,7 @@ class EpisodeRepositoryImpl(
 
         val pagingSourceFactory =
             {
-                db.getEpisodeDao().getFilteredEpisodes(
+                database.getEpisodeDao().getFilteredEpisodes(
                     name = name,
                     episode = episode
                 )
@@ -49,7 +49,7 @@ class EpisodeRepositoryImpl(
             ),
             remoteMediator = EpisodeRemoteMediator(
                 episodeApi = episodeApi,
-                db = db,
+                database = database,
                 name = name,
                 episode = episode
             ),
@@ -71,7 +71,7 @@ class EpisodeRepositoryImpl(
                         episodeApi.getEpisodesByIds(ids = idsString)
                     if (episodesFromApi.isSuccessful) {
                         episodesFromApi.body()
-                            ?.let { db.getEpisodeDao().insertAllEpisodes(episodeData = it) }
+                            ?.let { database.getEpisodeDao().insertAllEpisodes(episodeData = it) }
                     }
                 }
                 if (ids.size == 1) {
@@ -79,7 +79,7 @@ class EpisodeRepositoryImpl(
                         episodeDetailsApi.getEpisodeById(id = ids[0])
                     if (episodeDataFromApi.isSuccessful) {
                         episodeDataFromApi.body()
-                            ?.let { db.getEpisodeDao().insertEpisode(episodeData = it) }
+                            ?.let { database.getEpisodeDao().insertEpisode(episodeData = it) }
                     }
                 }
 
@@ -89,7 +89,7 @@ class EpisodeRepositoryImpl(
                 Log.e("Log", "${e.message}")
             }
 
-            return@withContext db.getEpisodeDao().getEpisodesByIds(ids = ids).map {
+            return@withContext database.getEpisodeDao().getEpisodesByIds(ids = ids).map {
                 EpisodeDataToEpisodeDomain().transform(it)
             }
         }

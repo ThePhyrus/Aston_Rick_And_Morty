@@ -1,6 +1,5 @@
 package roman.bannikov.aston_rick_and_morty.data.paging
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -18,7 +17,7 @@ import java.io.IOException
 @OptIn(ExperimentalPagingApi::class)
 class EpisodeRemoteMediator(
     private val episodeApi: EpisodeApi,
-    private val db: AppDatabase,
+    private val database: AppDatabase,
     private val name: String?,
     private val episode: String?
 ) : RemoteMediator<Int, EpisodeData>() {
@@ -27,15 +26,13 @@ class EpisodeRemoteMediator(
         return InitializeAction.LAUNCH_INITIAL_REFRESH
     }
 
-    private val episodesDao = db.getEpisodeDao()
-    private val keyDao = db.getEpisodesKeyDao()
+    private val episodeDao = database.getEpisodeDao()
+    private val keyDao = database.getEpisodesKeyDao()
 
     override suspend fun load(
         loadType: LoadType,
         state: PagingState<Int, EpisodeData>
     ): MediatorResult {
-
-        Log.e("episode", "$name $episode")
 
 
         val page = when (val pageKeyData = getKeyPageData(loadType, state)) {
@@ -57,9 +54,9 @@ class EpisodeRemoteMediator(
                         || response.toString().contains("error")
                         || response.results.isEmpty()
 
-            db.withTransaction {
+            database.withTransaction {
                 if (loadType == LoadType.REFRESH) {
-                    episodesDao.deleteAllEpisodes()
+                    episodeDao.deleteAllEpisodes()
                     keyDao.deleteAllEpisodesRemoteKeys()
                 }
                 val prevKey = if (page == 1) null else page - 1
@@ -68,7 +65,7 @@ class EpisodeRemoteMediator(
                     EpisodePages(it.id, prevPage = prevKey, nextPage = nextKey)
                 }
                 keyDao.insertAllEpisodesKeys(remoteKeysEpisodes = keys)
-                episodesDao.insertAllEpisodes(episodeData = response.results)
+                episodeDao.insertAllEpisodes(episodeData = response.results)
             }
             return MediatorResult.Success(endOfPaginationReached = isEndOfList)
         } catch (exception: IOException) {

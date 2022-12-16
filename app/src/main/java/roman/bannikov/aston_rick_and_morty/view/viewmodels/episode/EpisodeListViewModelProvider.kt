@@ -32,7 +32,7 @@ class EpisodeListViewModelProvider(
 
     private val episodesRepository by lazy {
         EpisodeRepositoryImpl(
-            db = db,
+            database = db,
             episodeDetailsApi = episodeDetailsApi,
             episodeApi = episodesApi
         )

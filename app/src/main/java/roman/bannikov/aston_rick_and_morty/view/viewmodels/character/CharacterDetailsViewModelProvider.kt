@@ -33,19 +33,19 @@ class CharacterDetailsViewModelProvider(
         retrofit.episodeApi
     }
 
-    private val db by lazy {
+    private val database by lazy {
         AppDatabase(context = context)
     }
 
     private val characterDetailsRepository by lazy {
-        CharacterDetailsRepositoryImpl(characterDetailsApi = characterDetailsApi, db = db)
+        CharacterDetailsRepositoryImpl(characterDetailsApi = characterDetailsApi, db = database)
     }
 
     private val episodesRepository by lazy {
         EpisodeRepositoryImpl(
             episodeApi = episodesApi,
             episodeDetailsApi = episodeDetailsApi,
-            db = db)
+            database = database)
     }
 
     private val getCharacterByIdUseCase by lazy {
