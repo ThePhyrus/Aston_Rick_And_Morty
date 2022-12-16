@@ -2,7 +2,6 @@ package roman.bannikov.aston_rick_and_morty.view.fragments.episode
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.launch
+import roman.bannikov.aston_rick_and_morty.R
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentEpisodeFilterBinding
 import roman.bannikov.aston_rick_and_morty.utils.navigator
 import roman.bannikov.aston_rick_and_morty.view.viewmodels.episode.EpisodeFilterViewModel
@@ -19,62 +19,77 @@ import roman.bannikov.aston_rick_and_morty.view.viewmodels.episode.EpisodeFilter
 
 class EpisodeFilterFragment : BottomSheetDialogFragment() {
 
-    private lateinit var binding: FragmentEpisodeFilterBinding
+    private var _binding: FragmentEpisodeFilterBinding? = null
+    private val binding: FragmentEpisodeFilterBinding get() = _binding!!
+
+    private lateinit var viewModel: EpisodeFilterViewModel
+
     private var episode: String? = null
-    private var episodesList: MutableList<String> = mutableListOf<String>()
-    private lateinit var vm: EpisodeFilterViewModel
+    private var episodeList: MutableList<String> = mutableListOf<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentEpisodeFilterBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentEpisodeFilterBinding.inflate(layoutInflater, container, false)
+        initButtons()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initViewModel()
+        observeViewModel()
+    }
 
-        vm = ViewModelProvider(
-            this,
-            EpisodeFilterViewModelProvider(requireContext())
-        )[EpisodeFilterViewModel::class.java]
-        observeVm()
-
+    private fun initButtons() {
         binding.btnApplyFilterEpisode.setOnClickListener {
             navigator().launchFilteredEpisodeListFragment(episode = episode)
             dismiss()
         }
 
         binding.btnChooseEpisode.setOnClickListener {
-            getEpisode(episodesList)
+            filterEpisode(episodeList)
         }
     }
 
-    private fun observeVm() {
+    private fun initViewModel() {
+        viewModel = ViewModelProvider(
+            this,
+            EpisodeFilterViewModelProvider(requireContext())
+        )[EpisodeFilterViewModel::class.java]
+    }
+
+    private fun observeViewModel() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                vm.episodeList.collect {
-                    episodesList.addAll(it)
+                viewModel.episodeList.collect {
+                    episodeList.addAll(it)
                 }
             }
         }
     }
 
-    private fun getEpisode(params: List<String>) {
-        val typesArr = params.toTypedArray()
+    private fun filterEpisode(params: List<String>) {
+        val typedArray = params.toTypedArray()
 
         AlertDialog.Builder(requireContext())
-            .setTitle("Episodes")
-            .setSingleChoiceItems(typesArr, 0, null)
-            .setPositiveButton("Confirm") { dialog, _ ->
-                dialog.dismiss()
+            .setTitle(getString(R.string.alert_dialog_title_episodes))
+            .setSingleChoiceItems(typedArray, 0, null)
+            .setPositiveButton(getString(R.string.ok)) { dialog, _ ->
                 val selectedPosition = (dialog as AlertDialog).listView.checkedItemPosition
-                Log.e("checkedItem", "$selectedPosition");
-                if(typesArr.isNotEmpty()){ episode = typesArr[selectedPosition] }
-
+                if (typedArray.isNotEmpty()) {
+                    episode = typedArray[selectedPosition]
+                }
+                dialog.dismiss()
             }
-            .setNegativeButton("Cancel", null)
+            .setNegativeButton((getString(R.string.cancel)), null)
+            .setCancelable(false)
             .show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

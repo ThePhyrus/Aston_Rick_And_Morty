@@ -56,7 +56,8 @@
     <string name="origin">Origin:</string>
     <string name="location">Location:</string>
     <string name="cancel">Cancel</string>
-    <string name="character_types">Character types:</string>
+    <string name="alert_dialog_title_character_types">Character types:</string>
     <string name="ok">Ok</string>
-    <string name="characters_species">Character species:</string>
+    <string name="alert_dialog_title_character_species">Character species:</string>
+    <string name="alert_dialog_title_episodes">Episodes:</string>
 </resources>

@@ -59,7 +59,7 @@ class CharacterFilterFragment : BottomSheetDialogFragment() {
         val typedArray = params.toTypedArray()
 
         AlertDialog.Builder(requireContext())
-            .setTitle(getString(R.string.characters_species))
+            .setTitle(getString(R.string.alert_dialog_title_character_species))
             .setSingleChoiceItems(typedArray, 0, null)
             .setPositiveButton(getString(R.string.ok)) { dialog, _ ->
                 dialog.dismiss()
@@ -78,7 +78,7 @@ class CharacterFilterFragment : BottomSheetDialogFragment() {
         val typedArray = params.toTypedArray()
 
         AlertDialog.Builder(requireContext())
-            .setTitle(getString(R.string.character_types))
+            .setTitle(getString(R.string.alert_dialog_title_character_types))
             .setSingleChoiceItems(typedArray, 0, null)
             .setPositiveButton(getString(R.string.ok)) { dialog, _ ->
                 dialog.dismiss()
