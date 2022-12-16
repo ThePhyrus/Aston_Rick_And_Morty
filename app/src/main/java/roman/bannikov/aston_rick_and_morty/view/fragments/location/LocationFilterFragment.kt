@@ -47,7 +47,7 @@ class LocationFilterFragment : BottomSheetDialogFragment() {
         observeVm()
 
         binding.btnApplyFilterLocation.setOnClickListener {
-            navigator().openLocationsFragmentWithArg(type = type, dimension = dimension)
+            navigator().launchLocationListFragmentWithArguments(type = type, dimension = dimension)
             dismiss()
         }
 

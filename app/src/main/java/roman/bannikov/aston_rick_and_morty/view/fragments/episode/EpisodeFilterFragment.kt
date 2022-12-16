@@ -42,7 +42,7 @@ class EpisodeFilterFragment : BottomSheetDialogFragment() {
         observeVm()
 
         binding.btnApplyFilterEpisode.setOnClickListener {
-            navigator().openEpisodesFragmentWithArg(episode = episode)
+            navigator().launchEpisodeListFragmentWithArguments(episode = episode)
             dismiss()
         }
 

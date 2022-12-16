@@ -73,9 +73,13 @@ class CharacterDetailsFragment : Fragment() {
         initView()
         observeVm()
 
+        binding.btnBack.setOnClickListener {
+            navigator().goBack()
+        }
+
         binding.tvCharacterOrigin.setOnClickListener {
             if (originLocationId != null) {
-                navigator().openLocationsDetailFragment(locationId = originLocationId!!)
+                navigator().launchLocationDetailsFragment(locationId = originLocationId!!)
             } else {
                 Toast.makeText(
                     requireContext(),
@@ -87,7 +91,7 @@ class CharacterDetailsFragment : Fragment() {
 
         binding.tvCharacterLocation.setOnClickListener {
             if (lastLocationId != null) {
-                navigator().openLocationsDetailFragment(locationId = lastLocationId!!)
+                navigator().launchLocationDetailsFragment(locationId = lastLocationId!!)
             } else {
                 Toast.makeText(
                     requireContext(),
@@ -105,7 +109,7 @@ class CharacterDetailsFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = characterDetailsAdapter
         }
-        characterDetailsAdapter!!.onEpisodeItem = {navigator().openEpisodesDetailFragment(it.id)}
+        characterDetailsAdapter!!.onEpisodeItem = {navigator().launchEpisodeDetailsFragment(it.id)}
     }
 
     private fun observeVm() {

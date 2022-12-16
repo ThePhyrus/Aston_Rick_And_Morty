@@ -77,7 +77,7 @@ class EpisodeDetailsFragment : Fragment() {
             adapter = characterListForDetailsAdapter
         }
         characterListForDetailsAdapter!!.onCharacterItem =
-            { navigator().openCharacterDetailFragment(it.id) }
+            { navigator().launchCharacterDetailsFragment(it.id) }
     }
 
     private fun observeVm() {

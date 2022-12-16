@@ -98,7 +98,7 @@ class CharacterListFragment : Fragment() {
         setUpSwipeToRefresh()
 
         binding.btnFilterCharacter.setOnClickListener {
-            navigator().openCharactersFilterFragment()
+            navigator().launchCharacterFilterFragment()
         }
 
         binding.svCharacter.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -141,7 +141,7 @@ class CharacterListFragment : Fragment() {
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = characterListAdapter
         }
-        characterListAdapter.onCharacterItem = { navigator().openCharacterDetailFragment(it.id) }
+        characterListAdapter.onCharacterItem = { navigator().launchCharacterDetailsFragment(it.id) }
     }
 
     private fun setUpSwipeToRefresh() {

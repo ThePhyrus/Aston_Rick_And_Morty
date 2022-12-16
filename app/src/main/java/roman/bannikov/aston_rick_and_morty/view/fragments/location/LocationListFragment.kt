@@ -89,7 +89,7 @@ class LocationListFragment : Fragment() {
         setUpSwipeToRefresh()
 
         binding.btnFilterLocation.setOnClickListener {
-            navigator().openLocationsFilterFragment()
+            navigator().launchLocationFilterFragment()
         }
 
         binding.svLocation.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -126,7 +126,7 @@ class LocationListFragment : Fragment() {
             adapter = locationAdapter
         }
 
-        locationAdapter.onLocationItem = { navigator().openLocationsDetailFragment(it.id) }
+        locationAdapter.onLocationItem = { navigator().launchLocationDetailsFragment(it.id) }
     }
 
     private fun performSearchEvent(query: String) {

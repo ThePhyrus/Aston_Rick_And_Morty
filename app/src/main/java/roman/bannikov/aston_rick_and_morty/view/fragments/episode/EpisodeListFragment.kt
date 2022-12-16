@@ -74,7 +74,7 @@ class EpisodeListFragment : Fragment() {
         setUpSwipeToRefresh()
 
         binding.btnFilterEpisode.setOnClickListener {
-            navigator().openEpisodesFilterFragment()
+            navigator().launchEpisodeFilterFragment()
         }
 
         binding.svEpisode.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -114,7 +114,7 @@ class EpisodeListFragment : Fragment() {
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = episodeAdapter
         }
-        episodeAdapter.onEpisodeItem = { navigator().openEpisodesDetailFragment(it.id) }
+        episodeAdapter.onEpisodeItem = { navigator().launchEpisodeDetailsFragment(it.id) }
     }
 
     private fun setUpSwipeToRefresh() {
