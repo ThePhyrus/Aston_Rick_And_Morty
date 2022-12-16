@@ -55,4 +55,8 @@
     <string name="gender_2">Gender:</string>
     <string name="origin">Origin:</string>
     <string name="location">Location:</string>
+    <string name="cancel">Cancel</string>
+    <string name="character_types">Character types:</string>
+    <string name="ok">Ok</string>
+    <string name="characters_species">Character species:</string>
 </resources>
