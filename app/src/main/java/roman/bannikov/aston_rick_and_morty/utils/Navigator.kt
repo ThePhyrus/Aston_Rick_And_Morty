@@ -11,7 +11,7 @@ interface Navigator {
     fun launchCharacterListFragment()
     fun launchCharacterFilterFragment()
     fun launchCharacterDetailsFragment(characterId: Int)
-    fun launchCharacterListFragmentWithArguments(
+    fun launchFilteredCharacterListFragment(
         status: String?,
         gender: String?,
         species: String?,
@@ -22,13 +22,13 @@ interface Navigator {
     fun launchEpisodeListFragment()
     fun launchEpisodeFilterFragment()
     fun launchEpisodeDetailsFragment(episodeId: Int)
-    fun launchEpisodeListFragmentWithArguments(episode: String?)
+    fun launchFilteredEpisodeListFragment(episode: String?)
 
     //location
     fun launchLocationListFragment()
     fun launchLocationFilterFragment()
     fun launchLocationDetailsFragment(locationId: Int)
-    fun launchLocationListFragmentWithArguments(type: String?, dimension: String?)
+    fun launchFilteredLocationListFragment(type: String?, dimension: String?)
 
 }
 

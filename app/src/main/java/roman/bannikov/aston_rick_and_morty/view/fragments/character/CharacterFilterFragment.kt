@@ -50,7 +50,7 @@ class CharacterFilterFragment : BottomSheetDialogFragment() {
             val gender = getGender()
             val status = getStatus()
 
-            navigator().launchCharacterListFragmentWithArguments(
+            navigator().launchFilteredCharacterListFragment(
                 gender = gender,
                 status = status,
                 type = type,
