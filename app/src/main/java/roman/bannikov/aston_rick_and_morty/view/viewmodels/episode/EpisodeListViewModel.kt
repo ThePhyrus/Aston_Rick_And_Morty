@@ -19,17 +19,14 @@ class EpisodeListViewModel(
     private val getAllEpisodesUseCase: GetAllEpisodesUseCase
 ) : ViewModel() {
 
-
     private val _filteredTrigger = MutableStateFlow<MutableMap<String, String?>>(
         mutableMapOf(
-            "name" to null,
-            "episode" to null
+            MAP_KEY_EPISODE_NAME to null,
+            MAP_KEY_EPISODE_CODE to null
         )
     )
-
-    val filteredTrigger: MutableStateFlow<MutableMap<String, String?>> = _filteredTrigger
-
     private var _episodesFlow = MutableSharedFlow<PagingData<EpisodeView>>()
+    val filteredTrigger: MutableStateFlow<MutableMap<String, String?>> = _filteredTrigger
     val episodesFlow = _episodesFlow
 
     fun getEpisodeByParams(
@@ -45,5 +42,10 @@ class EpisodeListViewModel(
             )
         }.launchIn(viewModelScope)
 
+    }
+
+    companion object {
+        const val MAP_KEY_EPISODE_NAME = "name"
+        const val MAP_KEY_EPISODE_CODE = "episode"
     }
 }
