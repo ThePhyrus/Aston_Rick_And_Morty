@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.paging.ExperimentalPagingApi
 import roman.bannikov.aston_rick_and_morty.data.api.Retrofit
 import roman.bannikov.aston_rick_and_morty.data.repositories.episode.EpisodeRepositoryImpl
-import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
+import roman.bannikov.aston_rick_and_morty.data.storage.room.db.AppDatabase
 import roman.bannikov.aston_rick_and_morty.domain.usecases.episode.list.GetAllEpisodesUseCase
 
 @ExperimentalPagingApi
@@ -27,7 +27,7 @@ class EpisodeListViewModelProvider(
     }
 
     private val db by lazy {
-        RickAndMortyDatabase(context = context)
+        AppDatabase(context = context)
     }
 
     private val episodesRepository by lazy {

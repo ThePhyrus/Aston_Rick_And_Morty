@@ -8,7 +8,7 @@ import retrofit2.Response
 import roman.bannikov.aston_rick_and_morty.data.mapper.EpisodeDataToEpisodeDomain
 import roman.bannikov.aston_rick_and_morty.data.models.episode.EpisodeData
 import roman.bannikov.aston_rick_and_morty.data.api.episode.EpisodeDetailsApi
-import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
+import roman.bannikov.aston_rick_and_morty.data.storage.room.db.AppDatabase
 import roman.bannikov.aston_rick_and_morty.domain.models.episode.EpisodeDomain
 import roman.bannikov.aston_rick_and_morty.domain.repositories.episode.EpisodeDetailsRepository
 import java.io.IOException
@@ -16,7 +16,7 @@ import java.io.IOException
 
 class EpisodeDetailsRepositoryImpl(
     private val episodeDetailsApi: EpisodeDetailsApi,
-    private val db: RickAndMortyDatabase
+    private val db: AppDatabase
 ) : EpisodeDetailsRepository {
 
     override suspend fun getEpisodeById(id: Int): EpisodeDomain = withContext(Dispatchers.IO) {

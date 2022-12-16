@@ -11,14 +11,14 @@ import roman.bannikov.aston_rick_and_morty.data.models.PagedResponse
 import roman.bannikov.aston_rick_and_morty.data.models.episode.EpisodeData
 import roman.bannikov.aston_rick_and_morty.data.models.pages.EpisodePages
 import roman.bannikov.aston_rick_and_morty.data.api.episode.EpisodeApi
-import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
+import roman.bannikov.aston_rick_and_morty.data.storage.room.db.AppDatabase
 import java.io.IOException
 
 
 @OptIn(ExperimentalPagingApi::class)
 class EpisodeRemoteMediator(
     private val episodeApi: EpisodeApi,
-    private val db: RickAndMortyDatabase,
+    private val db: AppDatabase,
     private val name: String?,
     private val episode: String?
 ) : RemoteMediator<Int, EpisodeData>() {

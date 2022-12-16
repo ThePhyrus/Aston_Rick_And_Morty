@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import roman.bannikov.aston_rick_and_morty.data.repositories.location.LocationFilterRepositoryImpl
 import roman.bannikov.aston_rick_and_morty.data.repositories.settings_repositories.LocationSettingsRepositoryImpl
-import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
+import roman.bannikov.aston_rick_and_morty.data.storage.room.db.AppDatabase
 import roman.bannikov.aston_rick_and_morty.data.storage.sharedPref.LocationSettingsPref
 import roman.bannikov.aston_rick_and_morty.domain.usecases.locations.filter.GetListLocationsDimensionsUseCase
 import roman.bannikov.aston_rick_and_morty.domain.usecases.locations.filter.GetListLocationsTypesUseCase
@@ -16,7 +16,7 @@ class LocationFilterViewModelProvider(
 ) : ViewModelProvider.Factory {
 
     private val db by lazy {
-        RickAndMortyDatabase(context = context)
+        AppDatabase(context = context)
     }
 
     private val locationFilterRepositoryImpl by lazy {

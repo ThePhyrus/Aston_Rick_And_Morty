@@ -10,14 +10,14 @@ import roman.bannikov.aston_rick_and_morty.data.models.PagedResponse
 import roman.bannikov.aston_rick_and_morty.data.models.character.CharacterData
 import roman.bannikov.aston_rick_and_morty.data.models.pages.CharacterPages
 import roman.bannikov.aston_rick_and_morty.data.api.chatacter.CharacterApi
-import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
+import roman.bannikov.aston_rick_and_morty.data.storage.room.db.AppDatabase
 import java.io.IOException
 
 
 @OptIn(ExperimentalPagingApi::class)
 class CharacterRemoteMediator(
     private val characterApi: CharacterApi,
-    private val db: RickAndMortyDatabase,
+    private val db: AppDatabase,
     private val name: String?,
     private val status: String?,
     private val gender: String?,

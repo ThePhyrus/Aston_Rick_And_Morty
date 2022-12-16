@@ -22,28 +22,20 @@ import roman.bannikov.aston_rick_and_morty.data.storage.room.dao.page_keys_dao.L
 @Database(
     entities = [
         CharacterData::class,
-        LocationData::class,
         EpisodeData::class,
+        LocationData::class,
         CharacterPages::class,
         LocationPages::class,
         EpisodePages::class],
-    version = 4,
+    version = 1,
     exportSchema = false
 )
 @TypeConverters(Converter::class)
-abstract class RickAndMortyDatabase : RoomDatabase() {
-
-    abstract fun getCharacterDao(): CharacterDao
-    abstract fun getLocationDao(): LocationDao
-    abstract fun getEpisodeDao(): EpisodeDao
-    abstract fun getCharactersKeyDao(): CharactersKeysDao
-    abstract fun getLocationsKeyDao(): LocationsKeysDao
-    abstract fun getEpisodesKeyDao(): EpisodesKeysDao
-
+abstract class AppDatabase : RoomDatabase() {
 
     companion object {
         @Volatile
-        private var instance: RickAndMortyDatabase? = null
+        private var instance: AppDatabase? = null
         private val LOCK = Any()
 
         operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
@@ -53,8 +45,15 @@ abstract class RickAndMortyDatabase : RoomDatabase() {
         private fun createDatabase(context: Context) =
             Room.databaseBuilder(
                 context.applicationContext,
-                RickAndMortyDatabase::class.java,
-                "RickAndMortyDB.bd"
+                AppDatabase::class.java,
+                "AppDB.bd"
             ).build()
     }
+
+    abstract fun getCharacterDao(): CharacterDao
+    abstract fun getLocationDao(): LocationDao
+    abstract fun getEpisodeDao(): EpisodeDao
+    abstract fun getCharactersKeyDao(): CharactersKeysDao
+    abstract fun getLocationsKeyDao(): LocationsKeysDao
+    abstract fun getEpisodesKeyDao(): EpisodesKeysDao
 }

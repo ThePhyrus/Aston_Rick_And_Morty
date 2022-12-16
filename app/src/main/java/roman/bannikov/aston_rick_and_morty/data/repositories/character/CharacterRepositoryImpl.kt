@@ -13,7 +13,7 @@ import roman.bannikov.aston_rick_and_morty.data.models.character.CharacterData
 import roman.bannikov.aston_rick_and_morty.data.paging.CharacterRemoteMediator
 import roman.bannikov.aston_rick_and_morty.data.api.chatacter.CharacterDetailsApi
 import roman.bannikov.aston_rick_and_morty.data.api.chatacter.CharacterApi
-import roman.bannikov.aston_rick_and_morty.data.storage.room.db.RickAndMortyDatabase
+import roman.bannikov.aston_rick_and_morty.data.storage.room.db.AppDatabase
 import roman.bannikov.aston_rick_and_morty.domain.models.character.CharacterDomain
 import roman.bannikov.aston_rick_and_morty.domain.repositories.character.CharacterRepository
 import java.io.IOException
@@ -23,7 +23,7 @@ import java.io.IOException
 class CharacterRepositoryImpl(
     private val characterDetailsApi: CharacterDetailsApi,
     private val characterApi: CharacterApi,
-    private val db: RickAndMortyDatabase
+    private val db: AppDatabase
 ) : CharacterRepository {
 
     override fun getAllCharacters(
