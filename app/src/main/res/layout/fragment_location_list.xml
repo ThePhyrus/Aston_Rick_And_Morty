@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.fragments.location.LocationListFragment">
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/svLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:iconifiedByDefault="false"
+        app:layout_constraintEnd_toStartOf="@+id/btnFilterLocation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryHint="@string/search_location" />
+
+    <Button
+        android:id="@+id/btnFilterLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/filter"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="@id/svLocation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/svLocation" />
+
+    <TextView
+        android:id="@+id/tvResetLocationFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin"
+        android:text="@string/reset"
+        app:layout_constraintEnd_toEndOf="@id/btnFilterLocation"
+        app:layout_constraintStart_toStartOf="@id/btnFilterLocation"
+        app:layout_constraintTop_toBottomOf="@+id/btnFilterLocation" />
+
+    <TextView
+        android:id="@+id/tvAllLocationList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/all_location_list"
+        android:textSize="@dimen/text_size_20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvResetLocationFilter" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srLocationList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAllLocationList">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvLocations"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/margin_mini"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAllLocationList"
+            app:spanCount="2"
+            tools:listitem="@layout/item_location"
+            tools:orientation="vertical" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <ProgressBar
+        android:id="@+id/pbLocations"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/srLocationList"
+        app:layout_constraintEnd_toEndOf="@+id/srLocationList"
+        app:layout_constraintStart_toStartOf="@+id/srLocationList"
+        app:layout_constraintTop_toTopOf="@+id/srLocationList" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
