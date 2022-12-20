@@ -3,9 +3,9 @@ package roman.bannikov.aston_rick_and_morty.data.repositories.location
 import androidx.paging.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import roman.bannikov.aston_rick_and_morty.data.api.location.LocationApi
 import roman.bannikov.aston_rick_and_morty.data.mapper.LocationDataToLocationDomain
 import roman.bannikov.aston_rick_and_morty.data.paging.LocationRemoteMediator
-import roman.bannikov.aston_rick_and_morty.data.api.location.LocationApi
 import roman.bannikov.aston_rick_and_morty.data.storage.room.database.AppDatabase
 import roman.bannikov.aston_rick_and_morty.domain.models.location.LocationDomain
 import roman.bannikov.aston_rick_and_morty.domain.repositories.location.LocationsRepository

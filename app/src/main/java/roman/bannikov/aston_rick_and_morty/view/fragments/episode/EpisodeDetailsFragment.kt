@@ -10,12 +10,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.coroutineScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentEpisodeDetailsBinding
-import roman.bannikov.aston_rick_and_morty.view.models.episode.EpisodeView
 import roman.bannikov.aston_rick_and_morty.utils.navigator
 import roman.bannikov.aston_rick_and_morty.view.adapters.character.CharacterListForDetailsAdapter
+import roman.bannikov.aston_rick_and_morty.view.models.episode.EpisodeView
 import roman.bannikov.aston_rick_and_morty.view.viewmodels.episode.EpisodeDetailsViewModel
 import roman.bannikov.aston_rick_and_morty.view.viewmodels.episode.EpisodeDetailsViewModelProvider
 import kotlin.properties.Delegates
