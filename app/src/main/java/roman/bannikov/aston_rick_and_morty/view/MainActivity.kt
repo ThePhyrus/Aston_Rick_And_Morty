@@ -1,79 +1,264 @@
 package roman.bannikov.aston_rick_and_morty.view
 
-import android.app.Activity
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
+import androidx.paging.ExperimentalPagingApi
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import roman.bannikov.aston_rick_and_morty.R
-import roman.bannikov.aston_rick_and_morty.databinding.ActivityMainBinding
-import roman.bannikov.aston_rick_and_morty.models.CharacterModel
-import roman.bannikov.aston_rick_and_morty.utils.Constants.Companion.TAG_CHARACTER_DETAILS_FRAGMENT
-import roman.bannikov.aston_rick_and_morty.view.fragments.Navigator
-import roman.bannikov.aston_rick_and_morty.view.fragments.characters.CharacterDetailsFragment
-import roman.bannikov.aston_rick_and_morty.view.fragments.characters.CharactersMainFragment
-import roman.bannikov.aston_rick_and_morty.view.fragments.episodes.EpisodesMainFragment
-import roman.bannikov.aston_rick_and_morty.view.fragments.locations.LocationsMainFragment
+import roman.bannikov.aston_rick_and_morty.utils.Const.Companion.NAME_CHARACTER_DETAILS_FRAGMENT
+import roman.bannikov.aston_rick_and_morty.utils.Const.Companion.NAME_CHARACTER_LIST_FRAGMENT
+import roman.bannikov.aston_rick_and_morty.utils.Const.Companion.NAME_EPISODE_DETAILS_FRAGMENT
+import roman.bannikov.aston_rick_and_morty.utils.Const.Companion.NAME_EPISODE_LIST_FRAGMENT
+import roman.bannikov.aston_rick_and_morty.utils.Const.Companion.NAME_FILTERED_CHARACTER_LIST
+import roman.bannikov.aston_rick_and_morty.utils.Const.Companion.NAME_FILTERED_EPISODE_LIST
+import roman.bannikov.aston_rick_and_morty.utils.Const.Companion.NAME_FILTERED_LOCATION_LIST
+import roman.bannikov.aston_rick_and_morty.utils.Const.Companion.NAME_LOCATION_DETAILS_FRAGMENT
+import roman.bannikov.aston_rick_and_morty.utils.Const.Companion.NAME_LOCATION_LIST_FRAGMENT
+import roman.bannikov.aston_rick_and_morty.utils.Const.Companion.TAG_CHARACTER_DETAILS_FRAGMENT
+import roman.bannikov.aston_rick_and_morty.utils.Const.Companion.TAG_CHARACTER_FILTER_FRAGMENT
+import roman.bannikov.aston_rick_and_morty.utils.Const.Companion.TAG_CHARACTER_LIST_FRAGMENT
+import roman.bannikov.aston_rick_and_morty.utils.Const.Companion.TAG_EPISODE_DETAILS_FRAGMENT
+import roman.bannikov.aston_rick_and_morty.utils.Const.Companion.TAG_EPISODE_FILTER_FRAGMENT
+import roman.bannikov.aston_rick_and_morty.utils.Const.Companion.TAG_EPISODE_LIST_FRAGMENT
+import roman.bannikov.aston_rick_and_morty.utils.Const.Companion.TAG_FILTERED_CHARACTER_LIST
+import roman.bannikov.aston_rick_and_morty.utils.Const.Companion.TAG_FILTERED_EPISODE_LIST
+import roman.bannikov.aston_rick_and_morty.utils.Const.Companion.TAG_FILTERED_LOCATION_LIST
+import roman.bannikov.aston_rick_and_morty.utils.Const.Companion.TAG_LOCATION_DETAILS_FRAGMENT
+import roman.bannikov.aston_rick_and_morty.utils.Const.Companion.TAG_LOCATION_FILTER_FRAGMENT
+import roman.bannikov.aston_rick_and_morty.utils.Const.Companion.TAG_LOCATION_LIST_FRAGMENT
+import roman.bannikov.aston_rick_and_morty.utils.Navigator
+import roman.bannikov.aston_rick_and_morty.view.fragments.character.CharacterDetailsFragment
+import roman.bannikov.aston_rick_and_morty.view.fragments.character.CharacterFilterFragment
+import roman.bannikov.aston_rick_and_morty.view.fragments.character.CharacterListFragment
+import roman.bannikov.aston_rick_and_morty.view.fragments.episode.EpisodeDetailsFragment
+import roman.bannikov.aston_rick_and_morty.view.fragments.episode.EpisodeFilterFragment
+import roman.bannikov.aston_rick_and_morty.view.fragments.episode.EpisodeListFragment
+import roman.bannikov.aston_rick_and_morty.view.fragments.location.LocationDetailsFragment
+import roman.bannikov.aston_rick_and_morty.view.fragments.location.LocationFilterFragment
+import roman.bannikov.aston_rick_and_morty.view.fragments.location.LocationListFragment
 
-//todo change image_for_item_episodes (drawable)
-//fixme tvDataSapience?!? (CharacterDetailsFragment)
-//fixme исправить кривую разметку в fragment_character_details.xml (да и вообще подправить UI)
 
+@ExperimentalPagingApi
 class MainActivity : AppCompatActivity(), Navigator {
-
-    private lateinit var binding: ActivityMainBinding
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
+        setContentView(R.layout.activity_main)
+        initFirstScreen(savedInstanceState)
+        initBottomNavigationView()
+    }
 
+    //initialize
+    private fun initFirstScreen(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .add(R.id.containerForFragments, CharactersMainFragment())
-                .commit()
-        }
-
-        binding.bottomNav.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.bottomMenuCharacters -> {
-                    //launch fragment
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.containerForFragments, CharactersMainFragment()).commit()
-                }
-                R.id.bottomMenuEpisodes -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.containerForFragments, EpisodesMainFragment()).commit()
-                }
-                R.id.bottomMenuLocations -> {
-                    //launch fragment
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.containerForFragments, LocationsMainFragment()).commit()
-                }
+                .add(
+                    R.id.containerForFragment,
+                    CharacterListFragment(),
+                    TAG_CHARACTER_LIST_FRAGMENT
+                ).commit()
+        } else {
+            if (supportFragmentManager.backStackEntryCount == 0) {
+                supportFragmentManager.popBackStack(
+                    NAME_CHARACTER_LIST_FRAGMENT,
+                    0
+                )
+            } else {
+                val backEntry: FragmentManager.BackStackEntry =
+                    supportFragmentManager.getBackStackEntryAt(
+                        supportFragmentManager.backStackEntryCount - 1
+                    )
+                val name = backEntry.name
+                supportFragmentManager.popBackStack(name, 0)
             }
-
-            true
         }
     }
 
-    //From Navigator()
-    override fun showCharacterDetails(characterModel: CharacterModel) {
+    private fun initBottomNavigationView() {
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.characterListFragment -> {
+                    launchCharacterListFragment()
+                    true
+                }
+                R.id.locationsFragment -> {
+                    launchLocationListFragment()
+                    true
+                }
+                R.id.episodesFragment -> {
+                    launchEpisodeListFragment()
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    //character
+    override fun launchCharacterListFragment() {
         supportFragmentManager.beginTransaction()
-            .addToBackStack(TAG_CHARACTER_DETAILS_FRAGMENT)
             .replace(
-                R.id.containerForFragments,
-                CharacterDetailsFragment.newInstance(characterId = characterModel.characterId)
-            )
+                R.id.containerForFragment,
+                CharacterListFragment(),
+                TAG_CHARACTER_LIST_FRAGMENT
+            ).addToBackStack(NAME_CHARACTER_LIST_FRAGMENT)
+            .commit()
+        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+    }
+
+    override fun launchCharacterDetailsFragment(characterId: Int) {
+        supportFragmentManager.beginTransaction()
+            .replace(
+                R.id.containerForFragment,
+                CharacterDetailsFragment.newInstance(
+                    characterId = characterId
+                ),
+                TAG_CHARACTER_DETAILS_FRAGMENT
+            ).addToBackStack(NAME_CHARACTER_DETAILS_FRAGMENT)
             .commit()
     }
 
-    //From Navigator()
-    override fun goBack() {
-        onBackPressed()
-//        onBackPressedDispatcher
+    override fun launchCharacterFilterFragment() {
+        CharacterFilterFragment().show(supportFragmentManager, TAG_CHARACTER_FILTER_FRAGMENT)
     }
 
-    //From Navigator()
-    override fun showToast(messageRes: Int) {
-        Toast.makeText(this, messageRes, Toast.LENGTH_LONG).show()
+    override fun launchFilteredCharacterListFragment(
+        status: String?, gender: String?, species: String?, type: String?
+    ) {
+        supportFragmentManager.beginTransaction()
+            .replace(
+                R.id.containerForFragment,
+                CharacterListFragment.newInstance(
+                    gender = gender,
+                    status = status,
+                    species = species,
+                    type = type
+                ),
+                TAG_FILTERED_CHARACTER_LIST
+            ).addToBackStack(NAME_FILTERED_CHARACTER_LIST)
+            .commit()
     }
+
+    //location
+    override fun launchLocationListFragment() {
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            val backEntry: FragmentManager.BackStackEntry =
+                supportFragmentManager.getBackStackEntryAt(
+                    supportFragmentManager.backStackEntryCount - 1
+                )
+            val name = backEntry.name
+            if (name == NAME_LOCATION_LIST_FRAGMENT) return
+        }
+        supportFragmentManager.beginTransaction()
+            .replace(
+                R.id.containerForFragment,
+                LocationListFragment(),
+                TAG_LOCATION_LIST_FRAGMENT
+            ).addToBackStack(NAME_LOCATION_LIST_FRAGMENT)
+            .commit()
+    }
+
+    override fun launchLocationDetailsFragment(locationId: Int) {
+        supportFragmentManager.beginTransaction()
+            .replace(
+                R.id.containerForFragment,
+                LocationDetailsFragment.newInstance(
+                    locationId = locationId
+                ),
+                TAG_LOCATION_DETAILS_FRAGMENT
+            ).addToBackStack(NAME_LOCATION_DETAILS_FRAGMENT)
+            .commit()
+    }
+
+    override fun launchLocationFilterFragment() {
+        LocationFilterFragment().show(supportFragmentManager, TAG_LOCATION_FILTER_FRAGMENT)
+    }
+
+    override fun launchFilteredLocationListFragment(type: String?, dimension: String?) {
+        supportFragmentManager.beginTransaction()
+            .replace(
+                R.id.containerForFragment,
+                LocationListFragment.newInstance(
+                    types = type,
+                    dimensions = dimension,
+                ),
+                TAG_FILTERED_LOCATION_LIST
+            ).addToBackStack(NAME_FILTERED_LOCATION_LIST)
+            .commit()
+    }
+
+    //episode
+    override fun launchEpisodeListFragment() {
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            val backEntry: FragmentManager.BackStackEntry =
+                supportFragmentManager.getBackStackEntryAt(
+                    supportFragmentManager.backStackEntryCount - 1
+                )
+            val tag = backEntry.name
+            if (tag == NAME_EPISODE_LIST_FRAGMENT) return
+        }
+        supportFragmentManager.beginTransaction()
+            .replace(
+                R.id.containerForFragment,
+                EpisodeListFragment(),
+                TAG_EPISODE_LIST_FRAGMENT
+            ).addToBackStack(NAME_EPISODE_LIST_FRAGMENT)
+            .commit()
+    }
+
+    override fun launchEpisodeDetailsFragment(episodeId: Int) {
+        supportFragmentManager.beginTransaction()
+            .replace(
+                R.id.containerForFragment,
+                EpisodeDetailsFragment.newInstance(
+                    episodeId = episodeId
+                ),
+                TAG_EPISODE_DETAILS_FRAGMENT
+            ).addToBackStack(NAME_EPISODE_DETAILS_FRAGMENT)
+            .commit()
+    }
+
+    override fun launchEpisodeFilterFragment() {
+        EpisodeFilterFragment().show(supportFragmentManager, TAG_EPISODE_FILTER_FRAGMENT)
+    }
+
+    override fun launchFilteredEpisodeListFragment(episode: String?) {
+        supportFragmentManager.beginTransaction()
+            .replace(
+                R.id.containerForFragment,
+                EpisodeListFragment.newInstance(
+                    episode = episode
+                ),
+                TAG_FILTERED_EPISODE_LIST
+            ).addToBackStack(NAME_FILTERED_EPISODE_LIST)
+            .commit()
+    }
+
+
+    //go back
+    override fun onBackPressed() {
+        val fragment1: CharacterListFragment? =
+            supportFragmentManager.findFragmentByTag(TAG_CHARACTER_LIST_FRAGMENT)
+                    as CharacterListFragment?
+        val fragment2: CharacterListFragment? =
+            supportFragmentManager.findFragmentByTag(TAG_FILTERED_CHARACTER_LIST)
+                    as CharacterListFragment?
+        val fragment4: CharacterListFragment? =
+            supportFragmentManager.findFragmentByTag(NAME_CHARACTER_LIST_FRAGMENT)
+                    as CharacterListFragment?
+        if (fragment1 != null && fragment1.isVisible ||
+            fragment2 != null && fragment2.isVisible ||
+            fragment4 != null && fragment4.isVisible
+        ) {
+            finish()
+        }
+        super.onBackPressed()
+    }
+
+    override fun goBack() {
+        onBackPressed()
+    }
+
 }
