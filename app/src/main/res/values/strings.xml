@@ -60,4 +60,6 @@
     <string name="ok">Ok</string>
     <string name="alert_dialog_title_character_species">Character species:</string>
     <string name="alert_dialog_title_episodes">Episodes:</string>
+    <string name="alert_dialog_title_location_types">Location types:</string>
+    <string name="alert_dialog_title_dimension_types">Dimension types:</string>
 </resources>
