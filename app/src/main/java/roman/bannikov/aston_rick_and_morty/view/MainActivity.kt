@@ -141,54 +141,6 @@ class MainActivity : AppCompatActivity(), Navigator {
             .commit()
     }
 
-    //location
-    override fun launchLocationListFragment() {
-        if (supportFragmentManager.backStackEntryCount > 0) {
-            val backEntry: FragmentManager.BackStackEntry =
-                supportFragmentManager.getBackStackEntryAt(
-                    supportFragmentManager.backStackEntryCount - 1
-                )
-            val name = backEntry.name
-            if (name == NAME_LOCATION_LIST_FRAGMENT) return
-        }
-        supportFragmentManager.beginTransaction()
-            .replace(
-                R.id.containerForFragment,
-                LocationListFragment(),
-                TAG_LOCATION_LIST_FRAGMENT
-            ).addToBackStack(NAME_LOCATION_LIST_FRAGMENT)
-            .commit()
-    }
-
-    override fun launchLocationDetailsFragment(locationId: Int) {
-        supportFragmentManager.beginTransaction()
-            .replace(
-                R.id.containerForFragment,
-                LocationDetailsFragment.newInstance(
-                    locationId = locationId
-                ),
-                TAG_LOCATION_DETAILS_FRAGMENT
-            ).addToBackStack(NAME_LOCATION_DETAILS_FRAGMENT)
-            .commit()
-    }
-
-    override fun launchLocationFilterFragment() {
-        LocationFilterFragment().show(supportFragmentManager, TAG_LOCATION_FILTER_FRAGMENT)
-    }
-
-    override fun launchFilteredLocationListFragment(type: String?, dimension: String?) {
-        supportFragmentManager.beginTransaction()
-            .replace(
-                R.id.containerForFragment,
-                LocationListFragment.newInstance(
-                    types = type,
-                    dimensions = dimension,
-                ),
-                TAG_FILTERED_LOCATION_LIST
-            ).addToBackStack(NAME_FILTERED_LOCATION_LIST)
-            .commit()
-    }
-
     //episode
     override fun launchEpisodeListFragment() {
         if (supportFragmentManager.backStackEntryCount > 0) {
@@ -236,6 +188,53 @@ class MainActivity : AppCompatActivity(), Navigator {
             .commit()
     }
 
+    //location
+    override fun launchLocationListFragment() {
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            val backEntry: FragmentManager.BackStackEntry =
+                supportFragmentManager.getBackStackEntryAt(
+                    supportFragmentManager.backStackEntryCount - 1
+                )
+            val name = backEntry.name
+            if (name == NAME_LOCATION_LIST_FRAGMENT) return
+        }
+        supportFragmentManager.beginTransaction()
+            .replace(
+                R.id.containerForFragment,
+                LocationListFragment(),
+                TAG_LOCATION_LIST_FRAGMENT
+            ).addToBackStack(NAME_LOCATION_LIST_FRAGMENT)
+            .commit()
+    }
+
+    override fun launchLocationDetailsFragment(locationId: Int) {
+        supportFragmentManager.beginTransaction()
+            .replace(
+                R.id.containerForFragment,
+                LocationDetailsFragment.newInstance(
+                    locationId = locationId
+                ),
+                TAG_LOCATION_DETAILS_FRAGMENT
+            ).addToBackStack(NAME_LOCATION_DETAILS_FRAGMENT)
+            .commit()
+    }
+
+    override fun launchLocationFilterFragment() {
+        LocationFilterFragment().show(supportFragmentManager, TAG_LOCATION_FILTER_FRAGMENT)
+    }
+
+    override fun launchFilteredLocationListFragment(type: String?, dimension: String?) {
+        supportFragmentManager.beginTransaction()
+            .replace(
+                R.id.containerForFragment,
+                LocationListFragment.newInstance(
+                    types = type,
+                    dimensions = dimension,
+                ),
+                TAG_FILTERED_LOCATION_LIST
+            ).addToBackStack(NAME_FILTERED_LOCATION_LIST)
+            .commit()
+    }
 
     //go back
     override fun onBackPressed() {

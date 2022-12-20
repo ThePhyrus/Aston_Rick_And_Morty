@@ -14,7 +14,11 @@
         android:theme="@style/Theme.Aston_Rick_And_Morty">
         <activity
             android:name=".view.MainActivity"
+            android:exported="false" />
+        <activity
+            android:noHistory="true"
             android:theme="@style/Theme.Aston_Rick_And_Morty"
+            android:name=".view.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
