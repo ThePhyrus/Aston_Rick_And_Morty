@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.data.storage.room.converter
+package roman.bannikov.aston_rick_and_morty.data.storage.room
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson

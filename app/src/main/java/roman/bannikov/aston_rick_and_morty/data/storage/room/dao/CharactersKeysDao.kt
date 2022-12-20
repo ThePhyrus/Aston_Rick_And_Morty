@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.data.storage.room.dao.page_keys_dao
+package roman.bannikov.aston_rick_and_morty.data.storage.room.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -12,9 +12,9 @@ interface CharactersKeysDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllCharactersKeys(remoteKeysCharacters: List<CharacterPages>)
 
-    @Query("SELECT * FROM CHARACTERS_PAGE_KEYS WHERE id =:id")
+    @Query("SELECT * FROM character_pages WHERE id =:id")
     suspend fun getCharactersRemoteKeys(id: Int): CharacterPages
 
-    @Query("DELETE FROM CHARACTERS_PAGE_KEYS")
+    @Query("DELETE FROM character_pages")
     suspend fun deleteAllCharactersRemoteKeys()
 }

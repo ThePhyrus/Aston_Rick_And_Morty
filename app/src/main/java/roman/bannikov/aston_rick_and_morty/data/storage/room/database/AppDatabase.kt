@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.data.storage.room.db
+package roman.bannikov.aston_rick_and_morty.data.storage.room.database
 
 import android.content.Context
 import androidx.room.Database
@@ -11,13 +11,13 @@ import roman.bannikov.aston_rick_and_morty.data.models.location.LocationData
 import roman.bannikov.aston_rick_and_morty.data.models.pages.CharacterPages
 import roman.bannikov.aston_rick_and_morty.data.models.pages.EpisodePages
 import roman.bannikov.aston_rick_and_morty.data.models.pages.LocationPages
-import roman.bannikov.aston_rick_and_morty.data.storage.room.converter.Converter
+import roman.bannikov.aston_rick_and_morty.data.storage.room.Converter
 import roman.bannikov.aston_rick_and_morty.data.storage.room.dao.CharacterDao
 import roman.bannikov.aston_rick_and_morty.data.storage.room.dao.EpisodeDao
 import roman.bannikov.aston_rick_and_morty.data.storage.room.dao.LocationDao
-import roman.bannikov.aston_rick_and_morty.data.storage.room.dao.page_keys_dao.CharactersKeysDao
-import roman.bannikov.aston_rick_and_morty.data.storage.room.dao.page_keys_dao.EpisodesKeysDao
-import roman.bannikov.aston_rick_and_morty.data.storage.room.dao.page_keys_dao.LocationsKeysDao
+import roman.bannikov.aston_rick_and_morty.data.storage.room.dao.CharactersKeysDao
+import roman.bannikov.aston_rick_and_morty.data.storage.room.dao.EpisodesKeysDao
+import roman.bannikov.aston_rick_and_morty.data.storage.room.dao.LocationsKeysDao
 
 @Database(
     entities = [

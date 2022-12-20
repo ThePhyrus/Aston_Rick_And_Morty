@@ -12,17 +12,37 @@ interface CharacterDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllCharacters(characters: List<CharacterData?>?)
 
-    @Query("SELECT * FROM CHARACTERS_TABLE")
+    @Query("SELECT * FROM character_table")
     fun getAllCharacters(): Flow<List <CharacterData>>
 
-    @Query("DELETE FROM CHARACTERS_TABLE")
+    @Query("DELETE FROM character_table")
     suspend fun deleteAllCharacters()
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCharacter(character: CharacterData)
 
     @Query(
-        """SELECT * FROM CHARACTERS_TABLE
+        """SELECT * FROM character_table
+        WHERE id IN (:ids)
+        ORDER BY id ASC"""
+    )
+    suspend fun getCharactersByIds(ids: List<Int>): List<CharacterData>
+
+    @Query("SELECT * FROM character_table WHERE id = :id")
+    suspend fun getCharacterById(id: Int): CharacterData
+
+    @Query(
+        """SELECT type FROM character_table ORDER BY type ASC"""
+    )
+    fun getTypes(): Flow<List<String>>
+
+    @Query(
+        """SELECT species FROM character_table ORDER BY species ASC"""
+    )
+    fun getSpecies(): Flow<List<String>>
+
+    @Query(
+        """SELECT * FROM character_table
         WHERE (:name IS NULL OR name LIKE '%' || :name || '%')
         AND (:status IS NULL OR status LIKE :status)
         AND (:gender IS NULL OR gender LIKE :gender)
@@ -36,24 +56,4 @@ interface CharacterDao {
         type: String?,
         species: String?,
     ): PagingSource<Int, CharacterData>
-
-    @Query(
-        """SELECT * FROM CHARACTERS_TABLE
-        WHERE id IN (:ids)
-        ORDER BY id ASC"""
-    )
-    suspend fun getCharactersByIds(ids: List<Int>): List<CharacterData>
-
-    @Query("SELECT * FROM CHARACTERS_TABLE WHERE id = :id")
-    suspend fun getCharacterById(id: Int): CharacterData
-
-    @Query(
-        """SELECT type FROM CHARACTERS_TABLE ORDER BY type ASC"""
-    )
-    fun getTypes(): Flow<List<String>>
-
-    @Query(
-        """SELECT species FROM CHARACTERS_TABLE ORDER BY species ASC"""
-    )
-    fun getSpecies(): Flow<List<String>>
 }

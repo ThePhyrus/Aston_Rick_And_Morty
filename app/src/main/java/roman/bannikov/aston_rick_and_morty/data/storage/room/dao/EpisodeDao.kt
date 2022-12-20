@@ -12,14 +12,29 @@ interface EpisodeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllEpisodes(episodeData: List<EpisodeData?>?)
 
-    @Query("DELETE FROM EPISODES_TABLE")
+    @Query("DELETE FROM episode_table")
     suspend fun deleteAllEpisodes()
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertEpisode(episodeData: EpisodeData)
 
     @Query(
-        """SELECT * FROM EPISODES_TABLE
+        """SELECT * FROM episode_table
+        WHERE id IN (:ids)
+        ORDER BY id ASC"""
+    )
+    suspend fun getEpisodesByIds(ids: List<Int>): List<EpisodeData>
+
+    @Query("SELECT * FROM episode_table WHERE id = :id")
+    suspend fun getEpisodeById(id: Int): EpisodeData
+
+    @Query(
+        """SELECT episode FROM episode_table ORDER BY episode ASC"""
+    )
+    fun getEpisodes(): Flow<List<String>>
+
+    @Query(
+        """SELECT * FROM episode_table
         WHERE (:name IS NULL OR name LIKE '%' || :name || '%')
         AND (:episode IS NULL OR episode LIKE :episode)"""
     )
@@ -27,19 +42,4 @@ interface EpisodeDao {
         name: String?,
         episode: String?,
     ): PagingSource<Int, EpisodeData>
-
-    @Query(
-        """SELECT * FROM EPISODES_TABLE
-        WHERE id IN (:ids)
-        ORDER BY id ASC"""
-    )
-    suspend fun getEpisodesByIds(ids: List<Int>): List<EpisodeData>
-
-    @Query("SELECT * FROM EPISODES_TABLE WHERE id = :id")
-    suspend fun getEpisodeById(id: Int): EpisodeData
-
-    @Query(
-        """SELECT episode FROM EPISODES_TABLE ORDER BY episode ASC"""
-    )
-    fun getEpisodes(): Flow<List<String>>
 }

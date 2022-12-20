@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.data.storage.sharedPref
+package roman.bannikov.aston_rick_and_morty.data.storage.preferences
 
 import android.content.Context
 
@@ -6,7 +6,7 @@ private const val SHARED_PREFS_NAME = "shared_prefs_name"
 private const val LOCATION_TYPE = "location_types"
 private const val LOCATION_DIMENSION = "location_dimensions"
 
-class LocationSettingsPref(context: Context) : SharedPrefStorage {
+class LocationSettingsPref(context: Context) : PreferencesStorage {
 
     private val sharedPreferences =
         context.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE)

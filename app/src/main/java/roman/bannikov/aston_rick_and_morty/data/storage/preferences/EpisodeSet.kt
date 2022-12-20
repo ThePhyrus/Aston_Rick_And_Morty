@@ -1,4 +1,4 @@
-package roman.bannikov.aston_rick_and_morty.data.storage.sharedPref
+package roman.bannikov.aston_rick_and_morty.data.storage.preferences
 
 import android.content.Context
 
@@ -7,7 +7,7 @@ private const val KEY_EPISODES = "episodes"
 private const val EPISODES = "EPISODES"
 private const val DEFAULT_VALUE = "S01E01"
 
-class EpisodeSettingsPref(context: Context) : SharedPrefStorage {
+class EpisodeSettingsPref(context: Context) : PreferencesStorage {
 
     private val sharedPreferences =
         context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)

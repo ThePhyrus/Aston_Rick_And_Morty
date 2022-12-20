@@ -10,7 +10,7 @@ import roman.bannikov.aston_rick_and_morty.data.models.PagedResponse
 import roman.bannikov.aston_rick_and_morty.data.models.episode.EpisodeData
 import roman.bannikov.aston_rick_and_morty.data.models.pages.EpisodePages
 import roman.bannikov.aston_rick_and_morty.data.api.episode.EpisodeApi
-import roman.bannikov.aston_rick_and_morty.data.storage.room.db.AppDatabase
+import roman.bannikov.aston_rick_and_morty.data.storage.room.database.AppDatabase
 import java.io.IOException
 
 

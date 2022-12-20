@@ -1,6 +1,6 @@
-package roman.bannikov.aston_rick_and_morty.data.storage.sharedPref
+package roman.bannikov.aston_rick_and_morty.data.storage.preferences
 
-interface SharedPrefStorage {
+interface PreferencesStorage {
     suspend fun save(settingsList: Map<String,List<String>>)
 
     suspend fun get(): Map<String,List<String>>

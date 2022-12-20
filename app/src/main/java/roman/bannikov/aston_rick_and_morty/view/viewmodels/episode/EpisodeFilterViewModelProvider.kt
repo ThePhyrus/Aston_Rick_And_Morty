@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import roman.bannikov.aston_rick_and_morty.data.repositories.episode.EpisodeFilterRepositoryImpl
 import roman.bannikov.aston_rick_and_morty.data.repositories.settings_repositories.EpisodeSettingsRepositoryImpl
-import roman.bannikov.aston_rick_and_morty.data.storage.room.db.AppDatabase
-import roman.bannikov.aston_rick_and_morty.data.storage.sharedPref.EpisodeSettingsPref
+import roman.bannikov.aston_rick_and_morty.data.storage.room.database.AppDatabase
+import roman.bannikov.aston_rick_and_morty.data.storage.preferences.EpisodeSettingsPref
 import roman.bannikov.aston_rick_and_morty.domain.usecases.episode.filter.GetListEpisodesUseCase
 import roman.bannikov.aston_rick_and_morty.domain.usecases.settings.EpisodesSettingsUseCases
 

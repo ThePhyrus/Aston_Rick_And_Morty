@@ -13,7 +13,7 @@ import roman.bannikov.aston_rick_and_morty.data.models.episode.EpisodeData
 import roman.bannikov.aston_rick_and_morty.data.paging.EpisodeRemoteMediator
 import roman.bannikov.aston_rick_and_morty.data.api.episode.EpisodeDetailsApi
 import roman.bannikov.aston_rick_and_morty.data.api.episode.EpisodeApi
-import roman.bannikov.aston_rick_and_morty.data.storage.room.db.AppDatabase
+import roman.bannikov.aston_rick_and_morty.data.storage.room.database.AppDatabase
 import roman.bannikov.aston_rick_and_morty.domain.models.episode.EpisodeDomain
 import roman.bannikov.aston_rick_and_morty.domain.repositories.episode.EpisodesRepository
 import java.io.IOException

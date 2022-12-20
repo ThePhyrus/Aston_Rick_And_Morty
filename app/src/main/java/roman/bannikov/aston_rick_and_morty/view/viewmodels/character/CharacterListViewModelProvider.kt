@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.paging.ExperimentalPagingApi
 import roman.bannikov.aston_rick_and_morty.data.api.Retrofit
 import roman.bannikov.aston_rick_and_morty.data.repositories.character.CharacterRepositoryImpl
-import roman.bannikov.aston_rick_and_morty.data.storage.room.db.AppDatabase
+import roman.bannikov.aston_rick_and_morty.data.storage.room.database.AppDatabase
 import roman.bannikov.aston_rick_and_morty.domain.usecases.character.list.GetAllCharactersUseCase
 
 @ExperimentalPagingApi
