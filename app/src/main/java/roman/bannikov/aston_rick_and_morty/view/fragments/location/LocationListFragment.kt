@@ -12,7 +12,6 @@ import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest
@@ -28,7 +27,11 @@ import roman.bannikov.aston_rick_and_morty.view.viewmodels.location.LocationList
 @FlowPreview
 class LocationListFragment : Fragment() {
 
-    private lateinit var binding: FragmentLocationListBinding
+    private var _binding:FragmentLocationListBinding? = null
+    private val binding: FragmentLocationListBinding get() = _binding!!
+
+    private lateinit var viewModel: LocationListViewModel
+
     private var locationAdapter: LocationAdapter = LocationAdapter()
 
     private var params: MutableMap<String, String?> = mutableMapOf(
@@ -37,7 +40,101 @@ class LocationListFragment : Fragment() {
         "type" to null
     )
 
-    private lateinit var vm: LocationListViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            params["type"] = it.getString(KEY_TYPE)
+            params["dimension"] = it.getString(KEY_DIMENSION)
+        }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentLocationListBinding.inflate(layoutInflater, container, false)
+        binding.btnFilterLocation.setOnClickListener {
+            navigator().launchLocationFilterFragment()
+        }
+
+        binding.svLocation.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                performSearchEvent(query = newText)
+                return false
+            }
+
+        })
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initViewModel()
+        initRecyclerView()
+        collectUiState()
+        setUpSwipeToRefresh()
+        observeViewModel()
+    }
+
+    private fun initViewModel() {
+        viewModel = ViewModelProvider(
+            this,
+            LocationListViewModelProvider(requireContext())
+        )[LocationListViewModel::class.java]
+        if (
+            params["name"] != null ||
+            params["type"] != null ||
+            params["dimension"] != null
+        ) viewModel.filteredTrigger.value = params
+    }
+
+    private fun observeViewModel() {
+
+        lifecycle.coroutineScope.launch {
+            viewModel.filteredTrigger.observe(viewLifecycleOwner, Observer {
+                viewModel.getLocationsByParams(
+                    name = viewModel.filteredTrigger.value?.getValue("name"),
+                    type = viewModel.filteredTrigger.value?.getValue("type"),
+                    dimension = viewModel.filteredTrigger.value?.getValue("dimension"),
+                )
+            })
+        }
+    }
+
+    private fun initRecyclerView() {
+        with(binding.rvLocations) {
+            layoutManager = GridLayoutManager(requireContext(), 2)
+            adapter = locationAdapter
+        }
+        locationAdapter.onLocationItem = { navigator().launchLocationDetailsFragment(it.id) }
+    }
+
+    private fun performSearchEvent(query: String) {
+//        vm.getEpisodes(name = query, episode = episode)
+    }
+
+    private fun setUpSwipeToRefresh() {
+        binding.srLocationList.apply {
+            setOnRefreshListener {
+                viewModel.getLocationsByParams(null, null, null)
+                binding.srLocationList.isRefreshing = false
+                binding.rvLocations.scrollToPosition(0)
+            }
+        }
+    }
+
+    private fun collectUiState() {
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.locationsFlow.collectLatest { locationAdapter?.submitData(it) }
+        }
+    }
+
 
     companion object {
         private const val KEY_TYPE: String = "KEY_TYPE"
@@ -56,104 +153,8 @@ class LocationListFragment : Fragment() {
             }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        init()
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentLocationListBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        vm = ViewModelProvider(
-            this,
-            LocationListViewModelProvider(requireContext())
-        )[LocationListViewModel::class.java]
-
-        initRecyclerView()
-        collectUiState()
-
-        if (
-            params["name"] != null ||
-            params["type"] != null ||
-            params["dimension"] != null
-        ) vm.filteredTrigger.value = params
-
-        setUpSwipeToRefresh()
-
-        binding.btnFilterLocation.setOnClickListener {
-            navigator().launchLocationFilterFragment()
-        }
-
-        binding.svLocation.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                performSearchEvent(query = newText)
-                return false
-            }
-
-        })
-        observeVM()
-    }
-
-    private fun observeVM() {
-
-        lifecycle.coroutineScope.launch {
-            vm.filteredTrigger.observe(viewLifecycleOwner, Observer {
-                vm.getLocationsByParams(
-                    name = vm.filteredTrigger.value?.getValue("name"),
-                    type = vm.filteredTrigger.value?.getValue("type"),
-                    dimension = vm.filteredTrigger.value?.getValue("dimension"),
-                )
-            })
-        }
-    }
-
-    private fun initRecyclerView() {
-        with(binding.rvLocations) {
-            layoutManager = LinearLayoutManager(requireContext())
-            layoutManager = GridLayoutManager(requireContext(), 2)
-            adapter = locationAdapter
-        }
-
-        locationAdapter.onLocationItem = { navigator().launchLocationDetailsFragment(it.id) }
-    }
-
-    private fun performSearchEvent(query: String) {
-//        vm.getEpisodes(name = query, episode = episode)
-    }
-
-    private fun setUpSwipeToRefresh() {
-        binding.srLocationList.apply {
-            setOnRefreshListener {
-                vm.getLocationsByParams(null, null, null)
-                binding.srLocationList.isRefreshing = false
-                binding.rvLocations.scrollToPosition(0)
-            }
-        }
-    }
-
-    private fun collectUiState() {
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            vm.locationsFlow.collectLatest { locationAdapter?.submitData(it) }
-        }
-    }
-
-    private fun init() {
-        arguments?.let {
-            params["type"] = it.getString(KEY_TYPE)
-            params["dimension"] = it.getString(KEY_DIMENSION)
-        }
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
