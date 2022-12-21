@@ -2,12 +2,12 @@ package roman.bannikov.aston_rick_and_morty.data.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import roman.bannikov.aston_rick_and_morty.data.api.chatacter.CharacterDetailsApi
 import roman.bannikov.aston_rick_and_morty.data.api.chatacter.CharacterApi
-import roman.bannikov.aston_rick_and_morty.data.api.episode.EpisodeDetailsApi
+import roman.bannikov.aston_rick_and_morty.data.api.chatacter.CharacterDetailsApi
 import roman.bannikov.aston_rick_and_morty.data.api.episode.EpisodeApi
-import roman.bannikov.aston_rick_and_morty.data.api.location.LocationDetailsApi
+import roman.bannikov.aston_rick_and_morty.data.api.episode.EpisodeDetailsApi
 import roman.bannikov.aston_rick_and_morty.data.api.location.LocationApi
+import roman.bannikov.aston_rick_and_morty.data.api.location.LocationDetailsApi
 
 object Retrofit {
     private const val BASE_URL = "https://rickandmortyapi.com/api/"

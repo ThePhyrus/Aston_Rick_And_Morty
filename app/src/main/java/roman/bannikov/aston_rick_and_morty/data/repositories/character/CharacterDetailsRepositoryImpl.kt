@@ -5,9 +5,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import retrofit2.Response
+import roman.bannikov.aston_rick_and_morty.data.api.chatacter.CharacterDetailsApi
 import roman.bannikov.aston_rick_and_morty.data.mapper.CharacterDataToCharacterDomain
 import roman.bannikov.aston_rick_and_morty.data.models.character.CharacterData
-import roman.bannikov.aston_rick_and_morty.data.api.chatacter.CharacterDetailsApi
 import roman.bannikov.aston_rick_and_morty.data.storage.room.database.AppDatabase
 import roman.bannikov.aston_rick_and_morty.domain.models.character.CharacterDomain
 import roman.bannikov.aston_rick_and_morty.domain.repositories.character.CharacterDetailsRepository

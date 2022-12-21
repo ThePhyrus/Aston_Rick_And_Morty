@@ -6,10 +6,10 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import retrofit2.HttpException
+import roman.bannikov.aston_rick_and_morty.data.api.chatacter.CharacterApi
 import roman.bannikov.aston_rick_and_morty.data.models.PagedResponse
 import roman.bannikov.aston_rick_and_morty.data.models.character.CharacterData
 import roman.bannikov.aston_rick_and_morty.data.models.pages.CharacterPages
-import roman.bannikov.aston_rick_and_morty.data.api.chatacter.CharacterApi
 import roman.bannikov.aston_rick_and_morty.data.storage.room.database.AppDatabase
 import java.io.IOException
 

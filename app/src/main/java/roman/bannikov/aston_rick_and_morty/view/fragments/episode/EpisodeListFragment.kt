@@ -1,13 +1,16 @@
 package roman.bannikov.aston_rick_and_morty.view.fragments.episode
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.*
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.lifecycleScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest
@@ -17,6 +20,8 @@ import roman.bannikov.aston_rick_and_morty.utils.navigator
 import roman.bannikov.aston_rick_and_morty.view.adapters.episode.EpisodeAdapter
 import roman.bannikov.aston_rick_and_morty.view.viewmodels.episode.EpisodeListViewModel
 import roman.bannikov.aston_rick_and_morty.view.viewmodels.episode.EpisodeListViewModelProvider
+import kotlin.collections.getValue
+import kotlin.collections.set
 
 
 @ExperimentalPagingApi

@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="roman.bannikov.aston_rick_and_morty">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -14,8 +14,14 @@
         android:theme="@style/Theme.Aston_Rick_And_Morty">
         <activity
             android:name=".view.MainActivity"
-            android:theme="@style/Theme.Aston_Rick_And_Morty"
-            android:exported="true">
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SplashActivity"
+            android:exported="true"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Aston_Rick_And_Morty">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
