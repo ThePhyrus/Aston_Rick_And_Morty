@@ -12,7 +12,6 @@ import roman.bannikov.aston_rick_and_morty.domain.usecases.settings.EpisodesSett
 
 class EpisodeFilterViewModel(
     private val getListEpisodesUseCase: GetListEpisodesUseCase,
-    private val episodesSettingsUseCase: EpisodesSettingsUseCases
 ) : ViewModel() {
     private val _episodeList = MutableStateFlow<List<String>>(listOf())
     val episodeList: StateFlow<List<String>> = _episodeList
@@ -27,18 +26,4 @@ class EpisodeFilterViewModel(
         }
     }
 
-    private val _episodes = MutableLiveData<Map<String, List<String>>>(null)
-    val episodes: LiveData<Map<String, List<String>>> = _episodes
-
-    fun saveListEpisodes(settings: Map<String, List<String>>) {
-        viewModelScope.launch {
-            episodesSettingsUseCase.saveEpisodes(settings)
-        }
-    }
-
-    fun getListEpisodes() {
-        viewModelScope.launch {
-            _episodes.value = episodesSettingsUseCase.getEpisodes()
-        }
-    }
 }

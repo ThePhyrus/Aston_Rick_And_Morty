@@ -13,48 +13,9 @@ import roman.bannikov.aston_rick_and_morty.domain.usecases.locations.details.Get
 
 @ExperimentalPagingApi
 class LocationDetailsViewModelProvider(
-    context: Context
+    private val getLocationByIdUseCase: GetLocationByIdUseCase,
+    private val getAllCharactersByIdsUseCase: GetAllCharactersByIdsUseCase
 ) : ViewModelProvider.Factory {
-
-    private val retrofit by lazy {
-        Retrofit
-    }
-
-    private val characterDetailsApi by lazy {
-        retrofit.characterDetailsApi
-    }
-
-    private val locationDetailsApi by lazy {
-        retrofit.locationDetailsApi
-    }
-
-    private val charactersApi by lazy {
-        retrofit.characterApi
-    }
-
-    private val db by lazy {
-        AppDatabase(context = context)
-    }
-
-    private val locationDetailsRepository by lazy {
-        LocationDetailsRepositoryImpl(locationDetailsApi = locationDetailsApi, db = db)
-    }
-
-    private val charactersRepository by lazy {
-        CharacterRepositoryImpl(
-            characterApi = charactersApi,
-            characterDetailsApi = characterDetailsApi,
-            db = db
-        )
-    }
-
-    private val getLocationByIdUseCase by lazy {
-        GetLocationByIdUseCase(locationDetailsRepository = locationDetailsRepository)
-    }
-
-    private val getAllCharactersByIdsUseCase by lazy {
-        GetAllCharactersByIdsUseCase(characterRepository = charactersRepository)
-    }
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return LocationDetailsViewModel(

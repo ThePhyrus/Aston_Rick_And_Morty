@@ -16,11 +16,13 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.R
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentCharacterDetailsBinding
+import roman.bannikov.aston_rick_and_morty.di.App
 import roman.bannikov.aston_rick_and_morty.utils.navigator
 import roman.bannikov.aston_rick_and_morty.view.adapters.character.CharacterDetailsAdapter
 import roman.bannikov.aston_rick_and_morty.view.models.character.CharacterView
 import roman.bannikov.aston_rick_and_morty.view.viewmodels.character.CharacterDetailsViewModel
 import roman.bannikov.aston_rick_and_morty.view.viewmodels.character.CharacterDetailsViewModelProvider
+import javax.inject.Inject
 import kotlin.properties.Delegates
 
 
@@ -29,6 +31,11 @@ class CharacterDetailsFragment : Fragment() {
 
     private var _binding: FragmentCharacterDetailsBinding? = null
     private val binding: FragmentCharacterDetailsBinding get() = _binding!!
+
+
+    @Inject
+    lateinit var characterDetailsViewModelProvider: CharacterDetailsViewModelProvider
+
     private lateinit var viewModel: CharacterDetailsViewModel
     private var characterDetailsAdapter: CharacterDetailsAdapter? = null
 
@@ -90,10 +97,11 @@ class CharacterDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireContext().applicationContext as App).appComponent.inject(this)
 
         viewModel = ViewModelProvider(
             this,
-            CharacterDetailsViewModelProvider(requireContext())
+            characterDetailsViewModelProvider
         )[CharacterDetailsViewModel::class.java]
         viewModel.getCharacter(characterId)
         initView()

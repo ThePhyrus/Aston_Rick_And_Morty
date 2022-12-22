@@ -14,47 +14,9 @@ import roman.bannikov.aston_rick_and_morty.domain.usecases.episode.list.GetAllEp
 
 @ExperimentalPagingApi
 class CharacterDetailsViewModelProvider(
-    context: Context
+    private val getCharacterByIdUseCase: GetCharacterByIdUseCase,
+    private val getAllEpisodesByIdsUseCase: GetAllEpisodesByIdsUseCase
 ) : ViewModelProvider.Factory {
-
-    private val retrofit by lazy {
-        Retrofit
-    }
-
-    private val characterDetailsApi by lazy {
-        retrofit.characterDetailsApi
-    }
-
-    private val episodeDetailsApi by lazy {
-        retrofit.episodeDetailsApi
-    }
-
-    private val episodesApi by lazy {
-        retrofit.episodeApi
-    }
-
-    private val database by lazy {
-        AppDatabase(context = context)
-    }
-
-    private val characterDetailsRepository by lazy {
-        CharacterDetailsRepositoryImpl(characterDetailsApi = characterDetailsApi, db = database)
-    }
-
-    private val episodesRepository by lazy {
-        EpisodeRepositoryImpl(
-            episodeApi = episodesApi,
-            episodeDetailsApi = episodeDetailsApi,
-            database = database)
-    }
-
-    private val getCharacterByIdUseCase by lazy {
-        GetCharacterByIdUseCase(characterDetailsRepository = characterDetailsRepository)
-    }
-
-    private val getAllEpisodesByIdsUseCase by lazy {
-        GetAllEpisodesByIdsUseCase(episodesRepository = episodesRepository)
-    }
 
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

@@ -10,14 +10,17 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.paging.ExperimentalPagingApi
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.R
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentCharacterFilterBinding
+import roman.bannikov.aston_rick_and_morty.di.App
 import roman.bannikov.aston_rick_and_morty.utils.navigator
 import roman.bannikov.aston_rick_and_morty.view.viewmodels.character.CharacterFilterViewModel
 import roman.bannikov.aston_rick_and_morty.view.viewmodels.character.CharacterFilterViewModelProvider
+import javax.inject.Inject
 
 
 class CharacterFilterFragment : BottomSheetDialogFragment() {
@@ -25,6 +28,8 @@ class CharacterFilterFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentCharacterFilterBinding? = null
     private val binding: FragmentCharacterFilterBinding get() = _binding!!
 
+    @Inject
+    lateinit var characterFilterViewModelProvider: CharacterFilterViewModelProvider
     private lateinit var viewModel: CharacterFilterViewModel
 
     private var species: String = ""
@@ -41,8 +46,12 @@ class CharacterFilterFragment : BottomSheetDialogFragment() {
         return binding.root
     }
 
+    @OptIn(ExperimentalPagingApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (requireContext().applicationContext as App).appComponent.inject(this)
+
         initViewModel()
 
     }
@@ -50,7 +59,7 @@ class CharacterFilterFragment : BottomSheetDialogFragment() {
     private fun initViewModel() {
         viewModel = ViewModelProvider(
             this,
-            CharacterFilterViewModelProvider(requireContext())
+            characterFilterViewModelProvider
         )[CharacterFilterViewModel::class.java]
         observeViewModel()
     }

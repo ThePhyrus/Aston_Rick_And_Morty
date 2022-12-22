@@ -11,24 +11,8 @@ import roman.bannikov.aston_rick_and_morty.domain.usecases.locations.list.GetAll
 
 @ExperimentalPagingApi
 class LocationListViewModelProvider(
-    context: Context
+    private val getAllLocationsUseCase: GetAllLocationsUseCase
 ) : ViewModelProvider.Factory {
-
-    private val retrofitInstance by lazy {
-        Retrofit.locationApi
-    }
-
-    private val db by lazy {
-        AppDatabase(context = context)
-    }
-
-    private val locationsRepository by lazy {
-        LocationRepositoryImpl(db = db, locationApi = retrofitInstance)
-    }
-
-    private val getAllLocationsUseCase by lazy {
-        GetAllLocationsUseCase(locationsRepository = locationsRepository)
-    }
 
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

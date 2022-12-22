@@ -3,6 +3,9 @@ package roman.bannikov.aston_rick_and_morty.utils
 class Const {
     companion object {
 
+        const val BASE_URL = "https://rickandmortyapi.com/api/"
+        const val DATABASE_NAME = "AppDB.bd"
+
         //NAVIGATION AND BACKSTACK
 
         //character

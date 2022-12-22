@@ -11,36 +11,9 @@ import roman.bannikov.aston_rick_and_morty.domain.usecases.character.list.GetAll
 
 @ExperimentalPagingApi
 class CharacterListViewModelProvider(
-    context: Context
+    private val getAllCharactersUseCase: GetAllCharactersUseCase
 ) : ViewModelProvider.Factory {
 
-    private val retrofitInstance by lazy {
-        Retrofit
-    }
-
-    private val characterDetailsApi by lazy {
-        retrofitInstance.characterDetailsApi
-    }
-
-    private val charactersApi by lazy {
-        retrofitInstance.characterApi
-    }
-
-    private val db by lazy {
-        AppDatabase(context = context)
-    }
-
-    private val charactersRepository by lazy {
-        CharacterRepositoryImpl(
-            db = db,
-            characterApi = charactersApi,
-            characterDetailsApi = characterDetailsApi
-        )
-    }
-
-    private val getAllCharactersUseCase by lazy {
-        GetAllCharactersUseCase(characterRepository = charactersRepository)
-    }
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return CharacterListViewModel(

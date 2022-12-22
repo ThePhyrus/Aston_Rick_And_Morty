@@ -9,29 +9,15 @@ import roman.bannikov.aston_rick_and_morty.domain.usecases.character.filter.GetL
 import roman.bannikov.aston_rick_and_morty.domain.usecases.character.filter.GetListCharactersTypesUseCase
 
 class CharacterFilterViewModelProvider(
-    context: Context
+    private val getListCharactersTypesUseCase: GetListCharactersTypesUseCase,
+    private val getListCharactersSpeciesUseCase: GetListCharactersSpeciesUseCase
 ) : ViewModelProvider.Factory {
 
-    private val db by lazy {
-        AppDatabase(context = context)
-    }
-
-    private val getCharacterFiltersRepository by lazy {
-        CharacterFilterRepositoryImpl(db = db)
-    }
-
-    private val getListTypesSpeciesUseCase by lazy {
-        GetListCharactersTypesUseCase(getCharacterFiltersRepository = getCharacterFiltersRepository)
-    }
-
-    private val getListCharactersSpeciesUseCase by lazy {
-        GetListCharactersSpeciesUseCase(getCharacterFiltersRepository = getCharacterFiltersRepository)
-    }
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return CharacterFilterViewModel(
             getListCharactersSpeciesUseCase = getListCharactersSpeciesUseCase,
-            getListTypesSpeciesUseCase = getListTypesSpeciesUseCase
+            getListCharactersTypesUseCase = getListCharactersTypesUseCase
         ) as T
     }
 }

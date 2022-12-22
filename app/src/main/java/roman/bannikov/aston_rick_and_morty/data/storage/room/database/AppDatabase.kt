@@ -13,6 +13,7 @@ import roman.bannikov.aston_rick_and_morty.data.models.pages.EpisodePages
 import roman.bannikov.aston_rick_and_morty.data.models.pages.LocationPages
 import roman.bannikov.aston_rick_and_morty.data.storage.room.Converter
 import roman.bannikov.aston_rick_and_morty.data.storage.room.dao.*
+import roman.bannikov.aston_rick_and_morty.utils.Const.Companion.DATABASE_NAME
 
 @Database(
     entities = [
@@ -41,7 +42,7 @@ abstract class AppDatabase : RoomDatabase() {
             Room.databaseBuilder(
                 context.applicationContext,
                 AppDatabase::class.java,
-                "AppDB.bd"
+                DATABASE_NAME
             ).build()
     }
 

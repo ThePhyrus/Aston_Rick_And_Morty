@@ -4,7 +4,7 @@ import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import roman.bannikov.aston_rick_and_morty.domain.models.location.LocationDomain
 
-interface LocationsRepository {
+interface LocationRepository {
 
     fun getAllLocations(
         name: String?,

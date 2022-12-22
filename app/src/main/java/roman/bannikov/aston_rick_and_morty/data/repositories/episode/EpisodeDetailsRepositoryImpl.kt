@@ -16,7 +16,7 @@ import java.io.IOException
 
 class EpisodeDetailsRepositoryImpl(
     private val episodeDetailsApi: EpisodeDetailsApi,
-    private val db: AppDatabase
+    private val database: AppDatabase
 ) : EpisodeDetailsRepository {
 
     override suspend fun getEpisodeById(id: Int): EpisodeDomain = withContext(Dispatchers.IO) {
@@ -25,7 +25,7 @@ class EpisodeDetailsRepositoryImpl(
                 episodeDetailsApi.getEpisodeById(id = id)
             if (episodeDataFromApi.isSuccessful) {
                 episodeDataFromApi.body()
-                    ?.let { db.getEpisodeDao().insertEpisode(episodeData = it) }
+                    ?.let { database.getEpisodeDao().insertEpisode(episodeData = it) }
             }
 
         } catch (e: HttpException) {
@@ -35,7 +35,7 @@ class EpisodeDetailsRepositoryImpl(
         }
 
         return@withContext EpisodeDataToEpisodeDomain().transform(
-            db.getEpisodeDao().getEpisodeById(id = id)
+            database.getEpisodeDao().getEpisodeById(id = id)
         )
     }
 }

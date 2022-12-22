@@ -15,7 +15,7 @@ import roman.bannikov.aston_rick_and_morty.data.models.episode.EpisodeData
 import roman.bannikov.aston_rick_and_morty.data.paging.EpisodeRemoteMediator
 import roman.bannikov.aston_rick_and_morty.data.storage.room.database.AppDatabase
 import roman.bannikov.aston_rick_and_morty.domain.models.episode.EpisodeDomain
-import roman.bannikov.aston_rick_and_morty.domain.repositories.episode.EpisodesRepository
+import roman.bannikov.aston_rick_and_morty.domain.repositories.episode.EpisodeRepository
 import java.io.IOException
 
 
@@ -24,7 +24,7 @@ class EpisodeRepositoryImpl(
     private val episodeApi: EpisodeApi,
     private val episodeDetailsApi: EpisodeDetailsApi,
     private val database: AppDatabase
-) : EpisodesRepository {
+) : EpisodeRepository {
 
     override fun getAllEpisodes(
         name: String?,

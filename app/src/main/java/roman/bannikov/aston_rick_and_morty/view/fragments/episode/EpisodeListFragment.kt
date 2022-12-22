@@ -16,10 +16,12 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentEpisodeListBinding
+import roman.bannikov.aston_rick_and_morty.di.App
 import roman.bannikov.aston_rick_and_morty.utils.navigator
 import roman.bannikov.aston_rick_and_morty.view.adapters.episode.EpisodeAdapter
 import roman.bannikov.aston_rick_and_morty.view.viewmodels.episode.EpisodeListViewModel
 import roman.bannikov.aston_rick_and_morty.view.viewmodels.episode.EpisodeListViewModelProvider
+import javax.inject.Inject
 import kotlin.collections.getValue
 import kotlin.collections.set
 
@@ -34,6 +36,8 @@ class EpisodeListFragment : Fragment() {
 
     private var episodeAdapter: EpisodeAdapter = EpisodeAdapter()
 
+    @Inject
+    lateinit var episodeListViewModelProvider: EpisodeListViewModelProvider
     private lateinit var viewModel: EpisodeListViewModel
 
     private var episode: String? = null
@@ -62,6 +66,7 @@ class EpisodeListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireContext().applicationContext as App).appComponent.inject(this)
         initViewModel()
         initRecyclerView()
         collectUiState()
@@ -72,7 +77,7 @@ class EpisodeListFragment : Fragment() {
     private fun initViewModel() {
         viewModel = ViewModelProvider(
             this,
-            EpisodeListViewModelProvider(requireContext())
+            episodeListViewModelProvider
         )[EpisodeListViewModel::class.java]
         if (episode != null) viewModel.filteredTrigger.value[
                 EpisodeListViewModel.MAP_KEY_EPISODE_CODE] = episode

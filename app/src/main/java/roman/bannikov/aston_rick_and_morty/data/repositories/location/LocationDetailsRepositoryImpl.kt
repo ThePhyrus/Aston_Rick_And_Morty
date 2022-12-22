@@ -16,7 +16,7 @@ import java.io.IOException
 
 class LocationDetailsRepositoryImpl(
     private val locationDetailsApi: LocationDetailsApi,
-    private val db: AppDatabase
+    private val database: AppDatabase
 ) : LocationDetailsRepository {
 
     override suspend fun getLocationById(id: Int): LocationDomain = withContext(Dispatchers.IO) {
@@ -25,7 +25,7 @@ class LocationDetailsRepositoryImpl(
                 locationDetailsApi.getLocationById(id = id)
             if (locationDataFromApi.isSuccessful) {
                 locationDataFromApi.body()
-                    ?.let { db.getLocationDao().insertLocation(locationData = it) }
+                    ?.let { database.getLocationDao().insertLocation(locationData = it) }
             }
 
         } catch (e: HttpException) {
@@ -35,7 +35,7 @@ class LocationDetailsRepositoryImpl(
         }
 
         return@withContext LocationDataToLocationDomain().transform(
-            db.getLocationDao().getLocationById(id = id)
+            database.getLocationDao().getLocationById(id = id)
         )
     }
 }

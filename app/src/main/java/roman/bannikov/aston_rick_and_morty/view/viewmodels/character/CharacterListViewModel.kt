@@ -19,8 +19,6 @@ class CharacterListViewModel(
     private val getAllCharactersUseCase: GetAllCharactersUseCase,
 ) : ViewModel() {
 
-    private var _charactersFlow = MutableSharedFlow<PagingData<CharacterView>>()
-    val charactersFlow = _charactersFlow
 
     private val _filteredTrigger = MutableStateFlow<MutableMap<String, String?>>(
         mutableMapOf(
@@ -32,6 +30,9 @@ class CharacterListViewModel(
         )
     )
     val filteredTrigger: MutableStateFlow<MutableMap<String, String?>> = _filteredTrigger
+
+    private var _charactersFlow = MutableSharedFlow<PagingData<CharacterView>>()
+    val charactersFlow = _charactersFlow
 
     fun getCharactersByParams(
         name: String?,

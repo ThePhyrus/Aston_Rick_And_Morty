@@ -16,7 +16,7 @@ import java.io.IOException
 
 class CharacterDetailsRepositoryImpl(
     private val characterDetailsApi: CharacterDetailsApi,
-    private val db: AppDatabase
+    private val database: AppDatabase
 ) : CharacterDetailsRepository {
 
     override suspend fun getCharacterById(id: Int): CharacterDomain = withContext(Dispatchers.IO) {
@@ -25,7 +25,7 @@ class CharacterDetailsRepositoryImpl(
                 characterDetailsApi.getCharacterById(id = id)
             if (characterFromApi.isSuccessful) {
                 characterFromApi.body()
-                    ?.let { db.getCharacterDao().insertCharacter(character = it) }
+                    ?.let { database.getCharacterDao().insertCharacter(character = it) }
             }
 
         } catch (e: HttpException) {
@@ -35,7 +35,7 @@ class CharacterDetailsRepositoryImpl(
         }
 
         return@withContext CharacterDataToCharacterDomain().transform(
-            db.getCharacterDao().getCharacterById(id = id)
+            database.getCharacterDao().getCharacterById(id = id)
         )
     }
 
