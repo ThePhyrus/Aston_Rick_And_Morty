@@ -16,16 +16,21 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentCharacterListBinding
+import roman.bannikov.aston_rick_and_morty.di.App
 import roman.bannikov.aston_rick_and_morty.utils.navigator
 import roman.bannikov.aston_rick_and_morty.view.adapters.character.CharacterListAdapter
 import roman.bannikov.aston_rick_and_morty.view.viewmodels.character.CharacterListViewModel
 import roman.bannikov.aston_rick_and_morty.view.viewmodels.character.CharacterListViewModelProvider
+import javax.inject.Inject
 
 
 @ExperimentalPagingApi
 @ExperimentalCoroutinesApi
 @FlowPreview
 class CharacterListFragment : Fragment() {
+
+    @Inject
+    lateinit var characterListViewModelProvider: CharacterListViewModelProvider
 
     private var _binding: FragmentCharacterListBinding? = null
     private val binding: FragmentCharacterListBinding get() = _binding!!
@@ -61,6 +66,22 @@ class CharacterListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (requireContext().applicationContext as App).appComponent.inject(this)
+
+        viewModel = ViewModelProvider(
+            this,
+            characterListViewModelProvider
+        )[CharacterListViewModel::class.java]
+
+        if (
+            params["gender"] != null ||
+            params["status"] != null ||
+            params["type"] != null ||
+            params["species"] != null
+        ) viewModel.filteredTrigger.value = params
+
+
         initViewModel()
         initRecyclerView()
         collectUiState()
@@ -82,16 +103,8 @@ class CharacterListFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        if (
-            params["gender"] != null ||
-            params["status"] != null ||
-            params["type"] != null ||
-            params["species"] != null
-        ) viewModel.filteredTrigger.value = params
-        viewModel = ViewModelProvider(
-            this,
-            CharacterListViewModelProvider(requireContext())
-        )[CharacterListViewModel::class.java]
+
+
     }
 
     private fun observeViewModel() {
