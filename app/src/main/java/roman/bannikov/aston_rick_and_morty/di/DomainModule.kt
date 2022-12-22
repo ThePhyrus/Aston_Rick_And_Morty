@@ -32,7 +32,9 @@ import javax.inject.Singleton
 @ExperimentalPagingApi
 @Module
 class DomainModule {
-    /////////////////CHARACTER/////////////////////////////////
+
+
+    //  CHARACTER  /////////////////////////////////////////////////////////////////////////////////
 
     @Provides
     @Singleton
@@ -44,7 +46,6 @@ class DomainModule {
         )
     }
 
-
     @Provides
     @Singleton
     fun provideGetAllCharactersByIdsUseCase(
@@ -55,7 +56,6 @@ class DomainModule {
         )
     }
 
-
     @Provides
     @Singleton
     fun provideGetListCharactersTypesUseCase(
@@ -65,7 +65,6 @@ class DomainModule {
             getCharacterFilterRepository = getCharacterFilterRepository
         )
     }
-
 
     @Provides
     @Singleton
@@ -87,8 +86,7 @@ class DomainModule {
         )
     }
 
-
-    /////////////////EPISODE////////////////////////////////
+    //  EPISODE  ///////////////////////////////////////////////////////////////////////////////////
 
     @Provides
     @Singleton
@@ -130,29 +128,7 @@ class DomainModule {
         )
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /////////////////LOCATION/////////////////////////////////
+    //  LOCATION  //////////////////////////////////////////////////////////////////////////////////
 
     @Provides
     @Singleton

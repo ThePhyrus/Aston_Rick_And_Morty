@@ -22,7 +22,6 @@ import roman.bannikov.aston_rick_and_morty.view.adapters.episode.EpisodeAdapter
 import roman.bannikov.aston_rick_and_morty.view.viewmodels.episode.EpisodeListViewModel
 import roman.bannikov.aston_rick_and_morty.view.viewmodels.episode.EpisodeListViewModelProvider
 import javax.inject.Inject
-import kotlin.collections.getValue
 import kotlin.collections.set
 
 
