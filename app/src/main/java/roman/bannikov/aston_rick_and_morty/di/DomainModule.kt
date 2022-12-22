@@ -87,7 +87,8 @@ class DomainModule {
         )
     }
 
-    /////////////////EPISODE/////////////////////////////////
+
+    /////////////////EPISODE////////////////////////////////
 
     @Provides
     @Singleton
@@ -109,7 +110,6 @@ class DomainModule {
         )
     }
 
-
     @Provides
     @Singleton
     fun provideGetListEpisodesUseCase(
@@ -120,7 +120,6 @@ class DomainModule {
         )
     }
 
-
     @Provides
     @Singleton
     fun provideGetEpisodeByIdUseCase(
@@ -130,6 +129,28 @@ class DomainModule {
             episodeDetailsRepository = episodeDetailsRepository
         )
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /////////////////LOCATION/////////////////////////////////
 
@@ -162,7 +183,6 @@ class DomainModule {
             locationFilterRepository = locationFilterRepository
         )
     }
-
 
     @Provides
     @Singleton

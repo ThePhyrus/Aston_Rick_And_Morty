@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.paging.ExperimentalPagingApi
 import dagger.Module
 import dagger.Provides
-<<<<<<< HEAD
 import roman.bannikov.aston_rick_and_morty.domain.usecases.character.details.GetCharacterByIdUseCase
 import roman.bannikov.aston_rick_and_morty.domain.usecases.character.filter.GetListCharactersSpeciesUseCase
 import roman.bannikov.aston_rick_and_morty.domain.usecases.character.filter.GetListCharactersTypesUseCase
@@ -29,28 +28,16 @@ import roman.bannikov.aston_rick_and_morty.view.viewmodels.location.LocationFilt
 import roman.bannikov.aston_rick_and_morty.view.viewmodels.location.LocationListViewModelProvider
 import javax.inject.Singleton
 
-=======
-import roman.bannikov.aston_rick_and_morty.domain.usecases.character.list.GetAllCharactersUseCase
-import roman.bannikov.aston_rick_and_morty.view.viewmodels.character.CharacterListViewModelProvider
-import javax.inject.Singleton
 
-
->>>>>>> origin/dagger
 @ExperimentalPagingApi
 @Module
 class AppModule(val context: Context) {
 
     @Provides
-<<<<<<< HEAD
     fun provideContext(): Context {
         return context
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-=======
-    fun provideContext(): Context{
-        return context
-    }
->>>>>>> origin/dagger
 
     @Provides
     @Singleton
@@ -62,7 +49,7 @@ class AppModule(val context: Context) {
         )
     }
 
-<<<<<<< HEAD
+
     @Provides
     @Singleton
     fun provideCharacterDetailsViewModelProvider(
@@ -158,16 +145,4 @@ class AppModule(val context: Context) {
     }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-=======
-
-/*    @Provides
-    @Singleton
-    fun provideCharactersViewModelProvider(
-        getAllCharactersUseCase: GetAllCharactersUseCase
-    ): CharactersViewModelProvider {
-        return CharactersViewModelProvider(
-            getAllCharactersUseCase = getAllCharactersUseCase
-        )
-    }*/
->>>>>>> origin/dagger
 }

@@ -3,7 +3,6 @@ package roman.bannikov.aston_rick_and_morty.di
 import androidx.paging.ExperimentalPagingApi
 import dagger.Component
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-<<<<<<< HEAD
 import roman.bannikov.aston_rick_and_morty.view.fragments.character.CharacterDetailsFragment
 import roman.bannikov.aston_rick_and_morty.view.fragments.character.CharacterFilterFragment
 import roman.bannikov.aston_rick_and_morty.view.fragments.character.CharacterListFragment
@@ -40,21 +39,5 @@ interface AppComponent {
 }
 
 
-=======
-import roman.bannikov.aston_rick_and_morty.view.fragments.character.CharacterListFragment
-import javax.inject.Singleton
 
 
-
-@ExperimentalCoroutinesApi
-@ExperimentalPagingApi
-
-
-
-@Singleton
-@Component(modules = [AppModule::class])
-
-interface AppComponent {
-    fun inject(characterListFragment: CharacterListFragment)
-}
->>>>>>> origin/dagger

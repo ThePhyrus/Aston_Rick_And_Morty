@@ -1,7 +1,6 @@
 package roman.bannikov.aston_rick_and_morty.view.viewmodels.location
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -9,7 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.domain.usecases.locations.filter.GetListLocationsDimensionsUseCase
 import roman.bannikov.aston_rick_and_morty.domain.usecases.locations.filter.GetListLocationsTypesUseCase
-import roman.bannikov.aston_rick_and_morty.domain.usecases.settings.LocationsSettingsUseCases
+
 
 
 class LocationFilterViewModel(

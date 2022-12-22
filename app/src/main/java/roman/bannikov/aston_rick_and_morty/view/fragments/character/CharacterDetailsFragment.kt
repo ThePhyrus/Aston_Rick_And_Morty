@@ -104,6 +104,8 @@ class CharacterDetailsFragment : Fragment() {
             characterDetailsViewModelProvider
         )[CharacterDetailsViewModel::class.java]
         viewModel.getCharacter(characterId)
+
+
         initView()
         observeViewModel()
 

@@ -55,14 +55,14 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun provideCharactersRepository(
+    fun provideCharacterRepository(
         database: AppDatabase,
         characterDetailsApi: CharacterDetailsApi,
-        charactersApi: CharacterApi,
+        characterApi: CharacterApi,
     ): CharacterRepository {
         return CharacterRepositoryImpl(
             characterDetailsApi = characterDetailsApi,
-            characterApi = charactersApi,
+            characterApi = characterApi,
             database = database
         )
     }
