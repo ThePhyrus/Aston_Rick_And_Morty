@@ -12,11 +12,13 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentEpisodeDetailsBinding
+import roman.bannikov.aston_rick_and_morty.di.App
 import roman.bannikov.aston_rick_and_morty.utils.navigator
 import roman.bannikov.aston_rick_and_morty.view.adapters.character.CharacterListForDetailsAdapter
 import roman.bannikov.aston_rick_and_morty.view.models.episode.EpisodeView
 import roman.bannikov.aston_rick_and_morty.view.viewmodels.episode.EpisodeDetailsViewModel
 import roman.bannikov.aston_rick_and_morty.view.viewmodels.episode.EpisodeDetailsViewModelProvider
+import javax.inject.Inject
 import kotlin.properties.Delegates
 
 
@@ -26,6 +28,8 @@ class EpisodeDetailsFragment : Fragment() {
     private var _binding: FragmentEpisodeDetailsBinding? = null
     private val binding: FragmentEpisodeDetailsBinding get() = _binding!!
 
+    @Inject
+    lateinit var episodeDetailsViewModelProvider: EpisodeDetailsViewModelProvider
     private lateinit var viewModel: EpisodeDetailsViewModel
 
     private var characterListForDetailsAdapter: CharacterListForDetailsAdapter? = null
@@ -53,6 +57,7 @@ class EpisodeDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireContext().applicationContext as App).appComponent.inject(this)
         initViewModel()
         observeViewModel()
         initView()
@@ -61,7 +66,7 @@ class EpisodeDetailsFragment : Fragment() {
     private fun initViewModel() {
         viewModel = ViewModelProvider(
             this,
-            EpisodeDetailsViewModelProvider(requireContext())
+            episodeDetailsViewModelProvider
         )[EpisodeDetailsViewModel::class.java]
         viewModel.getEpisode(episodeId)
     }

@@ -1,7 +1,6 @@
 package roman.bannikov.aston_rick_and_morty.view.viewmodels.location
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -9,12 +8,12 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.domain.usecases.locations.filter.GetListLocationsDimensionsUseCase
 import roman.bannikov.aston_rick_and_morty.domain.usecases.locations.filter.GetListLocationsTypesUseCase
-import roman.bannikov.aston_rick_and_morty.domain.usecases.settings.LocationsSettingsUseCases
+
+
 
 class LocationFilterViewModel(
     private val getListLocationsDimensionsUseCase: GetListLocationsDimensionsUseCase,
     private val getListLocationsTypesUseCase: GetListLocationsTypesUseCase,
-    private val locationSettingsUseCases: LocationsSettingsUseCases
 ) : ViewModel() {
 
     private val _dimensionList = MutableStateFlow<List<String>>(listOf())
@@ -39,18 +38,4 @@ class LocationFilterViewModel(
         }
     }
 
-    private val _settings = MutableLiveData<Map<String, List<String>>>(null)
-    private val settings: LiveData<Map<String, List<String>>> = _settings
-
-    fun saveListEpisodes(settings: Map<String, List<String>>) {
-        viewModelScope.launch {
-            locationSettingsUseCases.saveLocationTypes(settings)
-        }
-    }
-
-    fun getListEpisodes() {
-        viewModelScope.launch {
-            _settings.value = locationSettingsUseCases.getLocationTypes()
-        }
-    }
 }

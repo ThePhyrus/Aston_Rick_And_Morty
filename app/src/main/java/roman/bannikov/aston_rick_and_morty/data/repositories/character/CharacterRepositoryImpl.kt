@@ -23,7 +23,7 @@ import java.io.IOException
 class CharacterRepositoryImpl(
     private val characterDetailsApi: CharacterDetailsApi,
     private val characterApi: CharacterApi,
-    private val db: AppDatabase
+    private val database: AppDatabase
 ) : CharacterRepository {
 
     override fun getAllCharacters(
@@ -36,7 +36,7 @@ class CharacterRepositoryImpl(
 
         val pagingSourceFactory =
             {
-                db.getCharacterDao().getFilteredCharacters(
+                database.getCharacterDao().getFilteredCharacters(
                     name = name,
                     status = status,
                     gender = gender,
@@ -55,7 +55,7 @@ class CharacterRepositoryImpl(
             ),
             remoteMediator = CharacterRemoteMediator(
                 characterApi = characterApi,
-                db = db,
+                db = database,
                 name = name,
                 status = status,
                 gender = gender,
@@ -79,7 +79,7 @@ class CharacterRepositoryImpl(
                         characterApi.getCharactersByIds(ids = idsString)
                     if (characterDataFromApi.isSuccessful) {
                         characterDataFromApi.body()
-                            ?.let { db.getCharacterDao().insertAllCharacters(characters = it) }
+                            ?.let { database.getCharacterDao().insertAllCharacters(characters = it) }
                     }
                 }
                 if (ids.size == 1) {
@@ -87,7 +87,7 @@ class CharacterRepositoryImpl(
                         characterDetailsApi.getCharacterById(id = ids[0])
                     if (characterFromApi.isSuccessful) {
                         characterFromApi.body()
-                            ?.let { db.getCharacterDao().insertCharacter(character = it) }
+                            ?.let { database.getCharacterDao().insertCharacter(character = it) }
                     }
                 }
 
@@ -97,7 +97,7 @@ class CharacterRepositoryImpl(
                 Log.e("Log", "${e.message}")
             }
 
-            return@withContext db.getCharacterDao().getCharactersByIds(ids = ids).map {
+            return@withContext database.getCharacterDao().getCharactersByIds(ids = ids).map {
                 CharacterDataToCharacterDomain().transform(it)
             }
         }

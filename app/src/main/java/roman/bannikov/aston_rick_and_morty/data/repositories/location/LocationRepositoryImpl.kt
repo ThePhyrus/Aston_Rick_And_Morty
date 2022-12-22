@@ -8,14 +8,14 @@ import roman.bannikov.aston_rick_and_morty.data.mapper.LocationDataToLocationDom
 import roman.bannikov.aston_rick_and_morty.data.paging.LocationRemoteMediator
 import roman.bannikov.aston_rick_and_morty.data.storage.room.database.AppDatabase
 import roman.bannikov.aston_rick_and_morty.domain.models.location.LocationDomain
-import roman.bannikov.aston_rick_and_morty.domain.repositories.location.LocationsRepository
+import roman.bannikov.aston_rick_and_morty.domain.repositories.location.LocationRepository
 
 
 @ExperimentalPagingApi
 class LocationRepositoryImpl(
-    private val locationApi: LocationApi,
-    private val db: AppDatabase
-) : LocationsRepository {
+    private val database: AppDatabase,
+    private val locationApi: LocationApi
+) : LocationRepository {
 
     override fun getAllLocations(
         name: String?,
@@ -25,7 +25,7 @@ class LocationRepositoryImpl(
 
         val pagingSourceFactory =
             {
-                db.getLocationDao().getFilteredLocations(
+                database.getLocationDao().getFilteredLocations(
                     name = name,
                     type = type,
                     dimension = dimension
@@ -42,7 +42,7 @@ class LocationRepositoryImpl(
             ),
             remoteMediator = LocationRemoteMediator(
                 locationApi = locationApi,
-                db = db,
+                db = database,
                 name = name,
                 type = type,
                 dimension = dimension

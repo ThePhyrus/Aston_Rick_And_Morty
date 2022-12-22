@@ -17,10 +17,12 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentLocationListBinding
+import roman.bannikov.aston_rick_and_morty.di.App
 import roman.bannikov.aston_rick_and_morty.utils.navigator
 import roman.bannikov.aston_rick_and_morty.view.adapters.location.LocationAdapter
 import roman.bannikov.aston_rick_and_morty.view.viewmodels.location.LocationListViewModel
 import roman.bannikov.aston_rick_and_morty.view.viewmodels.location.LocationListViewModelProvider
+import javax.inject.Inject
 
 @ExperimentalPagingApi
 @ExperimentalCoroutinesApi
@@ -30,6 +32,8 @@ class LocationListFragment : Fragment() {
     private var _binding:FragmentLocationListBinding? = null
     private val binding: FragmentLocationListBinding get() = _binding!!
 
+    @Inject
+    lateinit var locationListViewModelProvider: LocationListViewModelProvider
     private lateinit var viewModel: LocationListViewModel
 
     private var locationAdapter: LocationAdapter = LocationAdapter()
@@ -74,6 +78,7 @@ class LocationListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireContext().applicationContext as App).appComponent.inject(this)
         initViewModel()
         initRecyclerView()
         collectUiState()
@@ -84,7 +89,7 @@ class LocationListFragment : Fragment() {
     private fun initViewModel() {
         viewModel = ViewModelProvider(
             this,
-            LocationListViewModelProvider(requireContext())
+            locationListViewModelProvider
         )[LocationListViewModel::class.java]
         if (
             params["name"] != null ||

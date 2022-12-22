@@ -9,13 +9,16 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.paging.ExperimentalPagingApi
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.launch
 import roman.bannikov.aston_rick_and_morty.R
 import roman.bannikov.aston_rick_and_morty.databinding.FragmentLocationFilterBinding
+import roman.bannikov.aston_rick_and_morty.di.App
 import roman.bannikov.aston_rick_and_morty.utils.navigator
 import roman.bannikov.aston_rick_and_morty.view.viewmodels.location.LocationFilterViewModel
 import roman.bannikov.aston_rick_and_morty.view.viewmodels.location.LocationFilterViewModelProvider
+import javax.inject.Inject
 
 
 class LocationFilterFragment : BottomSheetDialogFragment() {
@@ -23,6 +26,8 @@ class LocationFilterFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentLocationFilterBinding? = null
     private val binding: FragmentLocationFilterBinding get() = _binding!!
 
+    @Inject
+    lateinit var locationFilterViewModelProvider: LocationFilterViewModelProvider
     private lateinit var viewModel: LocationFilterViewModel
 
     private var type: String? = null
@@ -40,8 +45,10 @@ class LocationFilterFragment : BottomSheetDialogFragment() {
         return binding.root
     }
 
+    @OptIn(ExperimentalPagingApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireContext().applicationContext as App).appComponent.inject(this)
         initViewModel()
         observeViewModel()
     }
@@ -49,7 +56,7 @@ class LocationFilterFragment : BottomSheetDialogFragment() {
     private fun initViewModel() {
         viewModel = ViewModelProvider(
             this,
-            LocationFilterViewModelProvider(requireContext())
+            locationFilterViewModelProvider
         )[LocationFilterViewModel::class.java]
     }
 

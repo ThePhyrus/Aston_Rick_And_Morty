@@ -4,7 +4,7 @@ import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import roman.bannikov.aston_rick_and_morty.domain.models.episode.EpisodeDomain
 
-interface EpisodesRepository {
+interface EpisodeRepository {
 
     fun getAllEpisodes(
         name: String?,
