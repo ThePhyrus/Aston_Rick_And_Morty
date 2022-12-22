@@ -66,9 +66,22 @@ class CharacterListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (requireContext().applicationContext as App).appComponent.inject(this)
-        initViewModel()
+
+        viewModel = ViewModelProvider(
+            this,
+            characterListViewModelProvider
+        )[CharacterListViewModel::class.java]
+
         initRecyclerView()
         collectUiState()
+
+        if (
+            params["gender"] != null ||
+            params["status"] != null ||
+            params["type"] != null ||
+            params["species"] != null
+        ) viewModel.filteredTrigger.value = params
+
         setUpSwipeToRefresh()
 
 
@@ -84,19 +97,6 @@ class CharacterListFragment : Fragment() {
 
         })
         observeViewModel()
-    }
-
-    private fun initViewModel() {
-        if (
-            params["gender"] != null ||
-            params["status"] != null ||
-            params["type"] != null ||
-            params["species"] != null
-        ) viewModel.filteredTrigger.value = params
-        viewModel = ViewModelProvider(
-            this,
-            characterListViewModelProvider
-        )[CharacterListViewModel::class.java]
     }
 
     private fun observeViewModel() {

@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.paging.ExperimentalPagingApi
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import roman.bannikov.aston_rick_and_morty.R
 import roman.bannikov.aston_rick_and_morty.utils.Const.Companion.NAME_CHARACTER_DETAILS_FRAGMENT
 import roman.bannikov.aston_rick_and_morty.utils.Const.Companion.NAME_CHARACTER_LIST_FRAGMENT
@@ -50,6 +52,7 @@ class MainActivity : AppCompatActivity(), Navigator {
     }
 
     //initialize
+    @OptIn(ExperimentalCoroutinesApi::class)
     private fun initFirstScreen(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
@@ -97,6 +100,7 @@ class MainActivity : AppCompatActivity(), Navigator {
     }
 
     //character
+    @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
     override fun launchCharacterListFragment() {
         supportFragmentManager.beginTransaction()
             .replace(
@@ -124,6 +128,7 @@ class MainActivity : AppCompatActivity(), Navigator {
         CharacterFilterFragment().show(supportFragmentManager, TAG_CHARACTER_FILTER_FRAGMENT)
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
     override fun launchFilteredCharacterListFragment(
         status: String?, gender: String?, species: String?, type: String?
     ) {
@@ -142,6 +147,7 @@ class MainActivity : AppCompatActivity(), Navigator {
     }
 
     //episode
+    @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
     override fun launchEpisodeListFragment() {
         if (supportFragmentManager.backStackEntryCount > 0) {
             val backEntry: FragmentManager.BackStackEntry =
@@ -176,6 +182,7 @@ class MainActivity : AppCompatActivity(), Navigator {
         EpisodeFilterFragment().show(supportFragmentManager, TAG_EPISODE_FILTER_FRAGMENT)
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
     override fun launchFilteredEpisodeListFragment(episode: String?) {
         supportFragmentManager.beginTransaction()
             .replace(
@@ -189,6 +196,7 @@ class MainActivity : AppCompatActivity(), Navigator {
     }
 
     //location
+    @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
     override fun launchLocationListFragment() {
         if (supportFragmentManager.backStackEntryCount > 0) {
             val backEntry: FragmentManager.BackStackEntry =
@@ -223,6 +231,7 @@ class MainActivity : AppCompatActivity(), Navigator {
         LocationFilterFragment().show(supportFragmentManager, TAG_LOCATION_FILTER_FRAGMENT)
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
     override fun launchFilteredLocationListFragment(type: String?, dimension: String?) {
         supportFragmentManager.beginTransaction()
             .replace(
@@ -237,6 +246,8 @@ class MainActivity : AppCompatActivity(), Navigator {
     }
 
     //go back
+    @Deprecated("Deprecated in Java")
+    @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
     override fun onBackPressed() {
         val fragment1: CharacterListFragment? =
             supportFragmentManager.findFragmentByTag(TAG_CHARACTER_LIST_FRAGMENT)
