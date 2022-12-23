@@ -162,16 +162,39 @@ Rick and Morty
 Часть 5: Список сторонних библиотек
 
     5.1 - Используемые библиотеки:
-        //Pull-to-Refresh
-        implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
-        // RecyclerView
-        implementation "androidx.recyclerview:recyclerview:1.3.0-rc01"
-        //JavaFaker (временно, для тестов RecyclerView)
-        implementation 'com.github.javafaker:javafaker:1.0.2'
-        //Glide (может быть заменю на Coil)
-        implementation 'com.github.bumptech.glide:glide:4.12.0'
-        //Fragment
-        implementation 'androidx.fragment:fragment-ktx:1.5.4'
+            // Glide
+    implementation "com.github.bumptech.glide:glide:4.12.0"
+    // PullToRefresh
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    // Flow
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+    // Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    // Paging
+    implementation "androidx.paging:paging-runtime-ktx:3.1.1"
+    // Room
+    implementation "androidx.room:room-runtime:2.4.3"
+    implementation "androidx.room:room-ktx:2.4.3"
+    implementation "androidx.room:room-paging:2.4.3"
+    kapt "androidx.room:room-compiler:2.4.3"
+    // Recyclerview
+    implementation "androidx.recyclerview:recyclerview:1.3.0-rc01"
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.3"
+    // Gson
+    implementation 'com.google.code.gson:gson:2.8.9'
+    // Fragments
+    implementation 'androidx.fragment:fragment-ktx:1.5.5'
+    // ViewModel
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    // Dagger 2
+    implementation 'com.google.dagger:dagger:2.40.5'
+    kapt 'com.google.dagger:dagger-compiler:2.40.5'
 
     5.2 - Библиотеки, запрещённые к использованию:
 
@@ -204,3 +227,10 @@ Rick and Morty
     1 - Проект содержит SplashActivity
     2 - Реализована bottomNavigationView
     3 - View Binding
+    4 - Фунцкция Pull-to-refresh
+    5 - Coroutine (Flow, LiveData)
+    6 - ListAdapter
+    7 - Room
+    8 - Библеотека Paging 3
+    9 - Dagger
+
