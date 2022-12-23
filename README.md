@@ -154,7 +154,7 @@ Rick and Morty
     список персонажей полученный по запросу: 
     https://rickandmortyapi.com/documentation/#get-all-characters и нижнюю навигационную панель
     (bottomNavigationView) с тремя вкладками: персонажи, эпизоды, локации.
-    ![Flow](https://user-images.githubusercontent.com/88384527/209301221-c6dd91c4-2b74-47bb-bb80-fde7ee24174c.jpg)
+  
 
 
 Часть 5: Список сторонних библиотек
